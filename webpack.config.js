@@ -3,35 +3,48 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   // dev
-  devtool: "inline-source-map", // TODO: prod
   devServer: {
     contentBase: "./dist"
   },
   // prod
-  entry: "./src/index.tsx",
+  entry: [
+    "react-hot-loader/patch", // make sure the HMR package is included
+    "./src/index.tsx"
+  ],
   output: {
     path: path.join(__dirname, "/dist"),
     filename: "index-bundle.js"
   },
   resolve: {
-    extensions: [".tsx", ".js"]
+    extensions: [".tsx", ".js"],
+    alias: { "react-dom": "@hot-loader/react-dom" }
   },
   module: {
     rules: [
       {
         test: /\.tsx$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env"]
-          }
-        }
+        exclude: /(node_modules)/,
+        include: /src/,
+        use: ["babel-loader"]
       },
-      { test: /\.tsx?$/, loader: "ts-loader" },
+      {
+        test: /\.tsx?$/,
+        exclude: /(node_modules)/,
+        include: /src/,
+        use: [
+          "ts-loader",
+          {
+            loader: "astroturf/loader",
+            options: {
+              extension: ".module.css",
+              enableCssProp: true
+            }
+          }
+        ]
+      },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: ["style-loader", "astroturf/css-loader"]
       }
     ]
   },
