@@ -2,45 +2,29 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  // dev
   devServer: {
-    contentBase: "./dist"
+    contentBase: "./dist",
+    port: "3000"
   },
-  // prod
-  entry: [
-    "react-hot-loader/patch", // make sure the HMR package is included
-    "./src/index.tsx"
-  ],
+  devtool: "inline-source-map",
+  entry: ["react-hot-loader/patch", "./src/index.tsx"],
   output: {
     path: path.join(__dirname, "/dist"),
     filename: "index-bundle.js"
   },
   resolve: {
-    extensions: [".tsx", ".js"],
-    alias: { "react-dom": "@hot-loader/react-dom" }
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
+    alias: {
+      "react-dom": "@hot-loader/react-dom"
+    }
   },
   module: {
     rules: [
       {
-        test: /\.tsx$/,
+        test: /\.(j|t)sx?$/,
         exclude: /(node_modules)/,
         include: /src/,
-        use: ["babel-loader"]
-      },
-      {
-        test: /\.tsx?$/,
-        exclude: /(node_modules)/,
-        include: /src/,
-        use: [
-          "ts-loader",
-          {
-            loader: "astroturf/loader",
-            options: {
-              extension: ".module.css",
-              enableCssProp: true
-            }
-          }
-        ]
+        use: ["ts-loader", "astroturf/loader"]
       },
       {
         test: /\.css$/,
@@ -50,7 +34,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      // favicon: './src/assets/icons/favicon.png',
       template: "./src/index.html",
       filename: "./index.html"
     })
