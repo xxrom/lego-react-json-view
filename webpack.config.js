@@ -20,12 +20,28 @@ module.exports = {
   },
   module: {
     rules: [
+      // {
+      //   test: /\.(j|t)sx?$/,
+      //   exclude: /(node_modules)/,
+      //   include: /src/,
+      //   use: ["astroturf/loader", "awesome-typescript-loader"]
+      // },
       {
         test: /\.(j|t)sx?$/,
         exclude: /(node_modules)/,
         include: /src/,
-        use: ["ts-loader", "astroturf/loader"]
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              cacheDirectory: true
+            }
+          },
+          "astroturf/loader",
+          "react-hot-loader/webpack"
+        ]
       },
+
       {
         test: /\.css$/,
         use: ["style-loader", "astroturf/css-loader"]
