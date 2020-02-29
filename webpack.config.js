@@ -15,17 +15,14 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
     alias: {
-      "react-dom": "@hot-loader/react-dom"
+      "react-dom": "@hot-loader/react-dom",
+      "@common": path.join(__dirname, "./src/common"),
+      "@settings": path.join(__dirname, "./src/settings"),
+      "@colors": path.join(__dirname, "./src/colors")
     }
   },
   module: {
     rules: [
-      // {
-      //   test: /\.(j|t)sx?$/,
-      //   exclude: /(node_modules)/,
-      //   include: /src/,
-      //   use: ["astroturf/loader", "awesome-typescript-loader"]
-      // },
       {
         test: /\.(j|t)sx?$/,
         exclude: /(node_modules)/,

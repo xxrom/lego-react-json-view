@@ -5,7 +5,14 @@
     "noImplicitAny": true,
     "module": "commonjs",
     "target": "es2015",
-    "jsx": "react"
+    "jsx": "react",
+    "removeComments": true,
+    "baseUrl": ".",
+    "paths": {
+      "@common": ["src/common/"],
+      "@colors": ["src/colors.tsx"],
+      "@settings": ["src/settings.tsx"]
+    }
   },
   "include": ["./src/**/*"]
 }
