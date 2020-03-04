@@ -1,22 +1,20 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
-  devServer: {
-    contentBase: "./dist",
-    port: "8000"
-  },
-  devtool: "inline-source-map",
-  entry: ["react-hot-loader/patch", "./src/index.tsx"],
+  entry: ["./src/index.prod.tsx"],
+  devtool: "source-map",
+  target: "web",
   output: {
-    path: path.join(__dirname, "/dist"),
-    filename: "index-bundle.js"
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "./dist-webpack"),
+    libraryTarget: "commonjs2"
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
     alias: {
-      "react-dom": "@hot-loader/react-dom",
       "@common": path.join(__dirname, "./src/common"),
       "@settings": path.join(__dirname, "./src/settings"),
       "@colors": path.join(__dirname, "./src/colors")
@@ -28,17 +26,7 @@ module.exports = {
         test: /\.(j|t)sx?$/,
         exclude: /(node_modules)/,
         include: /src/,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              cacheDirectory: true,
-              babelrc: true
-            }
-          },
-          "astroturf/loader",
-          "react-hot-loader/webpack"
-        ]
+        use: ["babel-loader", "astroturf/loader"]
       },
 
       {
@@ -52,6 +40,15 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
+    }),
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("production")
+      }
     })
-  ]
+  ],
+  externals: {
+    react: "commonjs2 react",
+    "react-dom": "commonjs2 react-dom"
+  }
 };

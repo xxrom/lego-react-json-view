@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo, useEffect, useState, memo } from "react";
 import styled from "astroturf";
 
 import { Lego, CollapseSettings, Search } from "./components";
@@ -11,7 +11,7 @@ import {
 import { colors } from "@colors";
 import { isDarkTheme } from "@settings";
 
-interface ViewerProps {
+export interface ViewerProps {
   json: object;
 }
 
@@ -39,6 +39,8 @@ const Wrapper = styled("div")`
   position: relative;
   height: 100%;
   padding: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
@@ -57,11 +59,12 @@ const defaultCollapses = [
   { test: "hide.this.path", replaceTo: "hide.this.path" }
 ];
 
-const Viewer = React.memo(({ json: initJson }: ViewerProps) => {
-  const [json, setJson] = React.useState({ root: initJson });
-  const [searchText, setSearchText] = React.useState("");
-  const [collapses, setCollapses] = React.useState(defaultCollapses);
-  const [settings, setSettings] = React.useState<settingsType>(() => {
+const Viewer = memo(({ json: initJson = {} }: ViewerProps) => {
+  const [json, setJson] = useState({ root: initJson });
+  const [searchText, setSearchText] = useState("");
+  const [collapses, setCollapses] = useState(defaultCollapses);
+  const [isOpenedSettings, setIsOpenedSettings] = useState(false);
+  const [settings, setSettings] = useState<settingsType>(() => {
     const settingsLS = getSettingsLS();
     const { fontSize = "1.0", searchLimit = "100" } = settingsLS;
     return {
@@ -70,7 +73,7 @@ const Viewer = React.memo(({ json: initJson }: ViewerProps) => {
     };
   });
 
-  const legoWrapperStyle = React.useMemo(
+  const legoWrapperStyle = useMemo(
     () => ({
       fontSize: `${settings.fontSize}rem`,
       lineHeight: `${Number(settings.fontSize) + 0.2}rem`
@@ -78,7 +81,7 @@ const Viewer = React.memo(({ json: initJson }: ViewerProps) => {
     [settings.fontSize]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const collapsesFromLS = getCollapseSettingsLS();
     // Init collapse filter on first render
     if (collapsesFromLS) {
@@ -97,29 +100,37 @@ const Viewer = React.memo(({ json: initJson }: ViewerProps) => {
     }
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setCollapseSettingsLS(collapses);
   }, [collapses]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setJson({ root: initJson });
   }, [initJson]);
+
+  const onToggleSettings = useCallback(
+    () => setIsOpenedSettings(!isOpenedSettings),
+    [isOpenedSettings]
+  );
 
   return (
     <Wrapper style={wrapperStyle}>
       <Header style={headerStyle}>
-        <CollapseSettings
-          collapses={collapses}
-          setCollapses={setCollapses}
-          settings={settings}
-          setSettings={setSettings}
-        />
         <Search
           searchText={searchText}
           setSearchText={setSearchText}
           json={json}
           settings={settings}
           setJson={setJson}
+          onToggleSettings={onToggleSettings}
+        />
+        <CollapseSettings
+          collapses={collapses}
+          setCollapses={setCollapses}
+          settings={settings}
+          setSettings={setSettings}
+          isOpenedSettings={isOpenedSettings}
+          setIsOpenedSettings={setIsOpenedSettings}
         />
       </Header>
       <Body style={legoWrapperStyle}>

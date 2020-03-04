@@ -1,7 +1,8 @@
 import React from "react";
+import styled from "astroturf";
+
 import { isDarkTheme } from "@settings";
 import { colors } from "@colors";
-import styled from "astroturf";
 
 export type ButtonMods = "default" | "mini" | "circle";
 
@@ -27,15 +28,21 @@ const mods: { [key in ButtonMods]: React.CSSProperties } = {
 };
 
 interface ButtonProps {
-  title: string;
+  title?: string;
   type?: ButtonMods;
   onClick: () => void;
+  children?: React.ElementType;
 }
 
 const Button = React.memo(
-  ({ title, onClick, type = "default" }: ButtonProps) => (
+  ({
+    title = null,
+    onClick,
+    type = "default",
+    children = null
+  }: ButtonProps) => (
     <ButtonStyled style={mods[type]} onClick={onClick}>
-      {title}
+      {title ? title : children}
     </ButtonStyled>
   )
 );

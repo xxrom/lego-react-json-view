@@ -4,13 +4,12 @@
       "@babel/env",
       {
         "modules": false,
-        "targets": {
-          "browsers": ["last 2 versions", "Chrome >= 34"]
-        }
+        "targets": ["IE 9"],
+        "loose": true
       }
     ],
-    "@babel/typescript",
-    "@babel/react"
+    "@babel/preset-react",
+    "@babel/preset-typescript"
   ],
   "plugins": ["react-hot-loader/babel"]
 }

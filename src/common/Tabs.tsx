@@ -5,7 +5,8 @@ import { colors } from "@colors";
 type tabMods = "default" | "mini";
 
 const tabBase: React.CSSProperties = {
-  overflow: "hidden"
+  overflow: "hidden",
+  textAlign: "left"
 };
 
 const tabMods: { [key in tabMods]: React.CSSProperties } = {
@@ -35,7 +36,7 @@ const contentMods: { [key in tabMods]: React.CSSProperties } = {
 
 const labelStyle: React.CSSProperties = {
   cursor: "pointer",
-  fontSize: "1.2rem",
+  fontSize: "1rem",
   padding: "0.2rem 0.3rem",
   background: colors.labelBackground.light,
   color: isDarkTheme ? colors.contrast.dark : colors.contrast.light,
@@ -49,6 +50,9 @@ interface TabsProps {
   isOpened?: boolean;
   type?: tabMods;
   style?: React.CSSProperties;
+  // props.setIsOpened has highter priority
+  // then inner isOpened state
+  setIsOpened?: () => void;
 }
 
 const Tabs = React.memo(
@@ -57,11 +61,13 @@ const Tabs = React.memo(
     label,
     children,
     type = "default",
-    style = {}
+    style = {},
+    setIsOpened = null
   }: TabsProps) => {
     /*
      * isOpenedInner - inner click handler (by label click)
      * isOpened - outside click handler (from props)
+     * Toggled by props.setIsOpened (if exist)
      */
     const [isOpenedInner, setIsOpenedInner] = React.useState(false);
 
@@ -81,7 +87,11 @@ const Tabs = React.memo(
     return (
       <div style={tabsStyle}>
         {label ? (
-          <div style={labelStyle} onClick={onClickTab}>
+          <div
+            style={labelStyle}
+            onClick={setIsOpened ? setIsOpened : onClickTab}
+          >
+            {isOpenedInner || isOpened ? "v " : "> "}
             {label}
           </div>
         ) : null}

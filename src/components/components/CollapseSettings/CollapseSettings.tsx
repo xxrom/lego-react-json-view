@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, memo, useState } from "react";
 import styled from "astroturf";
 
 import { isDarkTheme } from "@settings";
@@ -9,7 +9,7 @@ import { setSettingsType, settingsType } from "../../Viewer";
 
 const styles: Record<string, React.CSSProperties> = {
   input: {
-    fontSize: "1.2rem",
+    fontSize: "1rem",
     border: 0,
     borderBottom: `1px solid ${
       isDarkTheme ? colors.buttonText.dark : colors.buttonText.light
@@ -33,29 +33,33 @@ interface CollapseSettingsProps {
   setCollapses: SetCollapses;
   settings: settingsType;
   setSettings: setSettingsType;
+  isOpenedSettings: boolean;
+  setIsOpenedSettings: (toggle: boolean) => void;
 }
 
-const CollapseSettings = React.memo(
+const CollapseSettings = memo(
   ({
     collapses,
     setCollapses,
     settings,
-    setSettings
+    setSettings,
+    isOpenedSettings,
+    setIsOpenedSettings
   }: CollapseSettingsProps) => {
-    const [test, setTest] = React.useState("");
-    const [replaceTo, setReplaceTo] = React.useState("");
+    const [test, setTest] = useState("");
+    const [replaceTo, setReplaceTo] = useState("");
 
     const onChangeTest = (e: React.ChangeEvent<HTMLInputElement>) => {
       setTest(e.target.value);
       setReplaceTo(e.target.value);
     };
-    const onChangeReplaceTo = React.useCallback(
+    const onChangeReplaceTo = useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
         setReplaceTo(e.target.value);
       },
       []
     );
-    const onClickAddCollapse = React.useCallback(() => {
+    const onClickAddCollapse = useCallback(() => {
       const trimTest = test.trim();
       const trimReplaceTo = replaceTo.trim();
       const minWordLength = 3;
@@ -69,7 +73,7 @@ const CollapseSettings = React.memo(
         setReplaceTo("");
       }
     }, [test, replaceTo, collapses, setCollapses]);
-    const onDelete = React.useCallback(
+    const onDelete = useCallback(
       (index: number) => () => {
         const changedCollaps = [...collapses];
         changedCollaps.splice(index, 1);
@@ -84,7 +88,7 @@ const CollapseSettings = React.memo(
       }
     };
 
-    const updateFontSize = React.useCallback(
+    const updateFontSize = useCallback(
       (fontSize: number) => {
         if (fontSize < 0.49 || fontSize > 2.01) {
           return;
@@ -98,16 +102,16 @@ const CollapseSettings = React.memo(
       },
       [setSettings, settings]
     );
-    const onUp = React.useCallback(
+    const onUp = useCallback(
       () => updateFontSize(Number(settings.fontSize) + 0.05),
       [settings.fontSize, updateFontSize]
     );
-    const onDown = React.useCallback(
+    const onDown = useCallback(
       () => updateFontSize(Number(settings.fontSize) - 0.05),
       [settings.fontSize, updateFontSize]
     );
 
-    const updateSearchLimit = React.useCallback(
+    const updateSearchLimit = useCallback(
       event => {
         const searchLimit = Number(event.target.value);
         if (!Number.isInteger(searchLimit)) {
@@ -124,64 +128,86 @@ const CollapseSettings = React.memo(
       [setSettings, settings]
     );
 
+    const setIsOpened = useCallback(
+      () => setIsOpenedSettings(!isOpenedSettings),
+      [isOpenedSettings]
+    );
+
+    if (!isOpenedSettings) {
+      return null;
+    }
+
     return (
-      <Tabs label="settings">
-        <Wrapper>
-          <span style={styles.fontLabel}>{`Font size:`}</span>
-          <Button title="-0.05" onClick={onDown} />
-          <span style={styles.fontLabel}>{`${Number(settings.fontSize).toFixed(
-            2
-          )} rem`}</span>
-          <Button title="+0.05" onClick={onUp} />
-        </Wrapper>
-        <Wrapper>
-          <span
-            style={styles.fontLabel}
-          >{`Search limit results (0 - disabled):`}</span>
-          <input
-            style={{ ...styles.fontLabel, ...styles.input }}
-            value={settings.searchLimit ? String(settings.searchLimit) : ""}
-            onChange={updateSearchLimit}
-            placeholder="Enter search limit number:"
-          />
-        </Wrapper>
-        <Tabs label="Collapse settings" style={{ margin: "0.5rem 0 0 0.5rem" }}>
-          <InnerWrapper>
-            {collapses.map(({ test, replaceTo }, index) => (
-              <CollapseWrapper key={`${test}_${index}`}>
-                <Text type={TextTypes.KEY}>{test}</Text> /{" "}
-                <Text type={TextTypes.KEY}>{replaceTo}</Text>
-                <Button onClick={onDelete(index)} title="Delete" />
-              </CollapseWrapper>
-            ))}
+      <BlockWrapper>
+        <Tabs
+          isOpened={isOpenedSettings}
+          setIsOpened={setIsOpened}
+          label="Settings"
+        >
+          <Wrapper>
+            <span style={styles.fontLabel}>{`Font size:`}</span>
+            <Button title="-0.05" onClick={onDown} />
+            <span style={styles.fontLabel}>{`${Number(
+              settings.fontSize
+            ).toFixed(2)} rem`}</span>
+            <Button title="+0.05" onClick={onUp} />
+          </Wrapper>
+          <Wrapper>
+            <span
+              style={styles.fontLabel}
+            >{`Search limit results (0 - disabled):`}</span>
             <input
-              style={styles.input}
-              value={test}
-              placeholder="test value"
-              onChange={onChangeTest}
-              onKeyDown={onEnter}
+              style={{ ...styles.fontLabel, ...styles.input }}
+              value={settings.searchLimit ? String(settings.searchLimit) : ""}
+              onChange={updateSearchLimit}
+              placeholder="Enter search limit number:"
             />
-            {" / "}
-            <input
-              style={styles.input}
-              placeholder="replaceTo value"
-              value={replaceTo}
-              onChange={onChangeReplaceTo}
-              onKeyDown={onEnter}
-            />
-            <Button onClick={onClickAddCollapse} title="Add" />
-          </InnerWrapper>
+          </Wrapper>
+          <Tabs
+            label="Collapse settings"
+            style={{ margin: "0.5rem 0 0 0.5rem" }}
+          >
+            <InnerWrapper>
+              {collapses.map(({ test, replaceTo }, index) => (
+                <CollapseWrapper key={`${test}_${index}`}>
+                  <Text type={TextTypes.KEY}>{test}</Text> /{" "}
+                  <Text type={TextTypes.KEY}>{replaceTo}</Text>
+                  <Button onClick={onDelete(index)} title="Delete" />
+                </CollapseWrapper>
+              ))}
+              <input
+                style={styles.input}
+                value={test}
+                placeholder="test value"
+                onChange={onChangeTest}
+                onKeyDown={onEnter}
+              />
+              {" / "}
+              <input
+                style={styles.input}
+                placeholder="replaceTo value"
+                value={replaceTo}
+                onChange={onChangeReplaceTo}
+                onKeyDown={onEnter}
+              />
+              <Button onClick={onClickAddCollapse} title="Add" />
+            </InnerWrapper>
+          </Tabs>
         </Tabs>
-      </Tabs>
+      </BlockWrapper>
     );
   }
 );
 
+const BlockWrapper = styled("div")`
+  padding: 0 0 0.5rem 0;
+  border-bottom: 2px solid gray;
+`;
 const Wrapper = styled("div")`
   margin-top: 0.5rem;
 `;
 const InnerWrapper = styled("div")`
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 0.5rem 0 0 0.5rem;
 `;
 const CollapseWrapper = styled("div")`

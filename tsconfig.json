@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "outDir": "dist/",
+    "outDir": "./dist/",
     "noImplicitAny": true,
     "module": "commonjs",
-    "target": "es2015",
+    "target": "ES5",
     "jsx": "react",
     "removeComments": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
       "@common": ["src/common/"],

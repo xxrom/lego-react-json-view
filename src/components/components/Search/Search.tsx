@@ -11,6 +11,8 @@ import { setAllPaths, findPathsByText, showInJsonByPath } from "./searchUtils";
 import { colors } from "@colors";
 import { Text } from "@common";
 import { settingsType } from "../../Viewer";
+import { SettingsIcon } from "./SettingsIcon";
+import styled from "astroturf";
 
 const styles: Record<string, React.CSSProperties> = {
   wrapper: {
@@ -23,7 +25,7 @@ const styles: Record<string, React.CSSProperties> = {
     margin: "0.5rem 0",
     position: "relative",
     boxSizing: "border-box",
-    fontSize: "1.2rem",
+    fontSize: "1rem",
     flex: "0.9",
     border: 0,
     borderBottom: `1px solid ${
@@ -38,7 +40,16 @@ const styles: Record<string, React.CSSProperties> = {
     flex: "0.1",
     minWidth: "7rem",
     paddingLeft: "1rem",
-    whiteSpace: "nowrap"
+    whiteSpace: "nowrap",
+    fontSize: "1rem"
+  },
+  settings: {
+    background: isDarkTheme
+      ? colors.buttonBackground.dark
+      : colors.buttonBackground.light,
+    border: `1px solid ${
+      isDarkTheme ? colors.border.dark : colors.border.light
+    }`
   }
 };
 
@@ -48,10 +59,18 @@ interface SearchProps {
   setJson: (json: any) => void;
   json: {};
   settings: settingsType;
+  onToggleSettings: () => void;
 }
 
 const Search = React.memo(
-  ({ searchText, setSearchText, json, settings, setJson }: SearchProps) => {
+  ({
+    searchText,
+    setSearchText,
+    json,
+    settings,
+    setJson,
+    onToggleSettings
+  }: SearchProps) => {
     const [foundResults, setFoundResults] = React.useState<Array<string>>([]);
     const [foundAllResults, setFoundAllResults] = React.useState<Array<string>>(
       []
@@ -153,9 +172,27 @@ const Search = React.memo(
         <Text
           style={styles.resultText}
         >{`${foundResults.length}/${foundAllResults.length}`}</Text>
+        <Settings style={styles.settings} onClick={onToggleSettings}>
+          <SettingsIcon width="1.2rem" />
+        </Settings>
       </div>
     );
   }
 );
 
 export { Search };
+
+const Settings = styled("span")`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  border-radius: 50%;
+  margin: 0 0 0 0.5rem;
+
+  &:hover {
+    cursor: pointer;
+    background: rgb(90, 90, 90);
+    border: 1px solid rgb(30, 30, 30);
+  }
+`;

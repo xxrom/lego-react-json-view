@@ -1,5 +1,6 @@
 import React from "react";
 import get from "lodash.get";
+import styled from "astroturf";
 
 import { Text, TextTypes, Tabs } from "@common";
 import { Line } from ".";
@@ -92,7 +93,7 @@ const Tree = React.memo((props: TreeProps) => {
   const fullPath = `${path}.${actualKeyName}`;
 
   return (
-    <div>
+    <Wrapper>
       {replacingPath && (
         <div>
           <Text
@@ -122,8 +123,12 @@ const Tree = React.memo((props: TreeProps) => {
           <Lego json={actualJson} path={fullPath} collapses={collapses} />
         </Tabs>
       )}
-    </div>
+    </Wrapper>
   );
 });
 
 export { Tree };
+
+const Wrapper = styled("div")`
+  text-align: start;
+`;
