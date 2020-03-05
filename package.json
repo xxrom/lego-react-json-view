@@ -11,7 +11,9 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --config webpack.config.js",
     "webpack:build": "webpack --mode production --config webpack.prod.js",
     "babel:build": "rm -rf dist && mkdir dist && ./node_modules/.bin/babel dist-webpack -d dist --presets=@babel/env,@babel/preset-react,@babel/preset-typescript",
-    "build": "yarn webpack:build && yarn babel:build"
+    "ts:check": "tsc -p tsconfig.json",
+    "build": "yarn ts:check && yarn webpack:build && yarn babel:build",
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "@types/react": "^16.9.23",

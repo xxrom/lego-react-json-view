@@ -1,7 +1,81 @@
-## Lego-react-json-viewer
+## **Lego-react-json-viewer**
+
+---
+
+# Install:
+
+npm:
+```md
+npm i -S lego-react-json-view
+```
+
+yarn:
+```md
+yarn add lego-react-json-view
+```
+---
+
+## DEMO
+
+[DEMO: lego-react-json-view](https://www.google.com)
+
+---
+
+## React Usage code example:
+
+```tsx
+// Import LegoView
+import LegoView from "lego-react-json-view";
+// ...
+```
+```tsx
+//...
+  // Use LegoReactJsonView with json data
+  return <LegoView json={json} />;
+//...
+```
+
+### Full example:
+```tsx
+import React from "react";
+import ReactDOM from "react-dom";
+
+// Import LegoView
+import LegoViewer from "lego-react-json-view";
+
+const App = () => {
+  const json = {
+    hello: {
+      test: "test json data",
+      hide: {
+        this: {
+          path: {
+            data: "inner data (hide.this.path)"
+          }
+        }
+      }
+    }
+  };
+
+  // Use LegoReactJsonView with json data
+  return <LegoViewer json={json} />;
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));
+```
+
+---
+
+## **Main features:**
+> - [x] Save **previously opened** pathes in json;
+> - [x] Collaps pathes by **collaps filters**;
+> - [x] **Search pathes** in json;
+
+---
+---
+---
 
 TODO:
-
 > **Custom filter settings:**
 >
 > - [x] Add filter;
@@ -28,7 +102,7 @@ TODO:
 
 > **Friendly ui:**
 >
-> - [-] Settings toggle by button (on the right top corner ?)
+> - [x] Settings toggle by button (on the right top corner ?)
 > - [-] Redesign button (it's not clear that it's a button =) )
 > - [-] Think about search counter (sometimes it's too big or too small)
 > - [-] Clipboard button scale with font size

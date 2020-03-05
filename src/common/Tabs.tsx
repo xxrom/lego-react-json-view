@@ -50,8 +50,10 @@ interface TabsProps {
   isOpened?: boolean;
   type?: tabMods;
   style?: React.CSSProperties;
-  // props.setIsOpened has highter priority
-  // then inner isOpened state
+  /*
+   * props.setIsOpened has highter priority
+   * then inner isOpened state
+   */
   setIsOpened?: () => void;
 }
 
