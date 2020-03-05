@@ -19,7 +19,10 @@ yarn add lego-react-json-view
 
 [DEMO: lego-react-json-view](https://lego-react-json-view.netlify.com/)
 
+
 ![alt text](./docs/demo.png)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b5175a17-1103-4b65-94c1-b037668fa868/deploy-status)](https://app.netlify.com/sites/lego-react-json-view/deploys)
 
 ---
 
