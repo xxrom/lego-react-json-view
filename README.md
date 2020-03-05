@@ -19,6 +19,8 @@ yarn add lego-react-json-view
 
 [DEMO: lego-react-json-view](https://lego-react-json-view.netlify.com/)
 
+![alt text](./docs/demo.png)
+
 ---
 
 ## React Usage code example:
