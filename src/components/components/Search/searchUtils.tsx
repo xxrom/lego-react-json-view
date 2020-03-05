@@ -82,7 +82,7 @@ const findPathsInPaths = (path: string, search: string): boolean => {
 };
 
 /*
- * Fuzzy search pathes in json.
+ * Fuzzy search paths in json.
  *
  * It's enough write a part of the word.
  *
@@ -119,7 +119,7 @@ const findPathsInJson = (
   );
 };
 
-// Return filtered pathes by searchText (search pathes)
+// Return filtered paths by searchText (search paths)
 const findPathsByText = (searchText: string) => {
   const allPaths: Array<string> = getAllPathsLS();
 
@@ -133,7 +133,7 @@ const findPathsByText = (searchText: string) => {
   return filteredPaths;
 };
 
-// Get all pathes from json (needs for optimization reason)
+// Get all paths from json (needs for optimization reason)
 const findAllPaths = (
   json: any, // object | string | number | null | undefined,
   path = expandedRoot
@@ -149,7 +149,7 @@ const findAllPaths = (
   }, []);
 };
 
-// Save all possible pathes in json to LS
+// Save all possible paths in json to LS
 const setAllPaths = (json: any) => {
   const allPaths = findAllPaths(json);
   setAllPathsLS(allPaths);

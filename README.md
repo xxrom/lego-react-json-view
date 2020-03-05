@@ -67,9 +67,9 @@ ReactDOM.render(<App />, document.getElementById("root"));
 ---
 
 ## **Main features:**
-> - [x] Save **previously opened** pathes in json;
-> - [x] Collaps pathes by **collaps filters**;
-> - [x] **Search pathes** in json.
+> - [x] Save **previously opened** paths in json;
+> - [x] Collaps paths by **collaps filters**;
+> - [x] **Search paths** in json.
 
 ---
 ---
@@ -91,7 +91,7 @@ TODO:
 > - [x] Full json search
 > - - heighlight all found results,
 > - - collaps all unnecessary blocks in json after search;
-> - [x] Find all pathes in json tree;
+> - [x] Find all paths in json tree;
 > - [x] On _Enter_ - show all results.
 
 > **Additional settings:**

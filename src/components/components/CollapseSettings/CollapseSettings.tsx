@@ -142,7 +142,7 @@ const CollapseSettings = memo(
         <Tabs
           isOpened={isOpenedSettings}
           setIsOpened={setIsOpened}
-          label="Settings"
+          label="Viewer settings:"
         >
           <Wrapper>
             <span style={styles.fontLabel}>{`Font size:`}</span>
@@ -164,7 +164,7 @@ const CollapseSettings = memo(
             />
           </Wrapper>
           <Tabs
-            label="Collapse settings"
+            label="Collapse paths:"
             style={{ margin: "0.5rem 0 0 0.5rem" }}
             defaultValue={true}
           >

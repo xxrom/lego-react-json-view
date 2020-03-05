@@ -84,7 +84,7 @@ const Search = React.memo(
     );
 
     const searchAndHighlightResults = React.useCallback(() => {
-      // Find all pathes by search text
+      // Find all paths by search text
       const paths: Array<string> = findPathsByText(searchText);
 
       // Get maximum search result value
@@ -101,12 +101,12 @@ const Search = React.memo(
       clearExpandedLS();
 
       let accumulatePathsLS: Array<string> = [];
-      // Accumulate all pathes
+      // Accumulate all paths
       cuttedPaths.forEach(path => {
         accumulatePathsLS = [...accumulatePathsLS, ...showInJsonByPath(path)];
       });
 
-      // Save all expanded pathes to LS
+      // Save all expanded paths to LS
       setExpandedLS(accumulatePathsLS);
 
       const highlightPathsLS = cuttedPaths.reduce(
@@ -117,7 +117,7 @@ const Search = React.memo(
         {}
       );
 
-      // Heighlight all found pathes
+      // Heighlight all found paths
       setHighlightLS(highlightPathsLS);
     }, [searchText, settings.searchLimit]);
 
