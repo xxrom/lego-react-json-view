@@ -17,7 +17,7 @@ yarn add lego-react-json-view
 
 ## DEMO
 
-[DEMO: lego-react-json-view](https://www.google.com)
+[DEMO: lego-react-json-view](https://lego-react-json-view.netlify.com/)
 
 ---
 
