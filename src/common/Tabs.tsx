@@ -55,6 +55,7 @@ interface TabsProps {
    * then inner isOpened state
    */
   setIsOpened?: () => void;
+  defaultValue?: boolean;
 }
 
 const Tabs = React.memo(
@@ -64,14 +65,15 @@ const Tabs = React.memo(
     children,
     type = "default",
     style = {},
-    setIsOpened = null
+    setIsOpened = null,
+    defaultValue = false
   }: TabsProps) => {
     /*
      * isOpenedInner - inner click handler (by label click)
      * isOpened - outside click handler (from props)
      * Toggled by props.setIsOpened (if exist)
      */
-    const [isOpenedInner, setIsOpenedInner] = React.useState(false);
+    const [isOpenedInner, setIsOpenedInner] = React.useState(defaultValue);
 
     const onClickTab = React.useCallback(
       () => setIsOpenedInner(!isOpenedInner),

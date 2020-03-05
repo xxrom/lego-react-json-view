@@ -55,7 +55,6 @@ const Body = styled("div")`
 `;
 
 const defaultCollapses = [
-  { test: "value.content.value", replaceTo: "value.content.value" },
   { test: "hide.this.path", replaceTo: "hide.this.path" }
 ];
 

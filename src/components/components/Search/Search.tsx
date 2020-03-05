@@ -20,18 +20,6 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: "center"
   },
   inputStyle: {
-    background: "none",
-    display: "inline-flex",
-    margin: "0.5rem 0",
-    position: "relative",
-    boxSizing: "border-box",
-    fontSize: "1rem",
-    flex: "0.9",
-    border: 0,
-    borderBottom: `1px solid ${
-      isDarkTheme ? colors.border.dark : colors.border.light
-    }`,
-    outline: "none",
     color: isDarkTheme ? colors.searchText.dark : colors.searchText.light
   },
   resultText: {
@@ -162,7 +150,7 @@ const Search = React.memo(
 
     return (
       <div style={styles.wrapper}>
-        <input
+        <Input
           placeholder="Search path:"
           style={styles.inputStyle}
           value={searchText}
@@ -182,6 +170,23 @@ const Search = React.memo(
 
 export { Search };
 
+const Input = styled("input")`
+  && {
+    position: relative;
+    background: none;
+    display: inline-flex;
+    margin: 0.5rem 0;
+    position: relative;
+    box-sizing: border-box;
+    font-size: 1rem;
+    flex: 0.9;
+    border: 0;
+    outline: none;
+    border-left: 1px solid gray;
+    padding-left: 0.7rem;
+  }
+`;
+
 const Settings = styled("span")`
   display: flex;
   align-items: center;
@@ -189,10 +194,9 @@ const Settings = styled("span")`
   padding: 0.4rem;
   border-radius: 50%;
   margin: 0 0 0 0.5rem;
+  cursor: pointer;
 
   &:hover {
-    cursor: pointer;
-    background: rgb(90, 90, 90);
-    border: 1px solid rgb(30, 30, 30);
+    box-shadow: 0 0 0.2rem 0.1rem #666;
   }
 `;

@@ -78,7 +78,7 @@ const Line = React.memo(
     );
 
     return (
-      <div style={highlightStyle}>
+      <Wrapper style={highlightStyle}>
         {isExpandable && (
           <ExpandedSpan style={expandedBulletStyle} onClick={onClickLocal}>
             {isExpanded ? "v" : ">"}
@@ -99,15 +99,24 @@ const Line = React.memo(
             onClick={onClickLocal}
           />
         )}
-      </div>
+      </Wrapper>
     );
   }
 );
 
-const ExpandedSpan = styled("span")`
-  min-width: 0.2rem;
-  padding-right: 0.3rem;
+// TODO: pointer !
+const Wrapper = styled("div")`
+  display: flex;
+  padding: 1px 0;
   cursor: pointer;
+`;
+
+const ExpandedSpan = styled("span")`
+  display: inline-block;
+  width: 0.5rem;
+  height: 100%;
+  padding-right: 0.3rem;
+  overflow: hidden;
 `;
 
 export { Line };

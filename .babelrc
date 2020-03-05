@@ -4,7 +4,7 @@
       "@babel/env",
       {
         "modules": false,
-        "targets": ["IE 9"],
+        "targets": ["IE 11"],
         "loose": true
       }
     ],

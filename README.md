@@ -69,7 +69,7 @@ ReactDOM.render(<App />, document.getElementById("root"));
 ## **Main features:**
 > - [x] Save **previously opened** pathes in json;
 > - [x] Collaps pathes by **collaps filters**;
-> - [x] **Search pathes** in json;
+> - [x] **Search pathes** in json.
 
 ---
 ---
@@ -82,7 +82,7 @@ TODO:
 > - [x] Delete filter;
 > - [x] **Expanded** block will be restored after page reload (saved in localStorage - LS) ;
 > - [x] **Show/hide** collapsed section will be restored after page reload (LS);
-> - [-] Enable/disable filter (one by one)
+> - [-] Enable/disable filter (one by one).
 
 > **"Search" in _json_:**
 >
@@ -102,8 +102,9 @@ TODO:
 
 > **Friendly ui:**
 >
-> - [x] Settings toggle by button (on the right top corner ?)
-> - [-] Redesign button (it's not clear that it's a button =) )
-> - [-] Think about search counter (sometimes it's too big or too small)
-> - [-] Clipboard button scale with font size
-> - [-] ? Show tooltip (Copied) after clicking on clipboard
+> - [x] Settings toggle by button (on the right top corner ?);
+> - [-] Redesign button (it's not clear that it's a button =) );
+> - [-] Think about search counter (sometimes it's too big or too small);
+> - [-] Clipboard button scale with font size;
+> - [-] ? Show tooltip (Copied) after clicking on clipboard;
+> - [-] Toggle dark/light theme.

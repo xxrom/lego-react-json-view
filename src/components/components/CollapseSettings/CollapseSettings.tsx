@@ -166,6 +166,7 @@ const CollapseSettings = memo(
           <Tabs
             label="Collapse settings"
             style={{ margin: "0.5rem 0 0 0.5rem" }}
+            defaultValue={true}
           >
             <InnerWrapper>
               {collapses.map(({ test, replaceTo }, index) => (

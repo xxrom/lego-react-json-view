@@ -1,42 +1,42 @@
 const colors = {
   background: {
     light: "white",
-    dark: "rgb(36, 36, 36)"
+    dark: "rgb(41, 45, 62)"
   },
   hidden: {
     light: "rgb(200,200,200)",
-    dark: "rgba(151,159,173,0.6)"
+    dark: "rgba(151,159,173,0.2)"
   },
   contrast: {
     light: "white",
-    dark: "black"
+    dark: "rgb(41, 44, 61)"
   },
   labelBackground: {
-    light: "rgb(110,110,110)"
+    light: "rgb(99,106,144)"
   },
   buttonText: {
     light: "rgb(10,10,10)",
-    dark: "rgb(0,0,0)"
+    dark: "rgb(130,170,255)"
   },
   buttonBackground: {
     light: "rgb(245,245,245)",
-    dark: "rgb(150,150,150)"
+    dark: "rgb(50,60,90)"
   },
   border: {
-    light: "rgb(110,110,110)",
-    dark: "rgb(90,90,90)"
+    light: "rgb(170,170,170)",
+    dark: "rgb(95,102,139)"
   },
   searchText: {
     light: "rgb(50,50,50)",
     dark: "rgb(130,170,255)"
   },
   highlightBackground: {
-    light: "rgba(255,255,0,0.8)",
-    dark: "rgba(79,57,74,0.6)"
+    light: "rgba(255,255,0,0.4)",
+    dark: "rgba(89,66,68,0.5)"
   },
   keyColor: {
     light: "rgb(12, 127, 149)",
-    dark: "rgb(130,170,255)"
+    dark: "rgb(134,175,255)"
   },
   hideColor: {
     light: "rgb(80,80,80)",
@@ -48,11 +48,11 @@ const colors = {
   },
   textColor: {
     light: "purple",
-    dark: "rgb(199, 146, 234)"
+    dark: "rgb(213, 155, 249)"
   },
   jsonColor: {
     light: "green",
-    dark: "rgb(255,173,107)"
+    dark: "rgb(234,133,105)"
   }
 };
 
