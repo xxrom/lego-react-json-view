@@ -107,4 +107,5 @@ TODO:
 > - [-] Think about search counter (sometimes it's too big or too small);
 > - [-] Clipboard button scale with font size;
 > - [-] ? Show tooltip (Copied) after clicking on clipboard;
-> - [-] Toggle dark/light theme.
+> - [-] Toggle dark/light theme;
+> - [-] Clear search text (button).
