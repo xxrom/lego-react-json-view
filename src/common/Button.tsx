@@ -54,11 +54,15 @@ const ButtonStyled = styled("button")`
   font-size: 1rem;
   border-radius: 0.3rem;
   outline: none;
-  opacity: 0.9;
+  opacity: 0.8;
   transition: opacity 0.3s ease;
 
   &:hover {
     opacity: 1;
+    box-shadow: 0 0 0.1rem 0.1rem #666;
+  }
+  &:active {
+    box-shadow: 0 0 0.2rem 0.1rem #777;
   }
 `;
 

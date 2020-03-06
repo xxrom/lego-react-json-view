@@ -1,3 +1,9 @@
+import { getSettingsLS } from "./components/localStorageTools";
+
+const currentTheme = getSettingsLS().theme;
+
 export const isDarkTheme =
-  window.matchMedia &&
-  window.matchMedia("(prefers-color-scheme: dark)").matches;
+  currentTheme !== "light" &&
+  ((window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches) ||
+    currentTheme === "dark");

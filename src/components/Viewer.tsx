@@ -17,7 +17,14 @@ export interface ViewerProps {
 
 export type expandedType = { [key: string]: boolean };
 export type highlightType = { [key: string]: boolean };
-export type settingsType = { fontSize: string; searchLimit: string };
+
+export type themeMode = "light" | "dark" | "auto";
+export type settingsType = {
+  fontSize: string;
+  searchLimit: string;
+  theme: themeMode;
+};
+
 export type setExpandedType = React.Dispatch<
   React.SetStateAction<expandedType>
 >;
@@ -65,10 +72,15 @@ const Viewer = memo(({ json: initJson = {} }: ViewerProps) => {
   const [isOpenedSettings, setIsOpenedSettings] = useState(false);
   const [settings, setSettings] = useState<settingsType>(() => {
     const settingsLS = getSettingsLS();
-    const { fontSize = "1.0", searchLimit = "100" } = settingsLS;
+    const {
+      fontSize = "1.0",
+      searchLimit = "100",
+      theme = "auto"
+    }: settingsType = settingsLS;
     return {
       fontSize,
-      searchLimit
+      searchLimit,
+      theme
     };
   });
 

@@ -1,15 +1,10 @@
 ## **Lego-react-json-viewer**
 
----
+# `Install` (npm / yarn):
 
-# Install:
-
-npm:
 ```md
 npm i -S lego-react-json-view
 ```
-
-yarn:
 ```md
 yarn add lego-react-json-view
 ```
@@ -17,7 +12,7 @@ yarn add lego-react-json-view
 
 ## DEMO
 
-[DEMO: lego-react-json-view](https://lego-react-json-view.netlify.com/)
+[`DEMO link`: `lego-react-json-view`](https://lego-react-json-view.netlify.com/)
 
 
 ![alt text](./docs/demo.png)
@@ -26,7 +21,7 @@ yarn add lego-react-json-view
 
 ---
 
-## React Usage code example:
+## `Code example` (react):
 
 ```tsx
 // Import LegoView
@@ -40,7 +35,7 @@ import LegoView from "lego-react-json-view";
 //...
 ```
 
-### Full example:
+### `Full example`:
 ```tsx
 import React from "react";
 import ReactDOM from "react-dom";
@@ -103,14 +98,15 @@ TODO:
 >
 > - [x] Copy button **clipboard**;
 > - [x] Dynamic **font size** (buttons);
-> - [x] Theme **dark/light** mode.
+> - [x] Auto change theme **dark/light** mode (based on macOS theme);
+> - [x] Manual theme change (**dark/light/auto** mode).
 
 > **Friendly ui:**
 >
 > - [x] Settings toggle by button (on the right top corner ?);
+> - [x] Toggle dark/light theme;
 > - [-] Redesign button (it's not clear that it's a button =) );
 > - [-] Think about search counter (sometimes it's too big or too small);
 > - [-] Clipboard button scale with font size;
 > - [-] ? Show tooltip (Copied) after clicking on clipboard;
-> - [-] Toggle dark/light theme;
 > - [-] Clear search text (button).

@@ -5,7 +5,7 @@ import { isDarkTheme } from "@settings";
 import { colors } from "@colors";
 import { Tabs, Button, Text, TextTypes } from "@common";
 import { setSettingsLS } from "../../localStorageTools";
-import { setSettingsType, settingsType } from "../../Viewer";
+import { setSettingsType, settingsType, themeMode } from "../../Viewer";
 
 const styles: Record<string, React.CSSProperties> = {
   input: {
@@ -21,6 +21,10 @@ const styles: Record<string, React.CSSProperties> = {
   fontLabel: {
     paddingLeft: "0.5rem",
     color: isDarkTheme ? colors.textColor.dark : colors.textColor.light
+  },
+  fontValue: {
+    paddingLeft: "0.5rem",
+    color: isDarkTheme ? colors.jsonColor.dark : colors.jsonColor.light
   }
 };
 
@@ -132,6 +136,18 @@ const CollapseSettings = memo(
       () => setIsOpenedSettings(!isOpenedSettings),
       [isOpenedSettings]
     );
+    const onClickTheme = useCallback(
+      (theme: themeMode) => () => {
+        const settingsObject: settingsType = {
+          ...settings,
+          theme
+        };
+        console.log(`settingsObject`, settingsObject);
+        setSettings(settingsObject);
+        setSettingsLS(settingsObject);
+      },
+      []
+    );
 
     if (!isOpenedSettings) {
       return null;
@@ -147,9 +163,9 @@ const CollapseSettings = memo(
           <Wrapper>
             <span style={styles.fontLabel}>{`Font size:`}</span>
             <Button title="-0.05" onClick={onDown} />
-            <span style={styles.fontLabel}>{`${Number(
+            <span style={styles.fontValue}>{`"${Number(
               settings.fontSize
-            ).toFixed(2)} rem`}</span>
+            ).toFixed(2)} rem"`}</span>
             <Button title="+0.05" onClick={onUp} />
           </Wrapper>
           <Wrapper>
@@ -162,6 +178,15 @@ const CollapseSettings = memo(
               onChange={updateSearchLimit}
               placeholder="Enter search limit number:"
             />
+          </Wrapper>
+          <Wrapper>
+            <span
+              style={styles.fontLabel}
+            >{`Theme (page reload needed):`}</span>
+            <span style={styles.fontValue}>{`"${settings.theme}"`}</span>
+            <Button title="dark" onClick={onClickTheme("dark")} />
+            <Button title="light" onClick={onClickTheme("light")} />
+            <Button title="auto" onClick={onClickTheme("auto")} />
           </Wrapper>
           <Tabs
             label="Collapse paths:"
