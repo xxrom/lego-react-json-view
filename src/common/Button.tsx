@@ -4,7 +4,7 @@ import styled from "astroturf";
 import { isDarkTheme } from "@settings";
 import { colors } from "@colors";
 
-export type ButtonMods = "default" | "mini" | "circle";
+export type ButtonMods = "default" | "mini" | "circle" | "disabled";
 
 const baseStyle: React.CSSProperties = {
   color: isDarkTheme ? colors.buttonText.dark : colors.buttonText.light,
@@ -24,6 +24,9 @@ const mods: { [key in ButtonMods]: React.CSSProperties } = {
   circle: {
     ...baseStyle,
     borderRadius: "50%"
+  },
+  disabled: {
+    color: isDarkTheme ? colors.disabled.dark : colors.disabled.light
   }
 };
 
@@ -32,6 +35,7 @@ interface ButtonProps {
   type?: ButtonMods;
   onClick: () => void;
   children?: React.ElementType;
+  disabled?: boolean;
 }
 
 const Button = React.memo(
@@ -39,9 +43,15 @@ const Button = React.memo(
     title = null,
     onClick,
     type = "default",
-    children = null
+    children = null,
+    disabled = false,
+    ...rest
   }: ButtonProps) => (
-    <ButtonStyled style={mods[type]} onClick={onClick}>
+    <ButtonStyled
+      style={{ ...mods[type], ...(disabled ? mods.disabled : {}) }}
+      onClick={disabled ? () => {} : onClick}
+      {...rest}
+    >
       {title ? title : children}
     </ButtonStyled>
   )

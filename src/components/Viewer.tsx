@@ -8,8 +8,6 @@ import {
   setCollapseSettingsLS,
   getSearchTextLS,
   getSettingsLS,
-  getAllPathsLS,
-  setExpandedLS,
   clearExpandedLS,
   expandedRoot,
   setExpandedObjectLS,
@@ -17,11 +15,17 @@ import {
 } from "./localStorageTools";
 import { colors } from "@colors";
 import { isDarkTheme } from "@settings";
-import { checkIsObject } from "./components/Search/searchUtils";
 import { findAllPathPoints } from "./viewerHelper";
 
+// TODO: extend settingsType
 export interface ViewerProps {
   json: object;
+  settings: {
+    fontSize?: string;
+    searchLimit?: string;
+    theme?: themeMode;
+    isExpanded?: boolean;
+  };
 }
 
 export type expandedType = { [key: string]: boolean };
@@ -84,24 +88,28 @@ const defaultCollapses = [
   { test: "hide.this.path", replaceTo: "hide.this.path" }
 ];
 
-const Viewer = memo(({ json: initJson = {} }: ViewerProps) => {
+const Viewer = memo((props: ViewerProps) => {
+  const { json: initJson = {}, settings: settingsInit = {} } = props;
+
   const [json, setJson] = useState<{}>({ root: initJson });
   const [searchText, setSearchText] = useState("");
   const [collapses, setCollapses] = useState(defaultCollapses);
   const [isOpenedSettings, setIsOpenedSettings] = useState(false);
   const [settings, setSettings] = useState<settingsType>(() => {
     const settingsLS = getSettingsLS();
+
     const {
       fontSize = "1.0",
       searchLimit = "100",
       theme = "auto",
       isExpanded = true
     }: settingsType = settingsLS;
+
     return {
-      fontSize,
-      searchLimit,
-      theme,
-      isExpanded
+      fontSize: oc(settingsInit).fontSize(fontSize),
+      searchLimit: oc(settingsInit).searchLimit(searchLimit),
+      theme: oc(settingsInit).theme(theme),
+      isExpanded: oc(settingsInit).isExpanded(isExpanded)
     };
   });
 
@@ -145,10 +153,13 @@ const Viewer = memo(({ json: initJson = {} }: ViewerProps) => {
 
   // Expand
   useEffect(() => {
-    const { isExpanded } = getSettingsLS();
-
-    if (!isExpanded) {
+    console.log("useEffect settings", settings);
+    if (!settings.isExpanded) {
       // By-default everything closed
+
+      // but Rerender should be done
+      new Promise(resolve => resolve(setJson({}))).then(() => setJson(json));
+
       return;
     }
 
@@ -158,7 +169,7 @@ const Viewer = memo(({ json: initJson = {} }: ViewerProps) => {
      * with inheriting previous values (expandedLS)
      */
     new Promise(resolve => {
-      setJson({ root: {} }); // (*) Force update json tree
+      setJson({}); // (*) Force update sjson tree
 
       const allExpandedPathesObject = findAllPathPoints(json, expandedRoot);
       const allExpandedLS = getExpandedLS();
@@ -183,7 +194,7 @@ const Viewer = memo(({ json: initJson = {} }: ViewerProps) => {
       // for showing expanded/collapsed json data
       setJson(json);
     });
-  }, [getSettingsLS, setJson, clearExpandedLS]);
+  }, [getSettingsLS, setJson, clearExpandedLS, settings.isExpanded]);
 
   const onToggleSettings = useCallback(
     () => setIsOpenedSettings(!isOpenedSettings),

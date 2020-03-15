@@ -7,6 +7,10 @@ const colors = {
     light: "rgb(200,200,200)",
     dark: "rgba(151,159,173,0.2)"
   },
+  disabled: {
+    light: "gray",
+    dark: "gray"
+  },
   contrast: {
     light: "white",
     dark: "rgb(41, 44, 61)"

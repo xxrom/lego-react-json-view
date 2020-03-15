@@ -56,6 +56,11 @@ const CollapseSettings = memo(
   }: CollapseSettingsProps) => {
     const [test, setTest] = useState("");
     const [replaceTo, setReplaceTo] = useState("");
+    const [disabledButtons, setDisabledButtons] = useState<{
+      [key: string]: boolean;
+    }>({
+      isExpanded: false
+    });
 
     const onChangeTest = (e: React.ChangeEvent<HTMLInputElement>) => {
       setTest(e.target.value);
@@ -153,23 +158,31 @@ const CollapseSettings = memo(
     );
     const onClickIsExpanded = useCallback(
       (isExpanded: boolean) => () => {
+        // disable button
+        setDisabledButtons({
+          ...disabledButtons,
+          isExpanded: true
+        });
+
         const settingsObject: settingsType = {
           ...settings,
           isExpanded
         };
 
-        new Promise(resolve => {
-          setJson({}); // (*) Force update json tree
+        // If isExpanded === false => clear all expanded data
+        if (!isExpanded) {
           clearExpandedLS();
-          setSettings(settingsObject);
-          setSettingsLS(settingsObject);
+        }
+        setSettings(settingsObject);
+        setSettingsLS(settingsObject);
 
-          resolve(true);
-        }).then(() => {
-          setJson(json);
+        // enable button
+        setDisabledButtons({
+          ...disabledButtons,
+          isExpanded: false
         });
       },
-      [setSettings, setSettingsLS, settings]
+      [setSettings, setSettingsLS, settings, json, setJson]
     );
 
     if (!isOpenedSettings) {
@@ -194,7 +207,7 @@ const CollapseSettings = memo(
           <Wrapper>
             <span
               style={styles.fontLabel}
-            >{`Search limit results (0 - disabled / slow if value > 100):`}</span>
+            >{`Search limit results (0 - disabled):`}</span>
             <input
               style={{ ...styles.fontLabel, ...styles.input }}
               value={settings.searchLimit ? String(settings.searchLimit) : ""}
@@ -214,12 +227,20 @@ const CollapseSettings = memo(
           <Wrapper>
             <span
               style={styles.fontLabel}
-            >{`Expanded by default? (experimented option / slow with big json):`}</span>
+            >{`Expanded by default? (experimented):`}</span>
             <span style={styles.fontValue}>{`"${
               settings.isExpanded ? "expanded" : "collapsed"
             }"`}</span>
-            <Button title="expanded" onClick={onClickIsExpanded(true)} />
-            <Button title="collapsed" onClick={onClickIsExpanded(false)} />
+            <Button
+              disabled={disabledButtons.isExpanded}
+              title="expanded"
+              onClick={onClickIsExpanded(true)}
+            />
+            <Button
+              disabled={disabledButtons.isExpanded}
+              title="collapsed"
+              onClick={onClickIsExpanded(false)}
+            />
           </Wrapper>
           <Tabs
             label="Collapse paths:"
@@ -237,14 +258,14 @@ const CollapseSettings = memo(
               <input
                 style={styles.input}
                 value={test}
-                placeholder="test value"
+                placeholder="hide path value"
                 onChange={onChangeTest}
                 onKeyDown={onEnter}
               />
               {" / "}
               <input
                 style={styles.input}
-                placeholder="replaceTo value"
+                placeholder="(custom path change)"
                 value={replaceTo}
                 onChange={onChangeReplaceTo}
                 onKeyDown={onEnter}

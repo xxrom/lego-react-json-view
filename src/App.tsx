@@ -3,8 +3,18 @@ import { hot } from "react-hot-loader/root";
 
 // import { json } from "./testData/bigTestJson";
 import { json } from "./testData/smallTestJson";
-import { Viewer } from "./components";
+import { LegoViewer } from "./components";
 
-const App = () => <Viewer json={json} />;
+const App = () => (
+  <LegoViewer
+    json={json}
+    settings={{
+      theme: "auto",
+      fontSize: "0.81",
+      searchLimit: "111",
+      isExpanded: false
+    }}
+  />
+);
 
 export default hot(App);

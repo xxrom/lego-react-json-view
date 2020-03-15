@@ -1,1 +1,1 @@
-export { Viewer } from "./Viewer";
+export { Viewer as LegoViewer } from "./Viewer";

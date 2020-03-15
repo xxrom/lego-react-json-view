@@ -1,4 +1,6 @@
-## **Lego-react-json-viewer**
+## **Lego-react-json-view**
+
+JSON viewer with view filters and more =)
 
 # `Install` (npm / yarn):
 
@@ -66,6 +68,36 @@ ReactDOM.render(<App />, document.getElementById("root"));
 
 ---
 
+## Custom settings:
+
+**Settings object** (propsSettings) could be passed directly in *react component*:
+```tsx
+...
+  const propsSettings = {
+    theme: "auto",
+    fontSize: "0.81",
+    searchLimit: "111",
+    isExpanded: false
+  };
+
+  return <LegoViewer
+    json={json}
+    settings={propsSettings}
+  />
+...
+```
+
+### Settings:
+* **fontSize** - json font size;
+* **searchLimit** - max number of showing results;
+* **theme** - color theme mode ("light" | "dark" | "auto");
+* **isExpanded** - is expanded by default all json objects?
+
+Note:
+* *propsSettings* have **higher priority**, then **inner** (witch could be changed via UI interface)!
+* inner settings will be dropped to *propsSettings* after page reload!
+
+---
 ## **Main features:**
 > - [x] Save **previously opened** paths in json;
 > - [x] Collaps paths by **collaps filters**;
