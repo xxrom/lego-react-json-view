@@ -102,7 +102,7 @@ const Viewer = memo((props: ViewerProps) => {
       fontSize = "1.0",
       searchLimit = "100",
       theme = "auto",
-      isExpanded = true
+      isExpanded = false
     }: settingsType = settingsLS;
 
     return {
