@@ -108,7 +108,7 @@ const Viewer = memo((props: ViewerProps) => {
     return {
       fontSize: oc(settingsInit).fontSize(fontSize),
       searchLimit: oc(settingsInit).searchLimit(searchLimit),
-      theme: oc(settingsInit).theme(theme),
+      theme: oc(settingsInit).theme(theme) as themeMode,
       isExpanded: oc(settingsInit).isExpanded(isExpanded)
     };
   });
