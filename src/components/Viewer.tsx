@@ -17,21 +17,21 @@ import { colors } from "@colors";
 import { isDarkTheme } from "@settings";
 import { findAllPathPoints } from "./viewerHelper";
 
+export type expandedType = { [key: string]: boolean };
+export type highlightType = { [key: string]: boolean };
+
+export type themeMode = "light" | "dark" | "auto";
+
 // TODO: extend settingsType
 export interface ViewerProps {
   json: object;
   settings: {
     fontSize?: string;
     searchLimit?: string;
-    theme?: themeMode;
+    theme?: themeMode | string;
     isExpanded?: boolean;
   };
 }
-
-export type expandedType = { [key: string]: boolean };
-export type highlightType = { [key: string]: boolean };
-
-export type themeMode = "light" | "dark" | "auto";
 
 /**
  * Settings parameters:
@@ -153,7 +153,6 @@ const Viewer = memo((props: ViewerProps) => {
 
   // Expand
   useEffect(() => {
-    console.log("useEffect settings", settings);
     if (!settings.isExpanded) {
       // By-default everything closed
 
