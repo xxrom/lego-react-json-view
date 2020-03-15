@@ -141,4 +141,5 @@ TODO:
 > - [-] Think about search counter (sometimes it's too big or too small);
 > - [-] Clipboard button scale with font size;
 > - [-] ? Show tooltip (Copied) after clicking on clipboard;
-> - [-] Clear search text (button).
+> - [x] onEnter search with empty input - clean results;
+> - [x] Clear search text (button).

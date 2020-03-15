@@ -75,6 +75,8 @@ const Tree = React.memo((props: TreeProps) => {
       setCuttedLS(cuttedPath, "1");
     }
 
+    // TODO: react warning
+    // Cannot update a component from inside the function body of a different component.
     setCuttedJson({
       ...cuttedJson,
       [cuttedPath]: getCuttedLS(cuttedPath)

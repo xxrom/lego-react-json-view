@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useCallback, useState, useEffect } from "react";
+import styled from "astroturf";
 
 import {
   setSearchTextLS,
@@ -9,10 +10,10 @@ import {
 import { isDarkTheme } from "@settings";
 import { setAllPaths, findPathsByText, showInJsonByPath } from "./searchUtils";
 import { colors } from "@colors";
-import { Text } from "@common";
+import { Text, Button } from "@common";
 import { settingsType } from "../../Viewer";
 import { SettingsIcon } from "./SettingsIcon";
-import styled from "astroturf";
+import { forceJsonUpdate } from "../../viewerHelper";
 
 const styles: Record<string, React.CSSProperties> = {
   wrapper: {
@@ -26,7 +27,7 @@ const styles: Record<string, React.CSSProperties> = {
     display: "inline-flex",
     justifyContent: "flex-end",
     flex: "0.1",
-    minWidth: "7rem",
+    minWidth: "6rem",
     paddingLeft: "1rem",
     whiteSpace: "nowrap",
     fontSize: "1rem"
@@ -59,15 +60,21 @@ const Search = React.memo(
     setJson,
     onToggleSettings
   }: SearchProps) => {
-    const [foundResults, setFoundResults] = React.useState<Array<string>>([]);
-    const [foundAllResults, setFoundAllResults] = React.useState<Array<string>>(
-      []
-    );
-    React.useEffect(() => {
+    const [foundResults, setFoundResults] = useState<Array<string>>([]);
+    const [foundAllResults, setFoundAllResults] = useState<Array<string>>([]);
+    useEffect(() => {
       setAllPaths(json);
     }, [json]);
 
-    const onChange = React.useCallback(
+    const handleChangeSearchText = useCallback(
+      (text = "") => {
+        setSearchTextLS(text);
+        setSearchText(text);
+      },
+      [setSearchTextLS, setSearchText]
+    );
+
+    const onChange = useCallback(
       e => {
         const inputText = e.target.value;
         const trimSearchText = inputText.trim();
@@ -76,14 +83,13 @@ const Search = React.memo(
         const regExp = /^([\w\d]+(\.[\w\d]+)*\.?)?$/i;
 
         if (regExp.test(trimSearchText)) {
-          setSearchTextLS(trimSearchText);
-          setSearchText(trimSearchText);
+          handleChangeSearchText(trimSearchText);
         }
       },
       [setSearchText]
     );
 
-    const searchAndHighlightResults = React.useCallback(() => {
+    const searchAndHighlightResults = useCallback(() => {
       // Find all paths by search text
       const paths: Array<string> = findPathsByText(searchText);
 
@@ -121,32 +127,42 @@ const Search = React.memo(
       setHighlightLS(highlightPathsLS);
     }, [searchText, settings.searchLimit]);
 
-    const onEnter = React.useCallback(
+    const handleSearchTextCleaning = useCallback(() => {
+      // If empty - clear expanded blocks and heighlights in LS
+      clearExpandedLS();
+      setHighlightLS({});
+
+      // Clear result counters
+      setFoundAllResults([]);
+      setFoundResults([]);
+    }, [clearExpandedLS, setHighlightLS, setFoundAllResults, setFoundResults]);
+
+    const onEnterAction = useCallback(() => {
+      if (searchText === "") {
+        handleSearchTextCleaning();
+      } else {
+        searchAndHighlightResults();
+      }
+    }, [
+      searchText,
+      clearExpandedLS,
+      setHighlightLS,
+      searchAndHighlightResults
+    ]);
+
+    const handleEnter = useCallback(
       e => {
         if (e.keyCode === 13) {
-          // If empty - clear expanded blocks and heighlights in LS
-          if (searchText === "") {
-            clearExpandedLS();
-            setHighlightLS({});
-            return;
-          }
-
-          new Promise(resolve => {
-            // Set empty json
-            setJson({});
-            resolve(searchAndHighlightResults());
-          }).then(() => {
-            // TODO: think about this actions =)
-            // Set back correct json
-            // This actions needs for optimization purpose
-            // Otherways user should collaps and open root json
-            // for showing all found results.
-            setJson(json);
-          });
+          forceJsonUpdate(onEnterAction, setJson, json);
         }
       },
-      [json, searchAndHighlightResults, searchText, setJson]
+      [json, searchAndHighlightResults, searchText, setJson, onEnterAction]
     );
+
+    const handleClearInput = useCallback(() => {
+      handleChangeSearchText();
+      handleSearchTextCleaning();
+    }, []);
 
     return (
       <div style={styles.wrapper}>
@@ -155,8 +171,11 @@ const Search = React.memo(
           style={styles.inputStyle}
           value={searchText}
           onChange={onChange}
-          onKeyDown={onEnter}
+          onKeyDown={handleEnter}
         />
+        {searchText && (
+          <Button onClick={handleClearInput} title="X" type="circle" />
+        )}
         <Text
           style={styles.resultText}
         >{`${foundResults.length}/${foundAllResults.length}`}</Text>

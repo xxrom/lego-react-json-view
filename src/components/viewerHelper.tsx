@@ -19,3 +19,26 @@ export const findAllPathPoints = (
     {}
   );
 };
+
+// Force Update json
+export const forceJsonUpdate = (
+  toDoFunction: () => any,
+  setJson: (json: any) => any,
+  json: any
+) => {
+  new Promise(resolve => {
+    // Set empty json
+    setJson({});
+
+    toDoFunction();
+
+    resolve();
+  }).then(() => {
+    // TODO: think about this actions =)
+    // Set back correct json
+    // This actions needs for optimization purpose
+    // Otherways user should collaps and open root json
+    // for showing all found results.
+    setJson(json);
+  });
+};

@@ -15,7 +15,7 @@ import {
 } from "./localStorageTools";
 import { colors } from "@colors";
 import { isDarkTheme } from "@settings";
-import { findAllPathPoints } from "./viewerHelper";
+import { findAllPathPoints, forceJsonUpdate } from "./viewerHelper";
 
 export type expandedType = { [key: string]: boolean };
 export type highlightType = { [key: string]: boolean };
@@ -151,13 +151,30 @@ const Viewer = memo((props: ViewerProps) => {
     setJson({ root: initJson });
   }, [initJson]);
 
+  const onExpandAction = () => {
+    const allExpandedPathesObject = findAllPathPoints(json, expandedRoot);
+    const allExpandedLS = getExpandedLS();
+
+    // Inherit expanded values from LS
+    Object.keys(allExpandedLS).forEach(path => {
+      if (
+        typeof oc(allExpandedLS)[path]() === "boolean" &&
+        typeof oc(allExpandedPathesObject)[path]() === "boolean"
+      ) {
+        allExpandedPathesObject[path] = allExpandedLS[path];
+      }
+    });
+
+    setExpandedObjectLS(allExpandedPathesObject);
+  };
+
   // Expand
   useEffect(() => {
     if (!settings.isExpanded) {
       // By-default everything closed
 
-      // but Rerender should be done
-      new Promise(resolve => resolve(setJson({}))).then(() => setJson(json));
+      // But reRender should be done
+      forceJsonUpdate(() => {}, setJson, json);
 
       return;
     }
@@ -167,33 +184,8 @@ const Viewer = memo((props: ViewerProps) => {
      * then expand every point in json
      * with inheriting previous values (expandedLS)
      */
-    new Promise(resolve => {
-      setJson({}); // (*) Force update sjson tree
-
-      const allExpandedPathesObject = findAllPathPoints(json, expandedRoot);
-      const allExpandedLS = getExpandedLS();
-
-      // Inherit expanded values from LS
-      Object.keys(allExpandedLS).forEach(path => {
-        if (
-          typeof oc(allExpandedLS)[path]() === "boolean" &&
-          typeof oc(allExpandedPathesObject)[path]() === "boolean"
-        ) {
-          allExpandedPathesObject[path] = allExpandedLS[path];
-        }
-      });
-
-      setExpandedObjectLS(allExpandedPathesObject);
-      resolve(true);
-    }).then(() => {
-      // TODO: think about this actions =)
-      // (*) Set back correct json
-      // This actions needs for optimization purpose
-      // Otherways user should collaps and open root json
-      // for showing expanded/collapsed json data
-      setJson(json);
-    });
-  }, [getSettingsLS, setJson, clearExpandedLS, settings.isExpanded]);
+    forceJsonUpdate(onExpandAction, setJson, json);
+  }, [setJson, settings.isExpanded, forceJsonUpdate]);
 
   const onToggleSettings = useCallback(
     () => setIsOpenedSettings(!isOpenedSettings),
