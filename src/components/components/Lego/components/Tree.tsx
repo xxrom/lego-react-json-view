@@ -47,7 +47,8 @@ const Tree = React.memo((props: TreeProps) => {
     () => () => {
       setIsExpanded(!isExpanded);
       const fullPath = `${path}.${keyName}`;
-      setExpandedLS([fullPath]);
+      console.log("onExanded", fullPath);
+      setExpandedLS([fullPath], !isExpanded);
     },
     [isExpanded, keyName, path]
   );

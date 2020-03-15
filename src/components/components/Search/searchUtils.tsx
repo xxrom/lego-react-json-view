@@ -5,7 +5,7 @@ import {
   expandedRoot
 } from "../../localStorageTools";
 
-const isNotEmptyObjectOrArray = (item: any) => {
+const checkIsObject = (item: any) => {
   if (typeof item === "undefined") {
     return false;
   }
@@ -103,7 +103,7 @@ const findPathsInJson = (
   searchPaths: string,
   path: string
 ): Array<string> => {
-  if (!isNotEmptyObjectOrArray(json)) {
+  if (!checkIsObject(json)) {
     if (findPathsInPaths(path, searchPaths)) {
       return [path];
     }
@@ -138,7 +138,7 @@ const findAllPaths = (
   json: any, // object | string | number | null | undefined,
   path = expandedRoot
 ): Array<string> => {
-  if (!isNotEmptyObjectOrArray(json)) {
+  if (!checkIsObject(json)) {
     return [path];
   }
 
@@ -180,7 +180,7 @@ const showInJsonByPath = (path: string) => {
 };
 
 export {
-  isNotEmptyObjectOrArray as checkIsObject,
+  checkIsObject,
   findPathsInPaths,
   findPathsInJson,
   showInJsonByPath,

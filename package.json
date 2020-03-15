@@ -21,7 +21,8 @@
     "astroturf": "^0.10.2",
     "lodash.get": "^4.4.2",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "ts-optchain": "^0.1.8"
   },
   "peerDependencies": {
     "react": "^16.13.0",

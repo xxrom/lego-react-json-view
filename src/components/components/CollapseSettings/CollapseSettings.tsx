@@ -4,7 +4,7 @@ import styled from "astroturf";
 import { isDarkTheme } from "@settings";
 import { colors } from "@colors";
 import { Tabs, Button, Text, TextTypes } from "@common";
-import { setSettingsLS } from "../../localStorageTools";
+import { setSettingsLS, clearExpandedLS } from "../../localStorageTools";
 import { setSettingsType, settingsType, themeMode } from "../../Viewer";
 
 const styles: Record<string, React.CSSProperties> = {
@@ -37,6 +37,8 @@ interface CollapseSettingsProps {
   setCollapses: SetCollapses;
   settings: settingsType;
   setSettings: setSettingsType;
+  json: {};
+  setJson: (json: any) => void;
   isOpenedSettings: boolean;
   setIsOpenedSettings: (toggle: boolean) => void;
 }
@@ -47,6 +49,8 @@ const CollapseSettings = memo(
     setCollapses,
     settings,
     setSettings,
+    json,
+    setJson,
     isOpenedSettings,
     setIsOpenedSettings
   }: CollapseSettingsProps) => {
@@ -142,11 +146,30 @@ const CollapseSettings = memo(
           ...settings,
           theme
         };
-        console.log(`settingsObject`, settingsObject);
         setSettings(settingsObject);
         setSettingsLS(settingsObject);
       },
-      []
+      [setSettings, setSettingsLS, settings]
+    );
+    const onClickIsExpanded = useCallback(
+      (isExpanded: boolean) => () => {
+        const settingsObject: settingsType = {
+          ...settings,
+          isExpanded
+        };
+
+        new Promise(resolve => {
+          setJson({}); // (*) Force update json tree
+          clearExpandedLS();
+          setSettings(settingsObject);
+          setSettingsLS(settingsObject);
+
+          resolve(true);
+        }).then(() => {
+          setJson(json);
+        });
+      },
+      [setSettings, setSettingsLS, settings]
     );
 
     if (!isOpenedSettings) {
@@ -171,7 +194,7 @@ const CollapseSettings = memo(
           <Wrapper>
             <span
               style={styles.fontLabel}
-            >{`Search limit results (0 - disabled):`}</span>
+            >{`Search limit results (0 - disabled / slow if value > 100):`}</span>
             <input
               style={{ ...styles.fontLabel, ...styles.input }}
               value={settings.searchLimit ? String(settings.searchLimit) : ""}
@@ -187,6 +210,16 @@ const CollapseSettings = memo(
             <Button title="dark" onClick={onClickTheme("dark")} />
             <Button title="light" onClick={onClickTheme("light")} />
             <Button title="auto" onClick={onClickTheme("auto")} />
+          </Wrapper>
+          <Wrapper>
+            <span
+              style={styles.fontLabel}
+            >{`Expanded by default? (experimented option / slow with big json):`}</span>
+            <span style={styles.fontValue}>{`"${
+              settings.isExpanded ? "expanded" : "collapsed"
+            }"`}</span>
+            <Button title="expanded" onClick={onClickIsExpanded(true)} />
+            <Button title="collapsed" onClick={onClickIsExpanded(false)} />
           </Wrapper>
           <Tabs
             label="Collapse paths:"

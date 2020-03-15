@@ -1,15 +1,24 @@
 import React, { useCallback, useMemo, useEffect, useState, memo } from "react";
 import styled from "astroturf";
+import { oc } from "ts-optchain";
 
 import { Lego, CollapseSettings, Search } from "./components";
 import {
   getCollapseSettingsLS,
   setCollapseSettingsLS,
   getSearchTextLS,
-  getSettingsLS
+  getSettingsLS,
+  getAllPathsLS,
+  setExpandedLS,
+  clearExpandedLS,
+  expandedRoot,
+  setExpandedObjectLS,
+  getExpandedLS
 } from "./localStorageTools";
 import { colors } from "@colors";
 import { isDarkTheme } from "@settings";
+import { checkIsObject } from "./components/Search/searchUtils";
+import { findAllPathPoints } from "./viewerHelper";
 
 export interface ViewerProps {
   json: object;
@@ -19,10 +28,20 @@ export type expandedType = { [key: string]: boolean };
 export type highlightType = { [key: string]: boolean };
 
 export type themeMode = "light" | "dark" | "auto";
+
+/**
+ * Settings parameters:
+ *
+ * fontSize - json font size;
+ * searchLimit - max number of showing results;
+ * theme - color theme mode;
+ * isExpanded - is expanded by default all json objects?
+ */
 export type settingsType = {
   fontSize: string;
   searchLimit: string;
   theme: themeMode;
+  isExpanded: boolean;
 };
 
 export type setExpandedType = React.Dispatch<
@@ -66,7 +85,7 @@ const defaultCollapses = [
 ];
 
 const Viewer = memo(({ json: initJson = {} }: ViewerProps) => {
-  const [json, setJson] = useState({ root: initJson });
+  const [json, setJson] = useState<{}>({ root: initJson });
   const [searchText, setSearchText] = useState("");
   const [collapses, setCollapses] = useState(defaultCollapses);
   const [isOpenedSettings, setIsOpenedSettings] = useState(false);
@@ -75,12 +94,14 @@ const Viewer = memo(({ json: initJson = {} }: ViewerProps) => {
     const {
       fontSize = "1.0",
       searchLimit = "100",
-      theme = "auto"
+      theme = "auto",
+      isExpanded = true
     }: settingsType = settingsLS;
     return {
       fontSize,
       searchLimit,
-      theme
+      theme,
+      isExpanded
     };
   });
 
@@ -105,19 +126,64 @@ const Viewer = memo(({ json: initJson = {} }: ViewerProps) => {
       setCollapseSettingsLS(defaultCollapses);
     }
 
+    // Set searchText from LS
     const searchTextData = getSearchTextLS();
     if (searchTextData) {
       setSearchText(searchTextData);
     }
   }, []);
 
+  // Update collapses settings in LS
   useEffect(() => {
     setCollapseSettingsLS(collapses);
   }, [collapses]);
 
+  // Add root to initJson data
   useEffect(() => {
     setJson({ root: initJson });
   }, [initJson]);
+
+  // Expand
+  useEffect(() => {
+    const { isExpanded } = getSettingsLS();
+
+    if (!isExpanded) {
+      // By-default everything closed
+      return;
+    }
+
+    /**
+     * If provided settingslisExpanded === true
+     * then expand every point in json
+     * with inheriting previous values (expandedLS)
+     */
+    new Promise(resolve => {
+      setJson({ root: {} }); // (*) Force update json tree
+
+      const allExpandedPathesObject = findAllPathPoints(json, expandedRoot);
+      const allExpandedLS = getExpandedLS();
+
+      // Inherit expanded values from LS
+      Object.keys(allExpandedLS).forEach(path => {
+        if (
+          typeof oc(allExpandedLS)[path]() === "boolean" &&
+          typeof oc(allExpandedPathesObject)[path]() === "boolean"
+        ) {
+          allExpandedPathesObject[path] = allExpandedLS[path];
+        }
+      });
+
+      setExpandedObjectLS(allExpandedPathesObject);
+      resolve(true);
+    }).then(() => {
+      // TODO: think about this actions =)
+      // (*) Set back correct json
+      // This actions needs for optimization purpose
+      // Otherways user should collaps and open root json
+      // for showing expanded/collapsed json data
+      setJson(json);
+    });
+  }, [getSettingsLS, setJson, clearExpandedLS]);
 
   const onToggleSettings = useCallback(
     () => setIsOpenedSettings(!isOpenedSettings),
@@ -138,6 +204,8 @@ const Viewer = memo(({ json: initJson = {} }: ViewerProps) => {
         <CollapseSettings
           collapses={collapses}
           setCollapses={setCollapses}
+          json={json}
+          setJson={setJson}
           settings={settings}
           setSettings={setSettings}
           isOpenedSettings={isOpenedSettings}

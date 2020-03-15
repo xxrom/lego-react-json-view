@@ -9,11 +9,14 @@ export const getCollapseSettingsLS = () => {
 
 export const expandedRoot = "globalRoot";
 const expandedKey = "expanded";
-export const setExpandedLS = (paths: Array<string> = []) => {
+export const setExpandedLS = (
+  paths: Array<string> = [],
+  defaultValue = true
+) => {
   const fullObject = getExpandedLS();
 
   const pathsObjectLS = paths.reduce(
-    (accumulate, path) => ({ ...accumulate, [path]: true }),
+    (accumulate, path) => ({ ...accumulate, [path]: defaultValue }),
     {}
   );
 
@@ -22,6 +25,17 @@ export const setExpandedLS = (paths: Array<string> = []) => {
     JSON.stringify({
       ...fullObject,
       ...pathsObjectLS
+    })
+  );
+};
+export const setExpandedObjectLS = (paths: { [key: string]: boolean } = {}) => {
+  const fullObject = getExpandedLS();
+
+  localStorage.setItem(
+    expandedKey,
+    JSON.stringify({
+      ...fullObject,
+      ...paths
     })
   );
 };

@@ -1,4 +1,19 @@
-export default {
+export const json = {
+  hello: {
+    test: "json",
+    hide: {
+      this: {
+        path: {
+          test: "value1",
+          test2: "value2",
+          test3: "value3"
+        }
+      }
+    },
+    and: {
+      this: ["hello", "here", "my", "friend"]
+    }
+  },
   id: "00000000-0000-0000-0000-000000000000",
   createdDate: null,
   createdBy: "name",
@@ -35,7 +50,7 @@ export default {
                 lockOwner: null,
                 versions: [],
                 dataPath: null,
-                value: "Введите имя проекта решения"
+                value: "name"
               },
               editable: {
                 id: "af70d30c-b05c-41d3-820d-d4c1ba1f7316",
@@ -48,7 +63,7 @@ export default {
               }
             }
           },
-          before: {
+          up: {
             id: "b6df9c35-e462-4890-acbf-4b88e6ea69ca",
             type: "block",
             state: "changed",
@@ -58,7 +73,7 @@ export default {
             dataPath: null,
             value: []
           },
-          after: {
+          down: {
             id: "3c02263f-a194-462b-9242-2d6111c569eb",
             type: "block",
             state: "changed",
@@ -104,7 +119,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  before: {
+                  up: {
                     id: "b639fbbd-34df-4ca0-9783-aa0bc16601dc",
                     type: "block",
                     state: "changed",
@@ -114,7 +129,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  after: {
+                  down: {
                     id: "6fcaa476-9bd2-4f9c-85b0-3fa63d17ccfb",
                     type: "block",
                     state: "changed",
@@ -128,7 +143,7 @@ export default {
               }
             }
           },
-          before: {
+          up: {
             id: "9561f3fa-eaf0-43c5-ac5a-e9424464637e",
             type: "block",
             state: "changed",
@@ -138,7 +153,7 @@ export default {
             dataPath: null,
             value: []
           },
-          after: {
+          down: {
             id: "0f91a286-8ab6-4d56-bc0f-7bf66ab2d5fb",
             type: "block",
             state: "changed",
@@ -190,7 +205,7 @@ export default {
                         versions: [
                           {
                             id: "5e567a780c5154000631c507",
-                            author: "Автоматическое создание",
+                            author: "name",
                             name: "v. 1",
                             created: "2020-02-26T17:02:32.076"
                           },
@@ -286,7 +301,7 @@ export default {
                       }
                     }
                   },
-                  before: {
+                  up: {
                     id: "6effc9a8-7646-4086-809d-1644d687321b",
                     type: "block",
                     state: "changed",
@@ -296,7 +311,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  after: {
+                  down: {
                     id: "08d2cba7-e648-47af-b68f-d628f0da9996",
                     type: "block",
                     state: "changed",
@@ -326,7 +341,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  before: {
+                  up: {
                     id: "2d0ddb73-5528-4947-b9cf-732b7026bd3d",
                     type: "block",
                     state: "changed",
@@ -336,7 +351,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  after: {
+                  down: {
                     id: "c6bf6249-f173-4fb4-907c-3c9f993647c7",
                     type: "block",
                     state: "changed",
@@ -460,7 +475,7 @@ export default {
                                       type: "GeneralBlockParametersValue"
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "1a8957f1-8976-4bbf-9fbe-b5fdddaa3ccc",
                                     type: "block",
                                     state: "changed",
@@ -470,7 +485,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "5335950c-a939-4904-a382-69b6a9a86bd5",
                                     type: "block",
                                     state: "changed",
@@ -529,7 +544,7 @@ export default {
                                               }
                                             ]
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "612e41bb-b19a-47d6-9bd0-799fddebab30",
                                             type: "block",
@@ -540,7 +555,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "947dfed7-2cef-4155-a24c-e861181f26e1",
                                             type: "block",
@@ -555,7 +570,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "8c7aa2a2-26c9-4be8-bc98-bfbd7622ffd3",
                                     type: "block",
                                     state: "changed",
@@ -565,7 +580,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "2912a6b7-fea0-4ce2-a759-19af5d7a1f27",
                                     type: "block",
                                     state: "changed",
@@ -585,7 +600,7 @@ export default {
                               dealsCurrencyCodes: null
                             }
                           },
-                          before: {
+                          up: {
                             id: "dd222c9b-5b42-491c-b08f-f4042b99ba6c",
                             type: "block",
                             state: "changed",
@@ -595,7 +610,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "6ef50403-9292-4091-9701-5eaee3d59f7b",
                             type: "block",
                             state: "changed",
@@ -625,7 +640,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          before: {
+                          up: {
                             id: "d8367063-d396-4aff-b0c0-de7269f80d7e",
                             type: "block",
                             state: "changed",
@@ -635,7 +650,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "a009f2f3-a11d-4027-9a9f-4b5165568fad",
                             type: "block",
                             state: "changed",
@@ -734,7 +749,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "ccdd2f5c-b358-4ac9-ab74-b4b0ffe5a26a",
                                     type: "block",
                                     state: "changed",
@@ -744,7 +759,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "cc011d36-5afb-454a-8f35-9bf60f13ea26",
                                     type: "block",
                                     state: "changed",
@@ -758,7 +773,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "0bddd1fb-c2d7-449a-a537-a53310aa4aec",
                             type: "block",
                             state: "changed",
@@ -768,7 +783,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "23c5b0f4-3160-4804-b249-6ccf8366010e",
                             type: "block",
                             state: "changed",
@@ -867,7 +882,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "fd9fd539-d188-4be2-a8de-2de27657de6b",
                                     type: "block",
                                     state: "changed",
@@ -877,7 +892,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "90757576-925e-4c90-9e0b-c53d4518d70b",
                                     type: "block",
                                     state: "changed",
@@ -891,7 +906,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "edb0b3bc-0848-4bf4-8e4d-d213f228a9bb",
                             type: "block",
                             state: "changed",
@@ -901,7 +916,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "1e4ccc02-8326-44c4-9f3c-75390ca56c6e",
                             type: "block",
                             state: "changed",
@@ -958,7 +973,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "a6665e73-909c-4fde-bcb8-456cceaf523b",
                                     type: "block",
                                     state: "changed",
@@ -968,7 +983,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "5264914e-0f3a-46dc-8f13-2e591fc74de9",
                                     type: "block",
                                     state: "changed",
@@ -1009,7 +1024,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "69cc6597-7b6e-41ae-a41c-b6bb1f68b777",
                                     type: "block",
                                     state: "changed",
@@ -1019,7 +1034,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "4dbe8a4c-0e07-41ad-b572-7d2aa39bb8ec",
                                     type: "block",
                                     state: "changed",
@@ -1060,7 +1075,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "73579b2a-15df-4c98-b9b2-83e16c55daa6",
                                     type: "block",
                                     state: "changed",
@@ -1070,7 +1085,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "8b1f4ccd-8dfe-4330-b383-dd56d1e5468c",
                                     type: "block",
                                     state: "changed",
@@ -1084,7 +1099,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "a238db71-17a1-4131-8269-20cd73b56a49",
                             type: "block",
                             state: "changed",
@@ -1094,7 +1109,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "5ea94b7e-aaf7-453d-848e-1c0cc8bfa356",
                             type: "block",
                             state: "changed",
@@ -1122,7 +1137,7 @@ export default {
                             versions: [],
                             dataPath: null,
                             value: {
-                              _class: "BaseAssuranceValue",
+                              _class: "value",
                               collaterals: {
                                 id: "9d1d30d5-f562-4eb9-9a41-574394f5b128",
                                 type: "block",
@@ -1221,7 +1236,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "ba37f561-2206-402c-b9c3-869b75e5c8fc",
                                             type: "block",
@@ -1232,7 +1247,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "e03bc3ae-0139-4199-b492-561275597037",
                                             type: "block",
@@ -1247,7 +1262,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "a6b7bd55-bd9b-4cf0-b81d-6ae787cb64e7",
                                     type: "block",
                                     state: "changed",
@@ -1257,7 +1272,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "a0fb89ce-2d0c-4c39-900b-86ad1435e072",
                                     type: "block",
                                     state: "changed",
@@ -1367,7 +1382,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "61906d06-6967-474c-9ef4-ae6fa508b4f7",
                                             type: "block",
@@ -1378,7 +1393,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "a1885c51-355b-45a9-8391-90ed392248f6",
                                             type: "block",
@@ -1393,7 +1408,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "d6c08140-c1ca-4b2d-bd8d-24d257964509",
                                     type: "block",
                                     state: "changed",
@@ -1403,7 +1418,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "4a0f1c3d-2367-467b-a51f-cb960dbdbe62",
                                     type: "block",
                                     state: "changed",
@@ -1417,7 +1432,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "94a490c5-ec01-40c5-8f10-b02d6af2a8c1",
                             type: "block",
                             state: "changed",
@@ -1427,7 +1442,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "c10c8923-7a30-498b-9bac-0a9760760b96",
                             type: "block",
                             state: "changed",
@@ -1494,7 +1509,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "beeeb462-0718-4c6b-8912-7c9c929cce44",
                             type: "block",
                             state: "changed",
@@ -1504,7 +1519,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "df9b50a5-aa0b-406f-82e5-8699502ca101",
                             type: "block",
                             state: "changed",
@@ -1603,7 +1618,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "1c420372-86a4-4492-83b2-6f626b6fae17",
                                     type: "block",
                                     state: "changed",
@@ -1613,7 +1628,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "8fa4c664-e73f-4d98-9415-9b6d95a6fe89",
                                     type: "block",
                                     state: "changed",
@@ -1627,7 +1642,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "7757f528-49fd-43f1-a617-6cdfb5983724",
                             type: "block",
                             state: "changed",
@@ -1637,7 +1652,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "8b517128-20c3-4716-b989-f8d6d13e9072",
                             type: "block",
                             state: "changed",
@@ -1774,7 +1789,7 @@ export default {
                                                               }
                                                             }
                                                           },
-                                                          before: {
+                                                          up: {
                                                             id:
                                                               "7bb9a712-a1ea-41ab-913f-831d438cfe6f",
                                                             type: "block",
@@ -1785,7 +1800,7 @@ export default {
                                                             dataPath: null,
                                                             value: []
                                                           },
-                                                          after: {
+                                                          down: {
                                                             id:
                                                               "3f517990-8d53-43f2-9679-da8cd2b8e0be",
                                                             type: "block",
@@ -1800,7 +1815,7 @@ export default {
                                                       }
                                                     ]
                                                   },
-                                                  before: {
+                                                  up: {
                                                     id:
                                                       "c47014c3-0ced-4ba8-b0df-7fc42109ae7e",
                                                     type: "block",
@@ -1811,7 +1826,7 @@ export default {
                                                     dataPath: null,
                                                     value: []
                                                   },
-                                                  after: {
+                                                  down: {
                                                     id:
                                                       "bdbfd82f-bf03-4113-9bf6-bf49b939a5e2",
                                                     type: "block",
@@ -1826,7 +1841,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "8a2602a0-f9d2-4018-9edf-15dce41406a8",
                                             type: "block",
@@ -1837,7 +1852,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "76570398-c263-4a4e-95c9-587df1822d2f",
                                             type: "block",
@@ -1852,7 +1867,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "34d5e30b-40c5-4e7a-9ca6-fa819ea400c1",
                                     type: "block",
                                     state: "changed",
@@ -1862,7 +1877,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "082ee494-4f71-4030-b568-5c92d941938c",
                                     type: "block",
                                     state: "changed",
@@ -1876,7 +1891,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "71273905-3596-4c82-be08-a01eaad68bb2",
                             type: "block",
                             state: "changed",
@@ -1886,7 +1901,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "63384639-642c-436e-9b9b-1a9ec2186184",
                             type: "block",
                             state: "changed",
@@ -1898,12 +1913,12 @@ export default {
                           }
                         }
                       },
-                      typeDescription: "Базовый тип сублимита",
+                      description: "test data",
                       type: "BaseBlockValue"
                     },
                     parentId: null
                   },
-                  before: {
+                  up: {
                     id: "2a91e7ef-62b0-4598-82f1-4ad447b29e3b",
                     type: "block",
                     state: "changed",
@@ -1913,7 +1928,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  after: {
+                  down: {
                     id: "e95dc93c-9d8c-4827-9628-8b79f8374f43",
                     type: "block",
                     state: "changed",
@@ -1927,7 +1942,7 @@ export default {
               }
             }
           },
-          before: {
+          up: {
             id: "b6727a7a-3500-41c0-92c6-39408168ee77",
             type: "block",
             state: "changed",
@@ -1937,7 +1952,7 @@ export default {
             dataPath: null,
             value: []
           },
-          after: {
+          down: {
             id: "88c78a31-1804-4d50-bb91-9dc8287c9ff7",
             type: "block",
             state: "changed",
@@ -2007,7 +2022,7 @@ export default {
                                 lockOwner: null,
                                 versions: [],
                                 dataPath: null,
-                                value: "Кредитные operation"
+                                value: "soperation"
                               },
                               number: {
                                 id: "33270262-202e-45a1-9b63-ae3eca865ca9",
@@ -2181,7 +2196,7 @@ export default {
                                       type: "valueGeneralBlockParametersValue"
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "45014d3e-6ed2-462d-869f-b8302de92dbf",
                                     type: "block",
                                     state: "changed",
@@ -2191,7 +2206,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "5b000466-c8d0-427d-af7b-3c6ee19fcc5e",
                                     type: "block",
                                     state: "changed",
@@ -2250,7 +2265,7 @@ export default {
                                               }
                                             ]
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "fe8a8483-9f2f-443b-aff4-013402e235c7",
                                             type: "block",
@@ -2261,7 +2276,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "8066fc5b-3f0d-4035-b2d9-6e78caba9f36",
                                             type: "block",
@@ -2276,7 +2291,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "98d0fe72-f340-4e5e-9cd7-9e1117fae38a",
                                     type: "block",
                                     state: "changed",
@@ -2286,7 +2301,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "0e225268-a79e-4e42-becd-30e829212f1b",
                                     type: "block",
                                     state: "changed",
@@ -2328,7 +2343,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "4c3f034c-9635-4e9f-9615-0137920d0bc9",
                             type: "block",
                             state: "changed",
@@ -2338,7 +2353,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "1b2920e4-2fd0-4f38-87e7-efc6b9d50c62",
                             type: "block",
                             state: "changed",
@@ -2368,7 +2383,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          before: {
+                          up: {
                             id: "91d26298-0ff7-45b0-b088-c8933e12cec1",
                             type: "block",
                             state: "changed",
@@ -2378,7 +2393,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "2286a0b9-e244-4f1d-a07f-fde9eee72021",
                             type: "block",
                             state: "changed",
@@ -2477,7 +2492,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "f9507546-09db-4858-985f-3996769fd40b",
                                     type: "block",
                                     state: "changed",
@@ -2487,7 +2502,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "dfd228f7-b0c3-49bd-ba7c-1e45f43261a4",
                                     type: "block",
                                     state: "changed",
@@ -2501,7 +2516,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "77533986-5912-44e8-b19f-c6c32e4f740f",
                             type: "block",
                             state: "changed",
@@ -2511,7 +2526,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "c6241495-3240-4208-aef8-ba00b44389e1",
                             type: "block",
                             state: "changed",
@@ -2610,7 +2625,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "b6ed1c84-c9cc-4549-ac73-9ebee33d0d0a",
                                     type: "block",
                                     state: "changed",
@@ -2620,7 +2635,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "ee6456e3-ee1e-4905-9261-e08698e1dd96",
                                     type: "block",
                                     state: "changed",
@@ -2634,7 +2649,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "a0fc8cc3-0c56-4b9c-8203-d23af0cef098",
                             type: "block",
                             state: "changed",
@@ -2644,7 +2659,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "e2d6720e-124c-456c-a0d9-7f1046b66f55",
                             type: "block",
                             state: "changed",
@@ -2701,7 +2716,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "8c2b37b6-256c-4e59-b43e-e147627aeef3",
                                     type: "block",
                                     state: "changed",
@@ -2711,7 +2726,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "b54fbcd6-1b17-4c2c-a73b-4d17717df74b",
                                     type: "block",
                                     state: "changed",
@@ -2752,7 +2767,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "cb59e16e-5e71-4281-ac0d-0259529a6d5a",
                                     type: "block",
                                     state: "changed",
@@ -2762,7 +2777,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "b29bee48-0120-41ba-b0f9-33097244028a",
                                     type: "block",
                                     state: "changed",
@@ -2803,7 +2818,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "9ad6d8a9-80a0-43de-8a4b-8c8d6d3bca24",
                                     type: "block",
                                     state: "changed",
@@ -2813,7 +2828,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "b633220b-d361-4820-bb5d-2418e1fedce2",
                                     type: "block",
                                     state: "changed",
@@ -2827,7 +2842,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "85fc7f2d-1f21-4fb4-a424-0e47dfa43ea4",
                             type: "block",
                             state: "changed",
@@ -2837,7 +2852,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "d114f98d-492e-4b83-92e6-43ef90bc3554",
                             type: "block",
                             state: "changed",
@@ -2964,7 +2979,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "9d6807b8-a0f9-490c-8c0c-8237162bc21c",
                                             type: "block",
@@ -2975,7 +2990,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "7ad2d43b-a7cf-4208-8efa-3a5922fcd70b",
                                             type: "block",
@@ -2990,7 +3005,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "6b263e24-53e4-4ce9-882e-5ed7b91f46ae",
                                     type: "block",
                                     state: "changed",
@@ -3000,7 +3015,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "388def15-e8c5-4be9-bcaf-e5b63d71c44f",
                                     type: "block",
                                     state: "changed",
@@ -3110,7 +3125,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "92bebd73-a282-4f48-b3da-538a2d001437",
                                             type: "block",
@@ -3121,7 +3136,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "a9564cd8-b3d0-488d-b955-55f6d0284391",
                                             type: "block",
@@ -3136,7 +3151,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "be491439-a649-470c-b1e4-759e143a524b",
                                     type: "block",
                                     state: "changed",
@@ -3146,7 +3161,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "45792ba4-4b43-49b4-9451-951dd6c4a22e",
                                     type: "block",
                                     state: "changed",
@@ -3235,7 +3250,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "8369d795-c5dc-49fd-92d2-3ea4025f180c",
                                             type: "block",
@@ -3246,7 +3261,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "b238373e-53c2-4534-86e6-20dc9ea768a0",
                                             type: "block",
@@ -3261,7 +3276,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "f389a8bd-7f46-4ca4-937a-fe7edc47d71e",
                                     type: "block",
                                     state: "changed",
@@ -3271,7 +3286,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "7aac8b39-16c1-4cf5-bbff-1e457cd9358d",
                                     type: "block",
                                     state: "changed",
@@ -3285,7 +3300,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "774e1cbb-f860-41de-885d-bea9c25e7661",
                             type: "block",
                             state: "changed",
@@ -3295,7 +3310,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "e5b6735b-1509-422c-ba69-467b7da04c71",
                             type: "block",
                             state: "changed",
@@ -3362,7 +3377,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "4554a48f-08b1-4944-9765-cffc704896bd",
                             type: "block",
                             state: "changed",
@@ -3372,7 +3387,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "fb0627e9-956d-450c-b936-b6fa3a11469a",
                             type: "block",
                             state: "changed",
@@ -3471,7 +3486,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "45dcbf69-4224-4570-a5ac-13257f3a4626",
                                     type: "block",
                                     state: "changed",
@@ -3481,7 +3496,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "507b4439-4552-48f4-939c-d7a72de3beb6",
                                     type: "block",
                                     state: "changed",
@@ -3495,7 +3510,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "e724f7f3-3cae-4f6f-8fe8-f7526deb6f89",
                             type: "block",
                             state: "changed",
@@ -3505,7 +3520,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "b5c9790f-bc20-4b37-9878-46ecddc7f5d8",
                             type: "block",
                             state: "changed",
@@ -3642,7 +3657,7 @@ export default {
                                                               }
                                                             }
                                                           },
-                                                          before: {
+                                                          up: {
                                                             id:
                                                               "c178c157-8ca5-499d-a5fc-a32ba1620c30",
                                                             type: "block",
@@ -3653,7 +3668,7 @@ export default {
                                                             dataPath: null,
                                                             value: []
                                                           },
-                                                          after: {
+                                                          down: {
                                                             id:
                                                               "d62e4a28-deab-4579-8437-264b083b41bf",
                                                             type: "block",
@@ -3668,7 +3683,7 @@ export default {
                                                       }
                                                     ]
                                                   },
-                                                  before: {
+                                                  up: {
                                                     id:
                                                       "ca2c730a-5a68-4319-a1f8-deba0422127e",
                                                     type: "block",
@@ -3679,7 +3694,7 @@ export default {
                                                     dataPath: null,
                                                     value: []
                                                   },
-                                                  after: {
+                                                  down: {
                                                     id:
                                                       "aaf99577-efa8-4be3-a344-591947c0935f",
                                                     type: "block",
@@ -3694,7 +3709,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "35079528-b695-4860-88d5-84838c6a2fbc",
                                             type: "block",
@@ -3705,7 +3720,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "e81070d0-ac2b-48a7-8125-f9523957b570",
                                             type: "block",
@@ -3720,7 +3735,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "7384c3aa-3e59-4640-9025-b4a8a08dfd47",
                                     type: "block",
                                     state: "changed",
@@ -3730,7 +3745,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "28112d10-7f26-4717-8947-905963a30212",
                                     type: "block",
                                     state: "changed",
@@ -3744,7 +3759,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "3f8e4e23-47a1-441a-be4c-99027256f00b",
                             type: "block",
                             state: "changed",
@@ -3754,7 +3769,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "2ec3b42b-c978-4166-a820-2d93a95163a1",
                             type: "block",
                             state: "changed",
@@ -3822,7 +3837,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "9588e399-3c2c-4eed-810a-03ca6a0ee8e9",
                                     type: "block",
                                     state: "changed",
@@ -3832,7 +3847,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "06abd137-d28e-4887-9b59-7cf6a4984134",
                                     type: "block",
                                     state: "changed",
@@ -3901,7 +3916,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "fc449f5d-d15b-48a5-99bb-4e446a2ba4ba",
                                             type: "block",
@@ -3912,7 +3927,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "ffe47d76-c71d-4222-a986-37bdc186fa29",
                                             type: "block",
@@ -3927,7 +3942,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "8f688b96-46c4-42bc-b670-f2cfa39b21c3",
                                     type: "block",
                                     state: "changed",
@@ -3937,7 +3952,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "f47538ff-28f8-4bad-b1de-6ddce0c11e0d",
                                     type: "block",
                                     state: "changed",
@@ -3978,7 +3993,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "85f21401-648f-4257-abac-a0bd9fde26dc",
                                     type: "block",
                                     state: "changed",
@@ -3988,7 +4003,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "ccbb7f2d-eb7a-401f-b3da-921849d54a2a",
                                     type: "block",
                                     state: "changed",
@@ -4002,7 +4017,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "2951d9a6-7403-4cfc-a0a5-ba6341314374",
                             type: "block",
                             state: "changed",
@@ -4012,7 +4027,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "587f85ba-f5ad-4fb2-b71b-d5f1609761ab",
                             type: "block",
                             state: "changed",
@@ -4052,7 +4067,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "a82377a0-2e8b-4ce3-ac15-4f537fd4d7c8",
                             type: "block",
                             state: "changed",
@@ -4062,7 +4077,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "c97764d2-6707-4ed3-8fd3-ac0ba9ecf729",
                             type: "block",
                             state: "changed",
@@ -4119,7 +4134,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "06ac1b94-cccb-4d6a-bd00-1e883f57a48b",
                                     type: "block",
                                     state: "changed",
@@ -4129,7 +4144,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "bd2ecf7b-ed38-44d4-8a81-63180ff41926",
                                     type: "block",
                                     state: "changed",
@@ -4170,7 +4185,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "172caad2-b53a-4f81-8adc-e0185c59885d",
                                     type: "block",
                                     state: "changed",
@@ -4180,7 +4195,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "2e80de63-2ffb-416c-a893-d18e1e9e8969",
                                     type: "block",
                                     state: "changed",
@@ -4194,7 +4209,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "b508e0aa-ffa8-49e3-bbf6-599d572d227b",
                             type: "block",
                             state: "changed",
@@ -4204,7 +4219,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "c85a726e-a6b9-47a2-9262-fe422532e96f",
                             type: "block",
                             state: "changed",
@@ -4261,7 +4276,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "783e378c-2e4c-488b-8035-177a517443d4",
                                     type: "block",
                                     state: "changed",
@@ -4271,7 +4286,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "81cdf2f0-02bf-4e49-83f0-384789f83b52",
                                     type: "block",
                                     state: "changed",
@@ -4312,7 +4327,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "ade1b19c-9eaa-4d8a-b10b-43be3c312f4b",
                                     type: "block",
                                     state: "changed",
@@ -4322,7 +4337,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "69ee30c0-b965-4eaa-be4e-86c090ce6513",
                                     type: "block",
                                     state: "changed",
@@ -4336,7 +4351,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "2fc54a94-306b-45aa-95c7-8fd71190452b",
                             type: "block",
                             state: "changed",
@@ -4346,7 +4361,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "6173edec-a1f0-43a3-aa41-0fd249413710",
                             type: "block",
                             state: "changed",
@@ -4394,7 +4409,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "733dbc21-2f88-408c-86ec-10481c983e77",
                             type: "block",
                             state: "changed",
@@ -4404,7 +4419,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "dfa32642-d296-4e66-8961-3bf81d2c9351",
                             type: "block",
                             state: "changed",
@@ -4470,7 +4485,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "ee020b73-b36d-4975-9bba-f04f8ef95bf3",
                                     type: "block",
                                     state: "changed",
@@ -4480,7 +4495,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "01acf4a5-a96c-4ad3-a744-dcc59d7692e9",
                                     type: "block",
                                     state: "changed",
@@ -4521,7 +4536,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "aacaaf36-dbe0-418f-b888-f63ad8f73891",
                                     type: "block",
                                     state: "changed",
@@ -4531,7 +4546,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "675fa53c-96be-4650-90fb-f49c2800995b",
                                     type: "block",
                                     state: "changed",
@@ -4545,7 +4560,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "da73698e-d029-4617-8d52-fa644e8b978c",
                             type: "block",
                             state: "changed",
@@ -4555,7 +4570,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "33081339-fabc-48b8-9bf2-9e80c2fc14ac",
                             type: "block",
                             state: "changed",
@@ -4654,7 +4669,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "5724bd32-a0a4-451b-8bb5-9f9301087ade",
                                     type: "block",
                                     state: "changed",
@@ -4664,7 +4679,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "d10280af-20e8-49df-9267-e2bb37ac502a",
                                     type: "block",
                                     state: "changed",
@@ -4678,7 +4693,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "f6d6e1be-5d6e-416a-be5f-828e45b42546",
                             type: "block",
                             state: "changed",
@@ -4688,7 +4703,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "9983ce63-ba90-4436-b629-1cef44cfde0d",
                             type: "block",
                             state: "changed",
@@ -4787,7 +4802,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "ea761fa0-646a-4ad6-a1a2-e52d75ed205d",
                                     type: "block",
                                     state: "changed",
@@ -4797,7 +4812,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "c0ea1a56-4097-49d8-a6f5-0ff619754b7f",
                                     type: "block",
                                     state: "changed",
@@ -4811,7 +4826,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "2fa4409a-cc02-4304-a0cb-70cb8ddf835b",
                             type: "block",
                             state: "changed",
@@ -4821,7 +4836,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "631de6b6-3bd9-466f-b0c9-ef49ddf5630b",
                             type: "block",
                             state: "changed",
@@ -4861,7 +4876,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "66b58715-86b0-419a-b989-f817d8099452",
                             type: "block",
                             state: "changed",
@@ -4871,7 +4886,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "b7759e1f-076d-4849-9010-18ca652dd0df",
                             type: "block",
                             state: "changed",
@@ -4938,7 +4953,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "01e667af-56aa-4c4f-8d18-90588ee9988e",
                                     type: "block",
                                     state: "changed",
@@ -4948,7 +4963,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "503737e2-11ad-4459-bc86-126d33cac865",
                                     type: "block",
                                     state: "changed",
@@ -4962,7 +4977,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "e578a9e5-2b35-4d65-8f64-5949f0edf053",
                             type: "block",
                             state: "changed",
@@ -4972,7 +4987,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "3276c1e5-9d3d-43f0-8bd8-0cdec0efb4b4",
                             type: "block",
                             state: "changed",
@@ -4988,7 +5003,7 @@ export default {
                     },
                     parentId: null
                   },
-                  before: {
+                  up: {
                     id: "50b2ad78-6b5f-42c4-add9-e2219ac0b596",
                     type: "block",
                     state: "changed",
@@ -4998,7 +5013,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  after: {
+                  down: {
                     id: "13e42d44-685e-4666-bee9-2ad75987a4f8",
                     type: "block",
                     state: "changed",
@@ -5051,7 +5066,7 @@ export default {
                                 lockOwner: null,
                                 versions: [],
                                 dataPath: null,
-                                value: "Документарные operation"
+                                value: "operation"
                               },
                               number: {
                                 id: "5df807bb-58a3-4307-8ae7-c540d582714c",
@@ -5226,7 +5241,7 @@ export default {
                                         "DocumentGeneralBlockParametersValue"
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "df8f6cdb-189f-4cf7-9469-85210516b8c0",
                                     type: "block",
                                     state: "changed",
@@ -5236,7 +5251,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "8bfe5ce3-c9e8-4bc6-a54d-ec5204117b5a",
                                     type: "block",
                                     state: "changed",
@@ -5295,7 +5310,7 @@ export default {
                                               }
                                             ]
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "471ee7c1-f3e5-45ab-a99a-409b2c560354",
                                             type: "block",
@@ -5306,7 +5321,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "1f462d4b-b103-4362-bb4f-8f5e4410fad9",
                                             type: "block",
@@ -5321,7 +5336,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "0c7f672e-8b1c-4e03-91bb-038f0b3f7ade",
                                     type: "block",
                                     state: "changed",
@@ -5331,7 +5346,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "69bd3b6c-7c38-4da3-bae7-a22b66a401cd",
                                     type: "block",
                                     state: "changed",
@@ -5345,7 +5360,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "fbaa7fb2-aa61-48dd-b368-03c8e1eb1c30",
                             type: "block",
                             state: "changed",
@@ -5355,7 +5370,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "b0000b28-9cd6-4ce3-9c5a-f3cf271138f7",
                             type: "block",
                             state: "changed",
@@ -5385,7 +5400,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          before: {
+                          up: {
                             id: "58c6865e-47c4-431a-a247-26bf99a7d79e",
                             type: "block",
                             state: "changed",
@@ -5395,7 +5410,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "efcdd3a8-77e0-47b8-aa4f-a4db1b9d6863",
                             type: "block",
                             state: "changed",
@@ -5494,7 +5509,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "1a935312-5847-44e7-87d7-21614528fbd5",
                                     type: "block",
                                     state: "changed",
@@ -5504,7 +5519,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "de3e4b3a-e07c-4c3a-b2a6-9d6afb75f3b8",
                                     type: "block",
                                     state: "changed",
@@ -5518,7 +5533,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "495e0ef2-bc1f-4d7c-ab55-b0f6864f79a8",
                             type: "block",
                             state: "changed",
@@ -5528,7 +5543,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "e6671b58-a468-4a18-b741-38a18fb7fe8a",
                             type: "block",
                             state: "changed",
@@ -5627,7 +5642,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "b5a7e9b1-9134-448e-b683-ea276a8d1100",
                                     type: "block",
                                     state: "changed",
@@ -5637,7 +5652,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "3cdd8586-c343-4fda-b6c2-fb2f8712ddf2",
                                     type: "block",
                                     state: "changed",
@@ -5651,7 +5666,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "c9c6cd22-f309-4a77-9df9-fabf460795f5",
                             type: "block",
                             state: "changed",
@@ -5661,7 +5676,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "45b9bdd8-2adb-4795-9fb4-7df579c8bbe5",
                             type: "block",
                             state: "changed",
@@ -5718,7 +5733,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "a55fe164-bbfd-447f-b166-87c5ae3693ac",
                                     type: "block",
                                     state: "changed",
@@ -5728,7 +5743,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "5a874de7-dd07-499b-b63b-2e13076da41f",
                                     type: "block",
                                     state: "changed",
@@ -5769,7 +5784,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "9bdad16c-d9bc-43ab-aff7-4346c5e7e32e",
                                     type: "block",
                                     state: "changed",
@@ -5779,7 +5794,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "c1a6c1c7-b77c-4bfe-a7bd-a4fbb585eed6",
                                     type: "block",
                                     state: "changed",
@@ -5820,7 +5835,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "b8b50baa-5f68-4a6b-b289-fab0d13c40e4",
                                     type: "block",
                                     state: "changed",
@@ -5830,7 +5845,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "c782ab82-0584-454c-92a3-1c02cac84dec",
                                     type: "block",
                                     state: "changed",
@@ -5844,7 +5859,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "dfc1898d-349c-406d-a09b-868a2b43f2bb",
                             type: "block",
                             state: "changed",
@@ -5854,7 +5869,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "e131c300-5295-47f3-984e-6bb8ea0afafd",
                             type: "block",
                             state: "changed",
@@ -5882,7 +5897,7 @@ export default {
                             versions: [],
                             dataPath: null,
                             value: {
-                              _class: "BaseAssuranceValue",
+                              _class: "value",
                               collaterals: {
                                 id: "61902e0a-9e8c-417e-8c1c-2068c44e237d",
                                 type: "block",
@@ -5981,7 +5996,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "dc58354c-5b02-4307-9c3f-f0dcc3338c9d",
                                             type: "block",
@@ -5992,7 +6007,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "44aead7b-364a-4fc4-bbff-78b75b6f4afe",
                                             type: "block",
@@ -6007,7 +6022,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "38b62617-9936-4f7c-843f-3f03c7935ec3",
                                     type: "block",
                                     state: "changed",
@@ -6017,7 +6032,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "1a45b0b8-8018-4dfb-972d-f69c245100f8",
                                     type: "block",
                                     state: "changed",
@@ -6127,7 +6142,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "000add48-6d45-4200-bfe6-4a3e5b4d7e09",
                                             type: "block",
@@ -6138,7 +6153,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "af478543-d647-495a-9cb1-4419364f2977",
                                             type: "block",
@@ -6153,7 +6168,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "6b550d10-a6e4-4a05-bd32-e16528c531a7",
                                     type: "block",
                                     state: "changed",
@@ -6163,7 +6178,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "9b403be4-3e27-47dc-9bf2-176597ea465b",
                                     type: "block",
                                     state: "changed",
@@ -6177,7 +6192,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "da6ed04a-b321-44c4-9c17-7fb88fe1c24e",
                             type: "block",
                             state: "changed",
@@ -6187,7 +6202,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "13e9ecda-d26d-4801-8f08-dd9d09b1aea3",
                             type: "block",
                             state: "changed",
@@ -6254,7 +6269,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "712bba7e-ea00-4e19-a3bd-6aada6dc863b",
                             type: "block",
                             state: "changed",
@@ -6264,7 +6279,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "7acee1ef-ca55-44fa-b89f-20ff3394f1b4",
                             type: "block",
                             state: "changed",
@@ -6363,7 +6378,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "d861960c-701d-4f63-9bf0-41cb578bf247",
                                     type: "block",
                                     state: "changed",
@@ -6373,7 +6388,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "f0057c3a-abee-4008-9358-957cf401ae10",
                                     type: "block",
                                     state: "changed",
@@ -6387,7 +6402,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "68c7aa4e-c0db-4481-8e16-b72db3841279",
                             type: "block",
                             state: "changed",
@@ -6397,7 +6412,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "4c64a93a-4433-4c03-b708-8a1b51d96ed1",
                             type: "block",
                             state: "changed",
@@ -6534,7 +6549,7 @@ export default {
                                                               }
                                                             }
                                                           },
-                                                          before: {
+                                                          up: {
                                                             id:
                                                               "9eaae1cb-4b12-478e-9e20-bc2a2cfefbc6",
                                                             type: "block",
@@ -6545,7 +6560,7 @@ export default {
                                                             dataPath: null,
                                                             value: []
                                                           },
-                                                          after: {
+                                                          down: {
                                                             id:
                                                               "bc54dad3-fdba-4bb0-8a89-06ac191303d5",
                                                             type: "block",
@@ -6560,7 +6575,7 @@ export default {
                                                       }
                                                     ]
                                                   },
-                                                  before: {
+                                                  up: {
                                                     id:
                                                       "502fad3a-ec73-42d6-a524-3200a8336778",
                                                     type: "block",
@@ -6571,7 +6586,7 @@ export default {
                                                     dataPath: null,
                                                     value: []
                                                   },
-                                                  after: {
+                                                  down: {
                                                     id:
                                                       "17085d71-395c-4011-9b5c-ccd2d41e0613",
                                                     type: "block",
@@ -6586,7 +6601,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "99e5ecf9-c29e-42ba-b989-5e4c9dac07e1",
                                             type: "block",
@@ -6597,7 +6612,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "dad7a52f-4904-41cf-80cb-31252f7a9dc7",
                                             type: "block",
@@ -6612,7 +6627,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "f1e1749b-2d53-48c7-b0a0-43a45a08ea5c",
                                     type: "block",
                                     state: "changed",
@@ -6622,7 +6637,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "3a1ba271-7b1e-4844-8dd1-2a14dd181a18",
                                     type: "block",
                                     state: "changed",
@@ -6636,7 +6651,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "051bf9ea-75aa-461b-ae38-e81f831d77ad",
                             type: "block",
                             state: "changed",
@@ -6646,7 +6661,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "19b8fecf-cc02-4e99-b8cb-5a6bfba65be9",
                             type: "block",
                             state: "changed",
@@ -6686,7 +6701,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "4de4b19d-21b4-44cd-9226-55245a8b3405",
                             type: "block",
                             state: "changed",
@@ -6696,7 +6711,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "151b199b-8f33-4c57-b1a9-6feb94da3548",
                             type: "block",
                             state: "changed",
@@ -6736,7 +6751,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "cff49271-013d-4718-bcfb-544357057814",
                             type: "block",
                             state: "changed",
@@ -6746,7 +6761,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "843e9df1-7932-4d37-a35f-27f1c8c97218",
                             type: "block",
                             state: "changed",
@@ -6794,7 +6809,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "953a673d-ebf8-4483-b119-b1367337196f",
                             type: "block",
                             state: "changed",
@@ -6804,7 +6819,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "c9647372-65c5-489f-a6ee-e60441d70210",
                             type: "block",
                             state: "changed",
@@ -6844,7 +6859,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "3386dde2-9b74-4c39-922b-e5aeb0b8e768",
                             type: "block",
                             state: "changed",
@@ -6854,7 +6869,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "3c0c1176-9181-4999-ad19-dce15a37c126",
                             type: "block",
                             state: "changed",
@@ -6953,7 +6968,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "2d8b783f-d72f-4f7c-a2b8-0230eb39a59d",
                                     type: "block",
                                     state: "changed",
@@ -6963,7 +6978,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "090a1388-6828-48a2-8909-a57ab9d9056f",
                                     type: "block",
                                     state: "changed",
@@ -6977,7 +6992,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "7ee6b0b7-d1fe-440f-b822-801e298cada0",
                             type: "block",
                             state: "changed",
@@ -6987,7 +7002,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "9a20fa9a-7b78-4181-b135-cf3a5f64393d",
                             type: "block",
                             state: "changed",
@@ -7086,7 +7101,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "2b0d9e3e-105c-4fb1-b8cc-fefbd3f68c00",
                                     type: "block",
                                     state: "changed",
@@ -7096,7 +7111,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "f95d7028-c0c9-44d6-9475-9ebb78133a47",
                                     type: "block",
                                     state: "changed",
@@ -7110,7 +7125,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "cad01aeb-6628-4ea1-93bf-b5fdb129e028",
                             type: "block",
                             state: "changed",
@@ -7120,7 +7135,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "4f890ad7-7fbf-48df-81e1-e8f2968b8d0a",
                             type: "block",
                             state: "changed",
@@ -7160,7 +7175,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "7bba976b-19a8-4109-809c-4f92452ecb06",
                             type: "block",
                             state: "changed",
@@ -7170,7 +7185,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "81ed9a64-0fa2-4109-b863-8a3315a64647",
                             type: "block",
                             state: "changed",
@@ -7227,7 +7242,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "5410ce9f-2fb1-4ebe-8e48-07793fdb139e",
                                     type: "block",
                                     state: "changed",
@@ -7237,7 +7252,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "ee23bdad-7ee6-4f2d-a557-a6e839a063e6",
                                     type: "block",
                                     state: "changed",
@@ -7249,7 +7264,7 @@ export default {
                                   }
                                 }
                               },
-                              letterOfvalueSanctions: {
+                              letterValueSanctions: {
                                 id: "b14d9e11-3576-4903-8880-24e93515e6d0",
                                 type: "block",
                                 state: "deleted",
@@ -7278,7 +7293,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "b77d043c-0e12-40e3-9b6d-5273e9091c87",
                                     type: "block",
                                     state: "changed",
@@ -7288,7 +7303,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "a752e8e8-cb09-4c00-af7c-e31bd68488a2",
                                     type: "block",
                                     state: "changed",
@@ -7302,7 +7317,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "27b4cfa5-654b-4e88-8057-64922dde2593",
                             type: "block",
                             state: "changed",
@@ -7312,7 +7327,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "5169e41e-cd77-4e52-a5d7-317ad8de12b0",
                             type: "block",
                             state: "changed",
@@ -7328,7 +7343,7 @@ export default {
                     },
                     parentId: null
                   },
-                  before: {
+                  up: {
                     id: "0ec2a6c0-3095-48cd-abdb-386430912eee",
                     type: "block",
                     state: "changed",
@@ -7338,7 +7353,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  after: {
+                  down: {
                     id: "7f3d9247-6995-475b-b121-f33c1945631d",
                     type: "block",
                     state: "changed",
@@ -7366,7 +7381,7 @@ export default {
                     versions: [],
                     dataPath: null,
                     value: {
-                      _class: "TradingChangeBlockValue",
+                      _class: "blockValue",
                       BlockParams: {
                         id: "6b3db74a-6696-46f3-894a-90738af8f319",
                         type: "block",
@@ -7391,7 +7406,7 @@ export default {
                                 lockOwner: null,
                                 versions: [],
                                 dataPath: null,
-                                value: "Торговые operation"
+                                value: "operation"
                               },
                               number: {
                                 id: "7643a866-a6f9-4420-b57b-f1e9f5a5c5d2",
@@ -7504,7 +7519,7 @@ export default {
                                       type: "TradingGeneralBlockParametersValue"
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "da8a3234-8559-404f-aef7-e21f9e91147e",
                                     type: "block",
                                     state: "changed",
@@ -7514,7 +7529,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "e7eb46f1-5833-4426-942a-f98c96bb5098",
                                     type: "block",
                                     state: "changed",
@@ -7573,7 +7588,7 @@ export default {
                                               }
                                             ]
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "993094e0-f8e1-4a6a-968e-a3d6d41ed4ff",
                                             type: "block",
@@ -7584,7 +7599,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "f89757d1-7719-41d8-a49b-18d08d8effe2",
                                             type: "block",
@@ -7599,7 +7614,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "111c36e8-ee5b-4c00-a004-c0472b54a16c",
                                     type: "block",
                                     state: "changed",
@@ -7609,7 +7624,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "1e5ab7cf-c31c-4ddc-879d-b8d2b27c5c65",
                                     type: "block",
                                     state: "changed",
@@ -7720,7 +7735,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "03baf11c-8600-49cc-8b46-83c14e4aae39",
                                     type: "block",
                                     state: "changed",
@@ -7730,7 +7745,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "9365cbd2-90ae-47b6-ad6d-12ebcd19952d",
                                     type: "block",
                                     state: "changed",
@@ -7744,7 +7759,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "7fdbbfa7-66a3-4b5f-ab70-9e5df8f5452b",
                             type: "block",
                             state: "changed",
@@ -7754,7 +7769,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "ef286fc5-725a-4a69-8d80-9be41441d58c",
                             type: "block",
                             state: "changed",
@@ -7784,7 +7799,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          before: {
+                          up: {
                             id: "f8c92f9e-718f-43f9-8261-148641b1d49a",
                             type: "block",
                             state: "changed",
@@ -7794,7 +7809,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "29cdd2b0-9e0b-4c22-8b5c-0ab9e4511c56",
                             type: "block",
                             state: "changed",
@@ -7893,7 +7908,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "f4617e5b-2e57-4076-b090-d23abc6c59a4",
                                     type: "block",
                                     state: "changed",
@@ -7903,7 +7918,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "0e14689f-dac2-4044-8b6f-05b31281dec7",
                                     type: "block",
                                     state: "changed",
@@ -7917,7 +7932,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "524b730c-d2c8-404a-82c8-bae98c734039",
                             type: "block",
                             state: "changed",
@@ -7927,7 +7942,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "3f9e2630-0cda-4795-b058-00dbf768feae",
                             type: "block",
                             state: "changed",
@@ -8026,7 +8041,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "b2754b53-3fba-430c-a9c2-fa4e2a712a58",
                                     type: "block",
                                     state: "changed",
@@ -8036,7 +8051,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "049b6385-0035-4284-bd01-349f777ab146",
                                     type: "block",
                                     state: "changed",
@@ -8050,7 +8065,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "c9d6a9f1-960d-4035-8a3b-bb766a556f6e",
                             type: "block",
                             state: "changed",
@@ -8060,7 +8075,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "30d5547b-c504-469f-bf7d-7357fee80b14",
                             type: "block",
                             state: "changed",
@@ -8117,7 +8132,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "448e74f8-8e41-4f96-a7ed-c9f2c03ad651",
                                     type: "block",
                                     state: "changed",
@@ -8127,7 +8142,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "fff9ef4b-1d55-48bb-8b34-40ab066f7130",
                                     type: "block",
                                     state: "changed",
@@ -8168,7 +8183,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "ed01b2d7-e7e4-40ef-80d0-8f2e0c1e659c",
                                     type: "block",
                                     state: "changed",
@@ -8178,7 +8193,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "bd47123a-a40d-4ab4-9207-a8ee25579250",
                                     type: "block",
                                     state: "changed",
@@ -8219,7 +8234,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "2d366923-3d1e-458d-af43-b82e3132eeeb",
                                     type: "block",
                                     state: "changed",
@@ -8229,7 +8244,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "a5257145-21e2-436d-a03c-e04366a6edea",
                                     type: "block",
                                     state: "changed",
@@ -8243,7 +8258,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "44c82801-dfa7-42e4-9521-773680c0bdd3",
                             type: "block",
                             state: "changed",
@@ -8253,7 +8268,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "cdd84b4c-f29e-47be-9f1e-1691d010ebe3",
                             type: "block",
                             state: "changed",
@@ -8380,7 +8395,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "a09a10a5-2db4-4315-aa73-55c48678c514",
                                             type: "block",
@@ -8391,7 +8406,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "36367208-a25e-484f-87f0-1ceca57a6b4a",
                                             type: "block",
@@ -8406,7 +8421,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "cd06d6c6-1864-4c52-b0bb-4f4b977a0202",
                                     type: "block",
                                     state: "changed",
@@ -8416,7 +8431,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "23921d15-6a90-402e-a1e4-a6a35b573409",
                                     type: "block",
                                     state: "changed",
@@ -8526,7 +8541,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "7b417145-c9d3-4cd7-8cb3-1af3399bcd70",
                                             type: "block",
@@ -8537,7 +8552,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "30ad53d0-6a32-4f82-bcce-eefaa003359e",
                                             type: "block",
@@ -8552,7 +8567,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "21342dc6-3f8f-48a3-82a8-cfd30304bd9f",
                                     type: "block",
                                     state: "changed",
@@ -8562,7 +8577,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "6e98ee80-2a42-44b0-878d-e0cba764de7f",
                                     type: "block",
                                     state: "changed",
@@ -8702,7 +8717,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "386eb3b6-3589-49de-9db8-14b30e0acf6b",
                                     type: "block",
                                     state: "changed",
@@ -8712,7 +8727,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "98d67cfc-3811-48f8-ba66-dcb8d10ad1b4",
                                     type: "block",
                                     state: "changed",
@@ -8852,7 +8867,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "00026452-4129-4db4-a96e-748c3293814e",
                                     type: "block",
                                     state: "changed",
@@ -8862,7 +8877,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "4aa5247e-2ab9-443f-8758-f0b2acd0fc44",
                                     type: "block",
                                     state: "changed",
@@ -8876,7 +8891,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "bbb281f8-a63f-41bd-a0a9-d1ba0a15c745",
                             type: "block",
                             state: "changed",
@@ -8886,7 +8901,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "d24b1c99-bf4a-45d6-855d-134962577ffd",
                             type: "block",
                             state: "changed",
@@ -8953,7 +8968,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "48e64d96-2d90-48e3-9df7-d0611edbfaaa",
                             type: "block",
                             state: "changed",
@@ -8963,7 +8978,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "85f94c7d-157a-46a6-b63e-414a7a9c4f5e",
                             type: "block",
                             state: "changed",
@@ -9062,7 +9077,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "62d09329-80ee-4a15-beb7-c2a8594bc7f1",
                                     type: "block",
                                     state: "changed",
@@ -9072,7 +9087,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "d86e3888-adf8-45a1-90f3-bb0705a19461",
                                     type: "block",
                                     state: "changed",
@@ -9086,7 +9101,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "22c86a5b-6207-4cc1-a41c-c1e3cfb94bb8",
                             type: "block",
                             state: "changed",
@@ -9096,7 +9111,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "4fb3c7b7-54db-490b-ba9b-e8b3e029f7b2",
                             type: "block",
                             state: "changed",
@@ -9233,7 +9248,7 @@ export default {
                                                               }
                                                             }
                                                           },
-                                                          before: {
+                                                          up: {
                                                             id:
                                                               "187fee9e-27ff-4ce4-b463-b391b63cc2c9",
                                                             type: "block",
@@ -9244,7 +9259,7 @@ export default {
                                                             dataPath: null,
                                                             value: []
                                                           },
-                                                          after: {
+                                                          down: {
                                                             id:
                                                               "9aef273c-f3a2-4b47-adc6-e026bed7705e",
                                                             type: "block",
@@ -9259,7 +9274,7 @@ export default {
                                                       }
                                                     ]
                                                   },
-                                                  before: {
+                                                  up: {
                                                     id:
                                                       "6b1cc6dc-fb28-4db8-a02a-6e513994ce05",
                                                     type: "block",
@@ -9270,7 +9285,7 @@ export default {
                                                     dataPath: null,
                                                     value: []
                                                   },
-                                                  after: {
+                                                  down: {
                                                     id:
                                                       "8b8128b1-d68b-4a3c-8dfc-9a9fea0cdf22",
                                                     type: "block",
@@ -9285,7 +9300,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "11792177-7779-4430-93bc-265054d7acdf",
                                             type: "block",
@@ -9296,7 +9311,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "1c172df2-23e8-4f4e-a695-ef9cd4bd9764",
                                             type: "block",
@@ -9311,7 +9326,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "d38f8c12-87b3-4e96-a1f2-060a33e4a065",
                                     type: "block",
                                     state: "changed",
@@ -9321,7 +9336,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "b19ddb34-eda7-43b6-8015-edead86304b8",
                                     type: "block",
                                     state: "changed",
@@ -9335,7 +9350,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "5cad55ff-f26e-4618-bfeb-627ccf2cada7",
                             type: "block",
                             state: "changed",
@@ -9345,7 +9360,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "ffdaf251-e054-45b3-b702-08202e0e575c",
                             type: "block",
                             state: "changed",
@@ -9357,11 +9372,11 @@ export default {
                           }
                         }
                       },
-                      type: "TradingChangeBlockValue"
+                      type: "blockValue"
                     },
                     parentId: null
                   },
-                  before: {
+                  up: {
                     id: "d205cbba-c53c-4ef4-80ab-42dad83102fa",
                     type: "block",
                     state: "changed",
@@ -9371,7 +9386,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  after: {
+                  down: {
                     id: "5ca8b715-34bd-4e3d-b18c-f5e5c2c6893a",
                     type: "block",
                     state: "changed",
@@ -9548,7 +9563,7 @@ export default {
                                         "EstimatedGeneralBlockParametersValue"
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "24702ee2-13e3-4d3e-8dde-dffb1b424b05",
                                     type: "block",
                                     state: "changed",
@@ -9558,7 +9573,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "25cad3c3-f792-4a76-9420-28f71ecf9776",
                                     type: "block",
                                     state: "changed",
@@ -9617,7 +9632,7 @@ export default {
                                               }
                                             ]
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "f31095ec-7dac-423a-87a8-a4afa38699ae",
                                             type: "block",
@@ -9628,7 +9643,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "bf185bc7-9664-40de-bdda-f999db9137da",
                                             type: "block",
@@ -9643,7 +9658,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "2f63acbd-e11d-42ba-a5d7-02ff3bb85b9e",
                                     type: "block",
                                     state: "changed",
@@ -9653,7 +9668,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "7ab17643-b75e-4c88-acf8-468f2e3b8beb",
                                     type: "block",
                                     state: "changed",
@@ -9753,7 +9768,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "299d5697-d952-4929-baa3-9c2de0194977",
                                     type: "block",
                                     state: "changed",
@@ -9763,7 +9778,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "b006ee69-0eb0-4927-961a-18fda9e5ae6d",
                                     type: "block",
                                     state: "changed",
@@ -9778,7 +9793,7 @@ export default {
                               dealsCurrencyCodes: null
                             }
                           },
-                          before: {
+                          up: {
                             id: "daefbac7-0d94-48d5-970e-b46d8ab587b2",
                             type: "block",
                             state: "changed",
@@ -9788,7 +9803,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "bad54b3e-8521-4e9e-813f-b3498b8d0187",
                             type: "block",
                             state: "changed",
@@ -9818,7 +9833,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          before: {
+                          up: {
                             id: "5e428de1-4151-4538-9c8a-0312e6c7abf9",
                             type: "block",
                             state: "changed",
@@ -9828,7 +9843,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "ddd8db97-daf5-4d93-8771-91942fd3f852",
                             type: "block",
                             state: "changed",
@@ -9927,7 +9942,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "40447c3d-b73d-462c-84ad-31e3fb4665d2",
                                     type: "block",
                                     state: "changed",
@@ -9937,7 +9952,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "71bff193-c259-46f6-91e6-a3ed6e9daa09",
                                     type: "block",
                                     state: "changed",
@@ -9951,7 +9966,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "151c6cd6-e5e0-42e9-9397-399c6bbaa78e",
                             type: "block",
                             state: "changed",
@@ -9961,7 +9976,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "7574ac3d-831d-4c17-8d58-1060bda854cd",
                             type: "block",
                             state: "changed",
@@ -10060,7 +10075,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "861813d7-3ec8-4eba-8ba3-a4267ef8ca82",
                                     type: "block",
                                     state: "changed",
@@ -10070,7 +10085,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "70e3c63d-ee75-4278-8363-4d2f7548575a",
                                     type: "block",
                                     state: "changed",
@@ -10084,7 +10099,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "e7fcb773-d79a-4e01-a5e3-c1ce7a9462f3",
                             type: "block",
                             state: "changed",
@@ -10094,7 +10109,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "4edb39db-ff9b-47d5-a494-663d33e569cb",
                             type: "block",
                             state: "changed",
@@ -10151,7 +10166,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "3005ad5a-cf5f-4c3e-bb14-4920b9d48c10",
                                     type: "block",
                                     state: "changed",
@@ -10161,7 +10176,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "7a071622-67e3-40c0-821e-fb315e4512ef",
                                     type: "block",
                                     state: "changed",
@@ -10202,7 +10217,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "a664cfa1-3975-429a-91da-caa403ef4a42",
                                     type: "block",
                                     state: "changed",
@@ -10212,7 +10227,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "bc8c4011-b1a7-420a-aa97-35412e98ccc2",
                                     type: "block",
                                     state: "changed",
@@ -10253,7 +10268,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "e3380e6a-94ed-415b-bc72-5d99329d5204",
                                     type: "block",
                                     state: "changed",
@@ -10263,7 +10278,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "0aa10f66-7b58-452a-af72-504cc1428696",
                                     type: "block",
                                     state: "changed",
@@ -10277,7 +10292,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "4d45dcb5-706e-4936-8ca3-51f94e3f91c5",
                             type: "block",
                             state: "changed",
@@ -10287,7 +10302,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "8d1798d4-0330-4205-9bcc-5b08484f5185",
                             type: "block",
                             state: "changed",
@@ -10315,7 +10330,7 @@ export default {
                             versions: [],
                             dataPath: null,
                             value: {
-                              _class: "BaseAssuranceValue",
+                              _class: "value",
                               collaterals: {
                                 id: "ec3cb69b-61b9-46e5-96e9-edbd930e4684",
                                 type: "block",
@@ -10414,7 +10429,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "c07392f0-d446-46db-9452-b605e6a7fea0",
                                             type: "block",
@@ -10425,7 +10440,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "23a28e2e-2fc2-47bd-855b-e67b7efb0f35",
                                             type: "block",
@@ -10440,7 +10455,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "bd51073e-be6b-4a07-ac67-659a0968b66a",
                                     type: "block",
                                     state: "changed",
@@ -10450,7 +10465,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "0c1c77b7-b41c-4c3b-83b4-2d70b3d2fabc",
                                     type: "block",
                                     state: "changed",
@@ -10560,7 +10575,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "58f40e25-f63e-4dc6-888e-b5c35cc9630c",
                                             type: "block",
@@ -10571,7 +10586,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "f5188e56-3b77-426f-96a2-a3bb06e19fb8",
                                             type: "block",
@@ -10586,7 +10601,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "d87fac26-92f5-403a-a6d4-98f792f65d9c",
                                     type: "block",
                                     state: "changed",
@@ -10596,7 +10611,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "40f4a2d7-cce1-4aa7-8a59-92ef6ba5783d",
                                     type: "block",
                                     state: "changed",
@@ -10610,7 +10625,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "639975f5-8a37-4d04-a4b8-6c6a74d3902c",
                             type: "block",
                             state: "changed",
@@ -10620,7 +10635,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "788fee10-d985-4125-86fd-f99c7f79e796",
                             type: "block",
                             state: "changed",
@@ -10687,7 +10702,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "a19db34f-fca2-483f-be8e-2a0b62820a35",
                             type: "block",
                             state: "changed",
@@ -10697,7 +10712,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "38ad3bb1-ab69-4c2f-875e-d65ba791445f",
                             type: "block",
                             state: "changed",
@@ -10796,7 +10811,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "12ba7185-93c3-4887-bc1f-a0a4204f0d6e",
                                     type: "block",
                                     state: "changed",
@@ -10806,7 +10821,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "a5f7403c-933a-4f84-a0e9-2f98818548cf",
                                     type: "block",
                                     state: "changed",
@@ -10820,7 +10835,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "cfb07dfa-6354-42d9-8a16-59bff4d2d61e",
                             type: "block",
                             state: "changed",
@@ -10830,7 +10845,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "894c3e84-6562-4740-ab73-94f8c831e58e",
                             type: "block",
                             state: "changed",
@@ -10967,7 +10982,7 @@ export default {
                                                               }
                                                             }
                                                           },
-                                                          before: {
+                                                          up: {
                                                             id:
                                                               "3ccf6121-6353-4d58-9f7d-d25e52d7f992",
                                                             type: "block",
@@ -10978,7 +10993,7 @@ export default {
                                                             dataPath: null,
                                                             value: []
                                                           },
-                                                          after: {
+                                                          down: {
                                                             id:
                                                               "901e06f7-be8c-40ca-b899-84582e04b388",
                                                             type: "block",
@@ -10993,7 +11008,7 @@ export default {
                                                       }
                                                     ]
                                                   },
-                                                  before: {
+                                                  up: {
                                                     id:
                                                       "438105ac-37cd-4b77-a6cd-67634aa40070",
                                                     type: "block",
@@ -11004,7 +11019,7 @@ export default {
                                                     dataPath: null,
                                                     value: []
                                                   },
-                                                  after: {
+                                                  down: {
                                                     id:
                                                       "6c54f0ff-0f40-4a20-a70f-f3f519075cbb",
                                                     type: "block",
@@ -11019,7 +11034,7 @@ export default {
                                               }
                                             }
                                           },
-                                          before: {
+                                          up: {
                                             id:
                                               "daf2cf98-7673-4ff0-9d6a-e1713e2845c1",
                                             type: "block",
@@ -11030,7 +11045,7 @@ export default {
                                             dataPath: null,
                                             value: []
                                           },
-                                          after: {
+                                          down: {
                                             id:
                                               "904581b9-639c-44d7-a4fc-a98621a429f6",
                                             type: "block",
@@ -11045,7 +11060,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "80e1fff1-f823-40a6-9741-8abe52ed89e8",
                                     type: "block",
                                     state: "changed",
@@ -11055,7 +11070,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "8458f390-944b-4562-9746-580e96a4444b",
                                     type: "block",
                                     state: "changed",
@@ -11069,7 +11084,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "3191d9c2-4347-475e-be04-0b7638029d24",
                             type: "block",
                             state: "changed",
@@ -11079,7 +11094,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "c0bd00fb-c324-4763-ab04-de47bd247f0b",
                             type: "block",
                             state: "changed",
@@ -11136,7 +11151,7 @@ export default {
                                       }
                                     ]
                                   },
-                                  before: {
+                                  up: {
                                     id: "0b12d874-cf6c-401a-a19b-8d54ca965a01",
                                     type: "block",
                                     state: "changed",
@@ -11146,7 +11161,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "5d2279e9-35b2-4985-9433-55500ccccda0",
                                     type: "block",
                                     state: "changed",
@@ -11160,7 +11175,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "7e0cb001-aab3-4981-b6e4-933426ea7ed4",
                             type: "block",
                             state: "changed",
@@ -11170,7 +11185,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "4d1bba02-91b5-4d23-a4e9-10f346523343",
                             type: "block",
                             state: "changed",
@@ -11186,7 +11201,7 @@ export default {
                     },
                     parentId: null
                   },
-                  before: {
+                  up: {
                     id: "af721ea2-a65d-46a0-9e41-380d639d504b",
                     type: "block",
                     state: "changed",
@@ -11196,7 +11211,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  after: {
+                  down: {
                     id: "7996fee3-12fe-4354-b8ff-2f81f1a5a9b0",
                     type: "block",
                     state: "changed",
@@ -11210,7 +11225,7 @@ export default {
               }
             ]
           },
-          before: {
+          up: {
             id: "2910f870-9f14-454a-be87-71650088e498",
             type: "block",
             state: "changed",
@@ -11220,7 +11235,7 @@ export default {
             dataPath: null,
             value: []
           },
-          after: {
+          down: {
             id: "51b22b30-a9a4-4686-af24-64e24b00c65e",
             type: "block",
             state: "changed",
@@ -11276,7 +11291,7 @@ export default {
                       }
                     ]
                   },
-                  before: {
+                  up: {
                     id: "858ebb79-311b-458b-8c24-705539f1aaaf",
                     type: "block",
                     state: "changed",
@@ -11286,7 +11301,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  after: {
+                  down: {
                     id: "a29005a1-98e2-48b6-af1f-6c30689e9067",
                     type: "block",
                     state: "changed",
@@ -11300,7 +11315,7 @@ export default {
               }
             }
           },
-          before: {
+          up: {
             id: "64fbe164-7f65-46b7-8dcc-723e3b6409d7",
             type: "block",
             state: "changed",
@@ -11310,7 +11325,7 @@ export default {
             dataPath: null,
             value: []
           },
-          after: {
+          down: {
             id: "d21bf4c2-a0eb-4fa0-bf55-47d96384e547",
             type: "block",
             state: "changed",
@@ -11456,7 +11471,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "272e64a2-3711-4c52-8d3a-6227d5e71616",
                             type: "block",
                             state: "changed",
@@ -11466,7 +11481,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "4e9076b2-d778-4f7b-8c18-986179b3ee73",
                             type: "block",
                             state: "changed",
@@ -11480,7 +11495,7 @@ export default {
                       }
                     ]
                   },
-                  before: {
+                  up: {
                     id: "876b288e-df47-4306-8556-e40f0d6cb645",
                     type: "block",
                     state: "changed",
@@ -11490,7 +11505,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  after: {
+                  down: {
                     id: "550d21f4-795e-449a-9e68-ce617f233705",
                     type: "block",
                     state: "changed",
@@ -11520,7 +11535,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  before: {
+                  up: {
                     id: "441c8dde-bd90-4af2-88fa-dc0ea2bffd6f",
                     type: "block",
                     state: "changed",
@@ -11530,7 +11545,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  after: {
+                  down: {
                     id: "a28efb52-de02-4990-addc-1346115febfb",
                     type: "block",
                     state: "changed",
@@ -11634,7 +11649,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "c00cf696-0846-4c8e-9cd7-57b95ed09757",
                                     type: "block",
                                     state: "changed",
@@ -11644,7 +11659,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "767c566f-fabb-4613-a8cd-ede49282c5b3",
                                     type: "block",
                                     state: "changed",
@@ -11658,7 +11673,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "49618234-4a18-41ca-8382-202bea533967",
                             type: "block",
                             state: "changed",
@@ -11668,7 +11683,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "6015f30c-fe32-4100-bc87-ab6a682d9184",
                             type: "block",
                             state: "changed",
@@ -11735,7 +11750,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "23ceb414-dc89-4038-87af-ed89c10ddb7e",
                                     type: "block",
                                     state: "changed",
@@ -11745,7 +11760,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "e003bef3-c1e2-490d-b877-a84da8b8eb3f",
                                     type: "block",
                                     state: "changed",
@@ -11759,7 +11774,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "13e97382-d574-43f1-bca7-3c032b6b3657",
                             type: "block",
                             state: "changed",
@@ -11769,7 +11784,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "19c46fd6-bbf3-4737-9111-2044a1529e08",
                             type: "block",
                             state: "changed",
@@ -11846,7 +11861,7 @@ export default {
                                       }
                                     }
                                   },
-                                  before: {
+                                  up: {
                                     id: "1c716d09-adb5-4302-b5df-d02a077e6774",
                                     type: "block",
                                     state: "changed",
@@ -11856,7 +11871,7 @@ export default {
                                     dataPath: null,
                                     value: []
                                   },
-                                  after: {
+                                  down: {
                                     id: "639ae4e9-70c4-40bf-92ff-63e0c6151ef9",
                                     type: "block",
                                     state: "changed",
@@ -11870,7 +11885,7 @@ export default {
                               }
                             ]
                           },
-                          before: {
+                          up: {
                             id: "492ada00-2503-47df-81a7-53d6bfd88a01",
                             type: "block",
                             state: "changed",
@@ -11880,7 +11895,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "2a8ba2c1-be59-42d4-871a-5b318d70bffa",
                             type: "block",
                             state: "changed",
@@ -11894,7 +11909,7 @@ export default {
                       }
                     }
                   },
-                  before: {
+                  up: {
                     id: "2eb82082-ab87-4f45-8b1d-022fe68bf1e7",
                     type: "block",
                     state: "changed",
@@ -11904,7 +11919,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  after: {
+                  down: {
                     id: "883cea14-ed26-4efd-89c6-8bec10583c31",
                     type: "block",
                     state: "changed",
@@ -11969,7 +11984,7 @@ export default {
                               }
                             }
                           },
-                          before: {
+                          up: {
                             id: "c838d699-1ecf-47c2-9edd-00c4fd30271b",
                             type: "block",
                             state: "changed",
@@ -11979,7 +11994,7 @@ export default {
                             dataPath: null,
                             value: []
                           },
-                          after: {
+                          down: {
                             id: "5d4971c0-2ce2-4844-b672-3a246093462e",
                             type: "block",
                             state: "changed",
@@ -11993,7 +12008,7 @@ export default {
                       }
                     ]
                   },
-                  before: {
+                  up: {
                     id: "6881d101-44d1-45b0-84bb-fcf6b268d19f",
                     type: "block",
                     state: "changed",
@@ -12003,7 +12018,7 @@ export default {
                     dataPath: null,
                     value: []
                   },
-                  after: {
+                  down: {
                     id: "4e764169-66f6-42f0-b995-ffeb2423e0ac",
                     type: "block",
                     state: "changed",
@@ -12017,7 +12032,7 @@ export default {
               }
             }
           },
-          before: {
+          up: {
             id: "3ade5fb1-67a7-49d0-bcb0-f0b4e21724bb",
             type: "block",
             state: "changed",
@@ -12027,7 +12042,7 @@ export default {
             dataPath: null,
             value: []
           },
-          after: {
+          down: {
             id: "0bf84ac6-1791-412f-a81a-423d0b83612e",
             type: "block",
             state: "changed",
