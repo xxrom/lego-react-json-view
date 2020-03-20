@@ -6,7 +6,7 @@ import { Lego, CollapseSettings, Search } from "./components";
 import {
   getCollapseSettingsLS,
   setCollapseSettingsLS,
-  getSearchTextLS,
+  getSearchPathLS,
   getSettingsLS,
   clearExpandedLS,
   expandedRoot,
@@ -65,25 +65,6 @@ const wrapperStyle: React.CSSProperties = {
   background: isDarkTheme ? colors.background.dark : colors.background.light
 };
 
-const Wrapper = styled("div")`
-  position: relative;
-  height: 100%;
-  padding: 0.5rem;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-`;
-const Header = styled("div")`
-  position: static;
-  top: 0;
-  left: 0;
-`;
-const Body = styled("div")`
-  overflow: scroll;
-  height: 100%;
-`;
-
 const defaultCollapses = [
   { test: "hide.this.path", replaceTo: "hide.this.path" }
 ];
@@ -135,7 +116,7 @@ const Viewer = memo((props: ViewerProps) => {
     }
 
     // Set searchText from LS
-    const searchTextData = getSearchTextLS();
+    const searchTextData = getSearchPathLS();
     if (searchTextData) {
       setSearchText(searchTextData);
     }
@@ -215,11 +196,29 @@ const Viewer = memo((props: ViewerProps) => {
           setIsOpenedSettings={setIsOpenedSettings}
         />
       </Header>
-      <Body style={legoWrapperStyle}>
+      <LegoWrapper style={legoWrapperStyle}>
         <Lego json={json} collapses={collapses} />
-      </Body>
+      </LegoWrapper>
     </Wrapper>
   );
 });
+
+const Wrapper = styled("div")`
+  position: relative;
+  height: 100%;
+  padding: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+`;
+const Header = styled("div")`
+  position: static;
+  top: 0;
+  left: 0;
+`;
+const LegoWrapper = styled("div")`
+  overflow: scroll;
+`;
 
 export { Viewer };

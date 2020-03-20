@@ -2,23 +2,26 @@ import React, { useCallback, useState, useEffect } from "react";
 import styled from "astroturf";
 
 import {
-  setSearchTextLS,
+  setSearchPathLS,
   setHighlightLS,
   clearExpandedLS,
   setExpandedLS
 } from "../../localStorageTools";
 import { isDarkTheme } from "@settings";
 import { setAllPaths, findPathsByText, showInJsonByPath } from "./searchUtils";
-import { colors } from "@colors";
-import { Text, Button } from "@common";
-import { settingsType } from "../../Viewer";
 import { CloseIcon, SettingsIcon } from "@icons";
+import { colors } from "@colors";
+import { Text, Button, Input } from "@common";
+import { settingsType } from "../../Viewer";
 import { forceJsonUpdate } from "../../viewerHelper";
 
 const styles: Record<string, React.CSSProperties> = {
   wrapper: {
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    borderLeft: "1px solid gray",
+    paddingLeft: "0.5rem",
+    marginLeft: "-0.5rem"
   },
   inputStyle: {
     color: isDarkTheme ? colors.searchText.dark : colors.searchText.light
@@ -26,9 +29,7 @@ const styles: Record<string, React.CSSProperties> = {
   resultText: {
     display: "inline-flex",
     justifyContent: "flex-end",
-    flex: "0.1",
-    minWidth: "6rem",
-    paddingLeft: "1rem",
+    paddingLeft: "0.5rem",
     whiteSpace: "nowrap",
     fontSize: "1rem"
   },
@@ -52,6 +53,15 @@ interface SearchProps {
   onToggleSettings: () => void;
 }
 
+export type foundResultsType = Array<string>;
+export type setFountResultsType = React.Dispatch<
+  React.SetStateAction<foundResultsType>
+>;
+export type foundAllResultsType = Array<string>;
+export type setFountAllResultsType = React.Dispatch<
+  React.SetStateAction<foundAllResultsType>
+>;
+
 const Search = React.memo(
   ({
     searchText,
@@ -62,18 +72,20 @@ const Search = React.memo(
     isOpenedSettings,
     onToggleSettings
   }: SearchProps) => {
-    const [foundResults, setFoundResults] = useState<Array<string>>([]);
-    const [foundAllResults, setFoundAllResults] = useState<Array<string>>([]);
+    const [foundResults, setFoundResults] = useState<foundResultsType>([]);
+    const [foundAllResults, setFoundAllResults] = useState<foundAllResultsType>(
+      []
+    );
     useEffect(() => {
       setAllPaths(json);
     }, [json]);
 
     const handleChangeSearchText = useCallback(
       (text = "") => {
-        setSearchTextLS(text);
+        setSearchPathLS(text);
         setSearchText(text);
       },
-      [setSearchTextLS, setSearchText]
+      [setSearchPathLS, setSearchText]
     );
 
     const onChange = useCallback(
@@ -168,7 +180,8 @@ const Search = React.memo(
 
     return (
       <div style={styles.wrapper}>
-        <Input
+        <Text>Path:</Text>
+        <InputStyled
           placeholder="Search path:"
           style={styles.inputStyle}
           value={searchText}
@@ -180,6 +193,12 @@ const Search = React.memo(
             <CloseIcon size="0.7rem" />
           </Button>
         )}
+
+        <Input
+          label="Value"
+          setFoundResults={setFoundResults}
+          setFoundAllResults={setFoundAllResults}
+        />
         <Text
           style={styles.resultText}
         >{`${foundResults.length}/${foundAllResults.length}`}</Text>
@@ -197,7 +216,7 @@ const Search = React.memo(
 
 export { Search };
 
-const Input = styled("input")`
+const InputStyled = styled("input")`
   && {
     position: relative;
     background: none;
@@ -206,10 +225,10 @@ const Input = styled("input")`
     position: relative;
     box-sizing: border-box;
     font-size: 1rem;
-    flex: 0.9;
+    flex: 1;
     border: 0;
     outline: none;
-    border-left: 1px solid gray;
+
     padding-left: 0.7rem;
   }
 `;

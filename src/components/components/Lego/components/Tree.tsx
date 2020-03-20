@@ -120,7 +120,7 @@ const Tree = React.memo((props: TreeProps) => {
         isExpanded={isExpanded}
         onExpand={onExpand}
       />
-      {isExpandable && (
+      {!!isExpandable && (
         <Tabs isOpened={isExpanded} type="mini">
           <Lego json={actualJson} path={fullPath} collapses={collapses} />
         </Tabs>

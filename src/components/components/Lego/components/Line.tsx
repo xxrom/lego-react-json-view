@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, memo } from "react";
 import styled from "astroturf";
 
 import { Text, TextTypes } from "@common";
@@ -21,7 +21,7 @@ const modeHighlightStyle: React.CSSProperties = isDarkTheme
   ? { background: colors.highlightBackground.dark }
   : { background: colors.highlightBackground.light };
 
-const Line = React.memo(
+const Line = memo(
   ({
     isExpandable,
     onExpand,
@@ -31,9 +31,15 @@ const Line = React.memo(
     fullPath
   }: LineProps) => {
     const maxCharsInLine = 30;
-    const stringifyJson = JSON.stringify(json);
+    const stringifyJson = useMemo(
+      () =>
+        JSON.stringify(json)
+          .replace(/"([^"]+)":/g, "$1:")
+          .replace(/\uFFFF/g, '\\"'),
+      [json]
+    );
 
-    const jsonData: object | string = React.useMemo(
+    const jsonData: object | string = useMemo(
       () =>
         isExpandable
           ? `${stringifyJson.slice(0, maxCharsInLine)}${
@@ -43,7 +49,7 @@ const Line = React.memo(
       [isExpandable, json, stringifyJson]
     );
 
-    const jsonTextType = React.useMemo(() => {
+    const jsonTextType = useMemo(() => {
       if (
         !isExpandable &&
         (stringifyJson === "null" || stringifyJson === "undefined")
@@ -58,28 +64,28 @@ const Line = React.memo(
     const highlightLS = getHighlightLS();
     // TODO: useMemo
     const isHighlighted = highlightLS[fullPath];
-    const highlightStyle = React.useMemo(
+    const highlightStyle = useMemo(
       () => ({
         ...(isHighlighted ? modeHighlightStyle : {})
       }),
       [isHighlighted]
     );
 
-    const expandedBulletStyle = React.useMemo(
+    const expandedBulletStyle = useMemo(
       () => ({
         color: isDarkTheme ? colors.textColor.dark : colors.textColor.light
       }),
       []
     );
 
-    const onClickLocal = React.useMemo(
+    const onClickLocal = useMemo(
       () => (isExpandable ? onExpand(fullPath) : void 0),
       [fullPath, isExpandable, onExpand]
     );
 
     return (
       <Wrapper style={highlightStyle}>
-        {isExpandable && (
+        {!!isExpandable && (
           <ExpandedSpan style={expandedBulletStyle} onClick={onClickLocal}>
             {isExpanded ? "v" : ">"}
           </ExpandedSpan>
@@ -87,12 +93,10 @@ const Line = React.memo(
         <Text type={TextTypes.KEY} onClick={onClickLocal}>
           {keyName}
         </Text>
-        {
-          <Text type={jsonTextType} onClick={onClickLocal}>
-            {jsonData}
-          </Text>
-        }
-        {isExpandable && (
+        <Text type={jsonTextType} onClick={onClickLocal}>
+          {jsonData}
+        </Text>
+        {!!isExpandable && (
           <Info
             isExpandable={isExpandable}
             json={json}

@@ -1,4 +1,5 @@
 export const json = {
+  order: [0],
   hello: {
     test: "json",
     hide: {

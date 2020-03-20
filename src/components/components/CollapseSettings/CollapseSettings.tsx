@@ -194,7 +194,7 @@ const CollapseSettings = memo(
         <Tabs
           isOpened={isOpenedSettings}
           setIsOpened={setIsOpened}
-          label="Viewer settings:"
+          label="Settings:"
         >
           <Wrapper>
             <span style={styles.fontLabel}>{`Font size:`}</span>
@@ -265,7 +265,7 @@ const CollapseSettings = memo(
               {" / "}
               <input
                 style={styles.input}
-                placeholder="(custom path change)"
+                placeholder="(custom path replacement)"
                 value={replaceTo}
                 onChange={onChangeReplaceTo}
                 onKeyDown={onEnter}

@@ -50,10 +50,15 @@ export const setCuttedLS = (path: string, value: string) => {
 };
 export const getCuttedLS = (path: string) => localStorage.getItem(path);
 
-const searchTextKey = "searchText";
-export const setSearchTextLS = (text: string) =>
-  localStorage.setItem(searchTextKey, text);
-export const getSearchTextLS = () => localStorage.getItem(searchTextKey);
+const searchPathKey = "searchPath";
+export const setSearchPathLS = (text: string) =>
+  localStorage.setItem(searchPathKey, text);
+export const getSearchPathLS = () => localStorage.getItem(searchPathKey);
+
+const searchValueKey = "searchValue";
+export const setSearchValueLS = (value: string) =>
+  localStorage.setItem(searchValueKey, value);
+export const getSearchValueLS = () => localStorage.getItem(searchValueKey);
 
 const devPanelSettingsKey = "devPanelSettings";
 export const getDevPanelSettingsLS = () =>
