@@ -5,14 +5,22 @@ import {
   setSearchPathLS,
   setHighlightLS,
   clearExpandedLS,
-  setExpandedLS
+  setExpandedLS,
+  setSearchValueLS
 } from "../../localStorageTools";
 import { isDarkTheme } from "@settings";
 import { setAllPaths, findPathsByText, showInJsonByPath } from "./searchUtils";
 import { CloseIcon, SettingsIcon } from "@icons";
 import { colors } from "@colors";
 import { Text, Button, Input } from "@common";
-import { settingsType } from "../../Viewer";
+import {
+  settingsType,
+  setSearchPathType,
+  setSearchValueType,
+  searchType,
+  setJsonType,
+  jsonType
+} from "../../Viewer";
 import { forceJsonUpdate } from "../../viewerHelper";
 
 const styles: Record<string, React.CSSProperties> = {
@@ -44,10 +52,12 @@ const styles: Record<string, React.CSSProperties> = {
 };
 
 interface SearchProps {
-  searchText: string;
-  setSearchText: (newText: string) => void;
-  setJson: (json: any) => void;
-  json: {};
+  searchPath: searchType;
+  searchValue: searchType;
+  setSearchPath: setSearchPathType;
+  setSearchValue: setSearchValueType;
+  setJson: setJsonType;
+  json: jsonType;
   settings: settingsType;
   isOpenedSettings: boolean;
   onToggleSettings: () => void;
@@ -64,8 +74,10 @@ export type setFountAllResultsType = React.Dispatch<
 
 const Search = React.memo(
   ({
-    searchText,
-    setSearchText,
+    searchPath,
+    searchValue,
+    setSearchPath,
+    setSearchValue,
     json,
     settings,
     setJson,
@@ -83,9 +95,9 @@ const Search = React.memo(
     const handleChangeSearchText = useCallback(
       (text = "") => {
         setSearchPathLS(text);
-        setSearchText(text);
+        setSearchPath(text);
       },
-      [setSearchPathLS, setSearchText]
+      [setSearchPathLS, setSearchPath]
     );
 
     const onChange = useCallback(
@@ -100,12 +112,12 @@ const Search = React.memo(
           handleChangeSearchText(trimSearchText);
         }
       },
-      [setSearchText]
+      [handleChangeSearchText]
     );
 
     const searchAndHighlightResults = useCallback(() => {
       // Find all paths by search text
-      const paths: Array<string> = findPathsByText(searchText);
+      const paths: Array<string> = findPathsByText(searchPath);
 
       // Get maximum search result value
       const maxResultItems = Number(settings.searchLimit);
@@ -139,7 +151,7 @@ const Search = React.memo(
 
       // Heighlight all found paths
       setHighlightLS(highlightPathsLS);
-    }, [searchText, settings.searchLimit]);
+    }, [searchPath, settings.searchLimit]);
 
     const handleSearchTextCleaning = useCallback(() => {
       // If empty - clear expanded blocks and heighlights in LS
@@ -152,50 +164,44 @@ const Search = React.memo(
     }, [clearExpandedLS, setHighlightLS, setFoundAllResults, setFoundResults]);
 
     const onEnterAction = useCallback(() => {
-      if (searchText === "") {
+      if (searchPath === "") {
         handleSearchTextCleaning();
       } else {
         searchAndHighlightResults();
       }
     }, [
-      searchText,
+      searchPath,
       clearExpandedLS,
       setHighlightLS,
       searchAndHighlightResults
     ]);
-
     const handleEnter = useCallback(
       e => {
         if (e.keyCode === 13) {
           forceJsonUpdate(onEnterAction, setJson, json);
         }
       },
-      [json, searchAndHighlightResults, searchText, setJson, onEnterAction]
+      [json, searchAndHighlightResults, setJson, onEnterAction]
     );
-
-    const handleClearInput = useCallback(() => {
-      handleChangeSearchText();
-      handleSearchTextCleaning();
-    }, []);
 
     return (
       <div style={styles.wrapper}>
-        <Text>Path:</Text>
-        <InputStyled
-          placeholder="Search path:"
-          style={styles.inputStyle}
-          value={searchText}
-          onChange={onChange}
-          onKeyDown={handleEnter}
+        <Input
+          label="Path"
+          placeholder="Search path"
+          initValue={searchPath}
+          onChangeValue={setSearchPath}
+          onChangeValueLS={setSearchPathLS}
+          onEnter={handleEnter}
+          setFoundResults={setFoundResults}
+          setFoundAllResults={setFoundAllResults}
         />
-        {searchText && (
-          <Button onClick={handleClearInput} type="circle">
-            <CloseIcon size="0.7rem" />
-          </Button>
-        )}
-
         <Input
           label="Value"
+          placeholder="Search value"
+          initValue={searchValue}
+          onChangeValue={setSearchValue}
+          onChangeValueLS={setSearchValueLS}
           setFoundResults={setFoundResults}
           setFoundAllResults={setFoundAllResults}
         />

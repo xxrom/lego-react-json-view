@@ -51,12 +51,12 @@ export const setCuttedLS = (path: string, value: string) => {
 export const getCuttedLS = (path: string) => localStorage.getItem(path);
 
 const searchPathKey = "searchPath";
-export const setSearchPathLS = (text: string) =>
-  localStorage.setItem(searchPathKey, text);
+export const setSearchPathLS = (value = "") =>
+  localStorage.setItem(searchPathKey, value);
 export const getSearchPathLS = () => localStorage.getItem(searchPathKey);
 
 const searchValueKey = "searchValue";
-export const setSearchValueLS = (value: string) =>
+export const setSearchValueLS = (value = "") =>
   localStorage.setItem(searchValueKey, value);
 export const getSearchValueLS = () => localStorage.getItem(searchValueKey);
 

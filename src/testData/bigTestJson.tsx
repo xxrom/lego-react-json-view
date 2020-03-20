@@ -1,4 +1,4 @@
-export const json = {
+export const json: { [key: string]: any } = {
   order: [0],
   hello: {
     test: "json",

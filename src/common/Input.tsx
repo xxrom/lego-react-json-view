@@ -22,41 +22,52 @@ const styles: Record<string, React.CSSProperties> = {
 };
 
 const emptyFn = () => {};
+type onChangeType = (test: string) => void;
+type onKeyDownType = (event: React.KeyboardEvent<HTMLInputElement>) => void;
 
 interface InputProps {
   label?: string;
-  handleEnter?: () => void;
+  initValue?: string;
+  placeholder?: string;
+  onEnter?: onKeyDownType;
   setFoundResults?: setFountAllResultsType;
   setFoundAllResults?: setFountResultsType;
+  onChangeValue?: onChangeType;
+  onChangeValueLS?: onChangeType;
 }
 
 const Input = (props: InputProps) => {
   const {
-    label = "label",
-    handleEnter = emptyFn,
+    label,
+    placeholder = "",
+    initValue = "",
+    onEnter = emptyFn,
     setFoundResults = emptyFn,
-    setFoundAllResults = emptyFn
+    setFoundAllResults = emptyFn,
+    onChangeValue = emptyFn,
+    onChangeValueLS = emptyFn
   } = props;
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(initValue);
 
-  const handleChangeSearchText = useCallback(
-    (text = "") => {
-      setSearchValueLS(text);
-      setInputValue(text);
+  const handleChangeInput = useCallback(
+    (value = "") => {
+      setInputValue(value);
+      onChangeValue(value);
+      onChangeValueLS(value);
     },
-    [setSearchValueLS, setInputValue]
+    [onChangeValue, onChangeValueLS]
   );
 
   const onChange = useCallback(
     e => {
       const inputText = e.target.value;
-      const trimSearchText = inputText.trim();
+      // const trimSearchText = inputText.trim();
 
       // Only valid path value could be entered
       const regExp = /^([\w\d]+(\.[\w\d]+)*\.?)?$/i;
 
-      if (regExp.test(trimSearchText)) {
-        handleChangeSearchText(trimSearchText);
+      if (regExp.test(inputText)) {
+        handleChangeInput(inputText);
       }
     },
     [setInputValue]
@@ -73,31 +84,37 @@ const Input = (props: InputProps) => {
   }, [clearExpandedLS, setHighlightLS, setFoundAllResults, setFoundResults]);
 
   const handleClearInput = useCallback(() => {
-    handleChangeSearchText();
+    handleChangeInput();
     handleSearchTextCleaning();
-  }, [handleChangeSearchText, handleSearchTextCleaning]);
+  }, [onChangeValue, handleSearchTextCleaning]);
 
   return (
-    <span>
+    <Wrapper>
       {label && <Text>{`${label}:`}</Text>}
       <InputStyled
-        placeholder="Search path:"
+        placeholder={placeholder}
         style={styles.inputStyle}
         value={inputValue}
         onChange={onChange}
-        onKeyDown={handleEnter}
+        onKeyDown={onEnter}
       />
       {inputValue && (
         <Button onClick={handleClearInput} type="circle">
           <CloseIcon size="0.7rem" />
         </Button>
       )}
-    </span>
+    </Wrapper>
   );
 };
 
 export { Input };
 
+const Wrapper = styled("div")`
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-items: center;
+`;
 const InputStyled = styled("input")`
   && {
     position: relative;

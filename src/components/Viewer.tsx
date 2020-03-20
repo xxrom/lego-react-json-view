@@ -8,10 +8,10 @@ import {
   setCollapseSettingsLS,
   getSearchPathLS,
   getSettingsLS,
-  clearExpandedLS,
   expandedRoot,
   setExpandedObjectLS,
-  getExpandedLS
+  getExpandedLS,
+  getSearchValueLS
 } from "./localStorageTools";
 import { colors } from "@colors";
 import { isDarkTheme } from "@settings";
@@ -19,8 +19,34 @@ import { findAllPathPoints, forceJsonUpdate } from "./viewerHelper";
 
 export type expandedType = { [key: string]: boolean };
 export type highlightType = { [key: string]: boolean };
+export type searchType = string;
+export type jsonType = { [key: string]: object };
 
 export type themeMode = "light" | "dark" | "auto";
+
+export type setJsonType = React.Dispatch<React.SetStateAction<jsonType>>;
+export type setSearchPathType = React.Dispatch<
+  React.SetStateAction<searchType>
+>;
+export type setSearchValueType = React.Dispatch<
+  React.SetStateAction<searchType>
+>;
+export type setExpandedType = React.Dispatch<
+  React.SetStateAction<expandedType>
+>;
+export type setHighlightType = React.Dispatch<
+  React.SetStateAction<highlightType>
+>;
+export type setSettingsType = React.Dispatch<
+  React.SetStateAction<settingsType>
+>;
+
+const headerStyle: React.CSSProperties = {
+  background: isDarkTheme ? colors.background.dark : colors.background.light
+};
+const wrapperStyle: React.CSSProperties = {
+  background: isDarkTheme ? colors.background.dark : colors.background.light
+};
 
 // TODO: extend settingsType
 export interface ViewerProps {
@@ -48,23 +74,6 @@ export type settingsType = {
   isExpanded: boolean;
 };
 
-export type setExpandedType = React.Dispatch<
-  React.SetStateAction<expandedType>
->;
-export type setHighlightType = React.Dispatch<
-  React.SetStateAction<highlightType>
->;
-export type setSettingsType = React.Dispatch<
-  React.SetStateAction<settingsType>
->;
-
-const headerStyle: React.CSSProperties = {
-  background: isDarkTheme ? colors.background.dark : colors.background.light
-};
-const wrapperStyle: React.CSSProperties = {
-  background: isDarkTheme ? colors.background.dark : colors.background.light
-};
-
 const defaultCollapses = [
   { test: "hide.this.path", replaceTo: "hide.this.path" }
 ];
@@ -72,9 +81,29 @@ const defaultCollapses = [
 const Viewer = memo((props: ViewerProps) => {
   const { json: initJson = {}, settings: settingsInit = {} } = props;
 
-  const [json, setJson] = useState<{}>({ root: initJson });
-  const [searchText, setSearchText] = useState("");
-  const [collapses, setCollapses] = useState(defaultCollapses);
+  const [json, setJson] = useState<jsonType>({ root: initJson });
+  const [searchPath, setSearchPath] = useState<searchType>(() => {
+    // Set searchPath from LS if exist
+    const searchPathData = getSearchPathLS();
+    return searchPathData ? searchPathData : "";
+  });
+  const [searchValue, setSearchValue] = useState<searchType>(() => {
+    const searchValueData = getSearchValueLS();
+    // Set searchValue from LS if exist
+    return searchValueData ? searchValueData : "";
+  });
+  const [collapses, setCollapses] = useState(() => {
+    const collapsesFromLS = getCollapseSettingsLS();
+    // Init collapse filter on first render
+    if (collapsesFromLS) {
+      try {
+        return JSON.parse(collapsesFromLS);
+      } catch (error) {
+        console.error("error", error.message);
+      }
+    }
+    return setCollapseSettingsLS(defaultCollapses);
+  });
   const [isOpenedSettings, setIsOpenedSettings] = useState(false);
   const [settings, setSettings] = useState<settingsType>(() => {
     const settingsLS = getSettingsLS();
@@ -101,26 +130,6 @@ const Viewer = memo((props: ViewerProps) => {
     }),
     [settings.fontSize]
   );
-
-  useEffect(() => {
-    const collapsesFromLS = getCollapseSettingsLS();
-    // Init collapse filter on first render
-    if (collapsesFromLS) {
-      try {
-        setCollapses(JSON.parse(collapsesFromLS));
-      } catch (error) {
-        console.error("error", error.message);
-      }
-    } else {
-      setCollapseSettingsLS(defaultCollapses);
-    }
-
-    // Set searchText from LS
-    const searchTextData = getSearchPathLS();
-    if (searchTextData) {
-      setSearchText(searchTextData);
-    }
-  }, []);
 
   // Update collapses settings in LS
   useEffect(() => {
@@ -177,8 +186,10 @@ const Viewer = memo((props: ViewerProps) => {
     <Wrapper style={wrapperStyle}>
       <Header style={headerStyle}>
         <Search
-          searchText={searchText}
-          setSearchText={setSearchText}
+          searchPath={searchPath}
+          searchValue={searchValue}
+          setSearchPath={setSearchPath}
+          setSearchValue={setSearchValue}
           json={json}
           settings={settings}
           setJson={setJson}
