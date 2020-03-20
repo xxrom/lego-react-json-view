@@ -1,8 +1,10 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { resolve } = require("./webpack.common");
 
 module.exports = {
+  resolve,
   devServer: {
     contentBase: "./dist",
     port: "8000"
@@ -12,15 +14,6 @@ module.exports = {
   output: {
     path: path.join(__dirname, "/dist"),
     filename: "index-bundle.js"
-  },
-  resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
-    alias: {
-      "react-dom": "@hot-loader/react-dom",
-      "@common": path.join(__dirname, "./src/common"),
-      "@settings": path.join(__dirname, "./src/settings"),
-      "@colors": path.join(__dirname, "./src/colors")
-    }
   },
   module: {
     rules: [

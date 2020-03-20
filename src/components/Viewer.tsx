@@ -201,6 +201,7 @@ const Viewer = memo((props: ViewerProps) => {
           json={json}
           settings={settings}
           setJson={setJson}
+          isOpenedSettings={isOpenedSettings}
           onToggleSettings={onToggleSettings}
         />
         <CollapseSettings

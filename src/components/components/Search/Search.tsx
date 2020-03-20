@@ -12,7 +12,7 @@ import { setAllPaths, findPathsByText, showInJsonByPath } from "./searchUtils";
 import { colors } from "@colors";
 import { Text, Button } from "@common";
 import { settingsType } from "../../Viewer";
-import { SettingsIcon } from "./SettingsIcon";
+import { CloseIcon, SettingsIcon } from "@icons";
 import { forceJsonUpdate } from "../../viewerHelper";
 
 const styles: Record<string, React.CSSProperties> = {
@@ -48,6 +48,7 @@ interface SearchProps {
   setJson: (json: any) => void;
   json: {};
   settings: settingsType;
+  isOpenedSettings: boolean;
   onToggleSettings: () => void;
 }
 
@@ -58,6 +59,7 @@ const Search = React.memo(
     json,
     settings,
     setJson,
+    isOpenedSettings,
     onToggleSettings
   }: SearchProps) => {
     const [foundResults, setFoundResults] = useState<Array<string>>([]);
@@ -174,14 +176,20 @@ const Search = React.memo(
           onKeyDown={handleEnter}
         />
         {searchText && (
-          <Button onClick={handleClearInput} title="X" type="circle" />
+          <Button onClick={handleClearInput} type="circle">
+            <CloseIcon size="0.7rem" />
+          </Button>
         )}
         <Text
           style={styles.resultText}
         >{`${foundResults.length}/${foundAllResults.length}`}</Text>
-        <Settings style={styles.settings} onClick={onToggleSettings}>
-          <SettingsIcon width="1.2rem" />
-        </Settings>
+        <Button
+          onClick={onToggleSettings}
+          type="circle"
+          style={{ padding: "0.4rem", marginLeft: "0.5rem" }}
+        >
+          {isOpenedSettings ? <CloseIcon /> : <SettingsIcon />}
+        </Button>
       </div>
     );
   }
@@ -203,19 +211,5 @@ const Input = styled("input")`
     outline: none;
     border-left: 1px solid gray;
     padding-left: 0.7rem;
-  }
-`;
-
-const Settings = styled("span")`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.4rem;
-  border-radius: 50%;
-  margin: 0 0 0 0.5rem;
-  cursor: pointer;
-
-  &:hover {
-    box-shadow: 0 0 0.2rem 0.1rem #666;
   }
 `;

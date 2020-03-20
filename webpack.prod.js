@@ -2,8 +2,10 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const webpack = require("webpack");
+const { resolve } = require("./webpack.common");
 
 module.exports = {
+  resolve,
   entry: ["./src/index.prod.tsx"],
   devtool: "source-map",
   target: "web",
@@ -11,14 +13,6 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "./dist-webpack"),
     libraryTarget: "commonjs2"
-  },
-  resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
-    alias: {
-      "@common": path.join(__dirname, "./src/common"),
-      "@settings": path.join(__dirname, "./src/settings"),
-      "@colors": path.join(__dirname, "./src/colors")
-    }
   },
   module: {
     rules: [

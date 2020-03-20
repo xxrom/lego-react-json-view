@@ -7,11 +7,9 @@ import { colors } from "@colors";
 export type ButtonMods = "default" | "mini" | "circle" | "disabled";
 
 const baseStyle: React.CSSProperties = {
-  color: isDarkTheme ? colors.buttonText.dark : colors.buttonText.light,
-  background: isDarkTheme
-    ? colors.buttonBackground.dark
-    : colors.buttonBackground.light,
-  border: `1px solid ${isDarkTheme ? colors.border.dark : colors.border.light}`
+  color: colors.buttonText[isDarkTheme ? "dark" : "light"],
+  background: colors.buttonBackground[isDarkTheme ? "dark" : "light"],
+  border: `1px solid ${colors.border[isDarkTheme ? "dark" : "light"]}`
 };
 
 const mods: { [key in ButtonMods]: React.CSSProperties } = {
@@ -23,6 +21,8 @@ const mods: { [key in ButtonMods]: React.CSSProperties } = {
   },
   circle: {
     ...baseStyle,
+    padding: "0.2rem",
+    margin: "0.2rem",
     borderRadius: "50%"
   },
   disabled: {
@@ -34,8 +34,9 @@ interface ButtonProps {
   title?: string;
   type?: ButtonMods;
   onClick: () => void;
-  children?: React.ElementType;
+  children?: React.ReactElement | Array<React.ReactElement>;
   disabled?: boolean;
+  style?: React.CSSProperties;
 }
 
 const Button = React.memo(
@@ -45,10 +46,11 @@ const Button = React.memo(
     type = "default",
     children = null,
     disabled = false,
+    style = {},
     ...rest
   }: ButtonProps) => (
     <ButtonStyled
-      style={{ ...mods[type], ...(disabled ? mods.disabled : {}) }}
+      style={{ ...mods[type], ...(disabled ? mods.disabled : {}), ...style }}
       onClick={disabled ? () => {} : onClick}
       {...rest}
     >
@@ -58,6 +60,9 @@ const Button = React.memo(
 );
 
 const ButtonStyled = styled("button")`
+  display: inline-flex;
+  justify-items: center;
+  align-items: center;
   padding: 0.2rem 0.5rem;
   margin-left: 0.5rem;
   cursor: pointer;
