@@ -1,6 +1,6 @@
 ## **Lego-react-json-view**
 
-JSON viewer with view filters and more =)
+JSON viewer with Dark Theme, Search, Filters, paths Reopening and more =)
 
 # `Install` (npm / yarn):
 
@@ -10,7 +10,6 @@ npm i -S lego-react-json-view
 ```md
 yarn add lego-react-json-view
 ```
----
 
 ## DEMO
 
@@ -66,8 +65,6 @@ const App = () => {
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
----
-
 ## Custom settings:
 
 **Settings object** (propsSettings) could be passed directly in *react component*:
@@ -97,7 +94,6 @@ Note:
 * *propsSettings* have **higher priority**, then **inner** (witch could be changed via UI interface)!
 * inner settings will be dropped to *propsSettings* after page reload!
 
----
 ## **Main features:**
 > - [x] Save **previously opened** paths in json;
 > - [x] Collaps paths by **collaps filters**;

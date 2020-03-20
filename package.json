@@ -61,7 +61,14 @@
     "view",
     "viewer",
     "lego",
-    "tree"
+    "tree",
+    "dark",
+    "light",
+    "theme",
+    "savings",
+    "reopening",
+    "filter",
+    "search"
   ],
   "author": "xxrom",
   "bugs": {
