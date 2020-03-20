@@ -2,7 +2,11 @@ import React, { memo } from "react";
 import { colors } from "@colors";
 import { isDarkTheme } from "@settings";
 
-export const SettingsIcon = memo(({ width = "1.2rem" }: { width: string }) => {
+interface SettingsIconProps {
+  width?: string | number;
+}
+
+export const SettingsIcon = memo(({ width = "1.2rem" }: SettingsIconProps) => {
   const outterfillColor = colors.border[isDarkTheme ? "light" : "dark"];
   const innerfillColor = colors.textColor[isDarkTheme ? "dark" : "light"];
 
