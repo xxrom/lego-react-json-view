@@ -9,6 +9,7 @@
     "removeComments": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+    "noUnusedLocals": true,
     "paths": {
       "@common": ["src/common/"],
       "@icons": ["src/common/icons/"],
@@ -16,6 +17,6 @@
       "@settings": ["src/settings.tsx"]
     }
   },
-  "include": ["./src/**/*"],
-  "exclude": ["./src/**/*JSON.tsx"]
+  "include": ["src/**/*.tsx"],
+  "exclude": ["src/**/*Json*", "src/**/*JSON*"]
 }

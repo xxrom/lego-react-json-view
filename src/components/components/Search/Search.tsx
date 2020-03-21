@@ -1,24 +1,37 @@
 import React, { useCallback, useState, useEffect } from "react";
-import styled from "astroturf";
+import get from "lodash.get";
 
 import {
-  setSearchTextLS,
+  setSearchPathLS,
   setHighlightLS,
   clearExpandedLS,
-  setExpandedLS
+  setExpandedLS,
+  setSearchValueLS,
+  expandedRoot,
+  getAllPathsLS
 } from "../../localStorageTools";
 import { isDarkTheme } from "@settings";
 import { setAllPaths, findPathsByText, showInJsonByPath } from "./searchUtils";
-import { colors } from "@colors";
-import { Text, Button } from "@common";
-import { settingsType } from "../../Viewer";
 import { CloseIcon, SettingsIcon } from "@icons";
+import { colors } from "@colors";
+import { Text, Button, Input, TextTypes } from "@common";
+import {
+  settingsType,
+  setSearchPathType,
+  setSearchValueType,
+  searchType,
+  setJsonType,
+  jsonType
+} from "../../Viewer";
 import { forceJsonUpdate } from "../../viewerHelper";
 
 const styles: Record<string, React.CSSProperties> = {
   wrapper: {
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    borderLeft: "1px solid gray",
+    paddingLeft: "0.5rem",
+    marginLeft: "-0.5rem"
   },
   inputStyle: {
     color: isDarkTheme ? colors.searchText.dark : colors.searchText.light
@@ -26,11 +39,9 @@ const styles: Record<string, React.CSSProperties> = {
   resultText: {
     display: "inline-flex",
     justifyContent: "flex-end",
-    flex: "0.1",
-    minWidth: "6rem",
-    paddingLeft: "1rem",
     whiteSpace: "nowrap",
-    fontSize: "1rem"
+    fontSize: "1rem",
+    fontWeight: "normal"
   },
   settings: {
     background: isDarkTheme
@@ -43,57 +54,73 @@ const styles: Record<string, React.CSSProperties> = {
 };
 
 interface SearchProps {
-  searchText: string;
-  setSearchText: (newText: string) => void;
-  setJson: (json: any) => void;
-  json: {};
+  searchPath: searchType;
+  searchValue: searchType;
+  setSearchPath: setSearchPathType;
+  setSearchValue: setSearchValueType;
+  setJson: setJsonType;
+  json: jsonType;
   settings: settingsType;
   isOpenedSettings: boolean;
   onToggleSettings: () => void;
 }
 
+export type foundResultsType = Array<string>;
+export type setFountResultsType = React.Dispatch<
+  React.SetStateAction<foundResultsType>
+>;
+export type foundAllResultsType = Array<string>;
+export type setFountAllResultsType = React.Dispatch<
+  React.SetStateAction<foundAllResultsType>
+>;
+
+const inputValueRegExp = /^([\w-+*\\\/.]+)?$/i;
+const inputPathsRegExp = /^[\w\d]*([\.\\\/][\w\d]+)*[\.\\\/]?$/i;
+const pathSplitterRegExp = /[\\\/]/g;
+
 const Search = React.memo(
   ({
-    searchText,
-    setSearchText,
+    searchPath,
+    searchValue,
+    setSearchPath,
+    setSearchValue,
     json,
     settings,
     setJson,
     isOpenedSettings,
     onToggleSettings
   }: SearchProps) => {
-    const [foundResults, setFoundResults] = useState<Array<string>>([]);
-    const [foundAllResults, setFoundAllResults] = useState<Array<string>>([]);
+    const [foundResults, setFoundResults] = useState<foundResultsType>([]);
+    const [foundAllResults, setFoundAllResults] = useState<foundAllResultsType>(
+      []
+    );
     useEffect(() => {
       setAllPaths(json);
     }, [json]);
 
-    const handleChangeSearchText = useCallback(
-      (text = "") => {
-        setSearchTextLS(text);
-        setSearchText(text);
-      },
-      [setSearchTextLS, setSearchText]
-    );
-
-    const onChange = useCallback(
-      e => {
-        const inputText = e.target.value;
-        const trimSearchText = inputText.trim();
-
-        // Only valid path value could be entered
-        const regExp = /^([\w\d]+(\.[\w\d]+)*\.?)?$/i;
-
-        if (regExp.test(trimSearchText)) {
-          handleChangeSearchText(trimSearchText);
-        }
-      },
-      [setSearchText]
-    );
-
     const searchAndHighlightResults = useCallback(() => {
+      // Get all paths in current json
+      const allPaths: Array<string> = getAllPathsLS();
+
       // Find all paths by search text
-      const paths: Array<string> = findPathsByText(searchText);
+      let paths: Array<string> = allPaths;
+
+      if (searchPath) {
+        // Разделители chain могут быть ['/', '\', '.'] , всех заменяем на '.'
+        const clearSearchPath = searchPath.replace(pathSplitterRegExp, ".");
+        console.log(`clearSearchPath`, clearSearchPath);
+        paths = findPathsByText(clearSearchPath, allPaths);
+      }
+
+      if (typeof searchValue === "string" && searchValue !== "") {
+        paths = paths.filter(path => {
+          const realPath = path.replace(`${expandedRoot}.`, "");
+          const jsonData = get(json, realPath);
+
+          // Filter by searchValue
+          return String(jsonData).search(searchValue) !== -1;
+        });
+      }
 
       // Get maximum search result value
       const maxResultItems = Number(settings.searchLimit);
@@ -127,7 +154,7 @@ const Search = React.memo(
 
       // Heighlight all found paths
       setHighlightLS(highlightPathsLS);
-    }, [searchText, settings.searchLimit]);
+    }, [json, searchPath, searchValue, settings.searchLimit]);
 
     const handleSearchTextCleaning = useCallback(() => {
       // If empty - clear expanded blocks and heighlights in LS
@@ -137,52 +164,63 @@ const Search = React.memo(
       // Clear result counters
       setFoundAllResults([]);
       setFoundResults([]);
-    }, [clearExpandedLS, setHighlightLS, setFoundAllResults, setFoundResults]);
+    }, [setFoundAllResults, setFoundResults]);
 
     const onEnterAction = useCallback(() => {
-      if (searchText === "") {
+      if (searchPath === "" && searchValue === "") {
         handleSearchTextCleaning();
       } else {
         searchAndHighlightResults();
       }
     }, [
-      searchText,
-      clearExpandedLS,
-      setHighlightLS,
+      searchPath,
+      searchValue,
+      handleSearchTextCleaning,
       searchAndHighlightResults
     ]);
-
     const handleEnter = useCallback(
       e => {
         if (e.keyCode === 13) {
           forceJsonUpdate(onEnterAction, setJson, json);
         }
       },
-      [json, searchAndHighlightResults, searchText, setJson, onEnterAction]
+      [json, setJson, onEnterAction]
     );
-
-    const handleClearInput = useCallback(() => {
-      handleChangeSearchText();
-      handleSearchTextCleaning();
-    }, []);
+    const handleSearch = useCallback(() => {
+      forceJsonUpdate(onEnterAction, setJson, json);
+    }, [json, setJson, onEnterAction]);
 
     return (
       <div style={styles.wrapper}>
         <Input
-          placeholder="Search path:"
-          style={styles.inputStyle}
-          value={searchText}
-          onChange={onChange}
-          onKeyDown={handleEnter}
+          label="Value"
+          placeholder="Search value"
+          regExp={inputValueRegExp}
+          initValue={searchValue}
+          onEnter={handleEnter}
+          onChangeValue={setSearchValue}
+          onChangeValueLS={setSearchValueLS}
+          setFoundResults={setFoundResults}
+          setFoundAllResults={setFoundAllResults}
         />
-        {searchText && (
-          <Button onClick={handleClearInput} type="circle">
-            <CloseIcon size="0.7rem" />
-          </Button>
-        )}
+        <Input
+          label="Path"
+          placeholder="Search path"
+          regExp={inputPathsRegExp}
+          initValue={searchPath}
+          onEnter={handleEnter}
+          onChangeValue={setSearchPath}
+          onChangeValueLS={setSearchPathLS}
+          setFoundResults={setFoundResults}
+          setFoundAllResults={setFoundAllResults}
+        />
+
         <Text
+          type={TextTypes.KEY}
           style={styles.resultText}
         >{`${foundResults.length}/${foundAllResults.length}`}</Text>
+
+        <Button title="Search" onClick={handleSearch} />
         <Button
           onClick={onToggleSettings}
           type="circle"
@@ -196,20 +234,3 @@ const Search = React.memo(
 );
 
 export { Search };
-
-const Input = styled("input")`
-  && {
-    position: relative;
-    background: none;
-    display: inline-flex;
-    margin: 0.5rem 0;
-    position: relative;
-    box-sizing: border-box;
-    font-size: 1rem;
-    flex: 0.9;
-    border: 0;
-    outline: none;
-    border-left: 1px solid gray;
-    padding-left: 0.7rem;
-  }
-`;

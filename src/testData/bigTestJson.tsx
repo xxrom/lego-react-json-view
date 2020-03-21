@@ -1,4 +1,5 @@
-export const json = {
+export const json: { [key: string]: any } = {
+  order: [0],
   hello: {
     test: "json",
     hide: {
@@ -11,7 +12,7 @@ export const json = {
       }
     },
     and: {
-      this: ["hello", "here", "my", "friend"]
+      this: ["hello", "here", "my", "friend", "value1"]
     }
   },
   id: "00000000-0000-0000-0000-000000000000",

@@ -1,9 +1,4 @@
-import {
-  setExpandedLS,
-  setAllPathsLS,
-  getAllPathsLS,
-  expandedRoot
-} from "../../localStorageTools";
+import { setAllPathsLS, expandedRoot } from "../../localStorageTools";
 
 const checkIsObject = (item: any) => {
   if (typeof item === "undefined") {
@@ -120,9 +115,7 @@ const findPathsInJson = (
 };
 
 // Return filtered paths by searchText (search paths)
-const findPathsByText = (searchText: string) => {
-  const allPaths: Array<string> = getAllPathsLS();
-
+const findPathsByText = (searchText: string, allPaths: Array<string>) => {
   const filteredPaths = allPaths.reduce<Array<string>>((accumulator, path) => {
     if (findPathsInPaths(path, searchText)) {
       accumulator.push(path);
