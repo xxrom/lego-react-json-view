@@ -9,6 +9,7 @@
     "removeComments": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+    "noUnusedLocals": true,
     "paths": {
       "@common": ["src/common/"],
       "@icons": ["src/common/icons/"],

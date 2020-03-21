@@ -1,4 +1,4 @@
-import React from "react";
+import _React from "react"; // eslint-disable-line
 // import ReactDOM from "react-dom";
 
 import { LegoViewer } from "./components";

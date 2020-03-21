@@ -22,7 +22,7 @@ yarn add lego-react-json-view
 
 ---
 
-## `Code example` (react):
+## Quick-start - `React code example`:
 
 ```tsx
 // Import LegoView

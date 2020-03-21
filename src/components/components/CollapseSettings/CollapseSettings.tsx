@@ -1,11 +1,19 @@
 import React, { useCallback, memo, useState } from "react";
 import styled from "astroturf";
+import { oc } from "ts-optchain";
 
 import { isDarkTheme } from "@settings";
 import { colors } from "@colors";
 import { Tabs, Button, Text, TextTypes } from "@common";
-import { setSettingsLS, clearExpandedLS } from "../../localStorageTools";
+import {
+  setSettingsLS,
+  clearExpandedLS,
+  expandedRoot,
+  getExpandedLS,
+  setExpandedObjectLS
+} from "../../localStorageTools";
 import { setSettingsType, settingsType, themeMode } from "../../Viewer";
+import { findAllPathPoints } from "../../viewerHelper";
 
 const styles: Record<string, React.CSSProperties> = {
   input: {
@@ -143,7 +151,7 @@ const CollapseSettings = memo(
 
     const setIsOpened = useCallback(
       () => setIsOpenedSettings(!isOpenedSettings),
-      [isOpenedSettings]
+      [isOpenedSettings, setIsOpenedSettings]
     );
     const onClickTheme = useCallback(
       (theme: themeMode) => () => {
@@ -154,8 +162,28 @@ const CollapseSettings = memo(
         setSettings(settingsObject);
         setSettingsLS(settingsObject);
       },
-      [setSettings, setSettingsLS, settings]
+      [setSettings, settings]
     );
+
+    const onExpandAction = useCallback((innerJson: object) => {
+      const allExpandedPathesObject = findAllPathPoints(
+        innerJson,
+        expandedRoot
+      );
+      const allExpandedLS = getExpandedLS();
+
+      // Inherit expanded values from LS
+      Object.keys(allExpandedLS).forEach(path => {
+        if (
+          typeof oc(allExpandedLS)[path]() === "boolean" &&
+          typeof oc(allExpandedPathesObject)[path]() === "boolean"
+        ) {
+          allExpandedPathesObject[path] = allExpandedLS[path];
+        }
+      });
+
+      setExpandedObjectLS(allExpandedPathesObject);
+    }, []);
     const onClickIsExpanded = useCallback(
       (isExpanded: boolean) => () => {
         // disable button
@@ -172,6 +200,8 @@ const CollapseSettings = memo(
         // If isExpanded === false => clear all expanded data
         if (!isExpanded) {
           clearExpandedLS();
+        } else {
+          onExpandAction(json);
         }
         setSettings(settingsObject);
         setSettingsLS(settingsObject);
@@ -182,7 +212,7 @@ const CollapseSettings = memo(
           isExpanded: false
         });
       },
-      [setSettings, setSettingsLS, settings, json, setJson]
+      [disabledButtons, settings, setSettings, onExpandAction, json]
     );
 
     if (!isOpenedSettings) {

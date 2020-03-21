@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import styled, { css } from "astroturf";
 import { colors } from "@colors";
 import { isDarkTheme } from "@settings";

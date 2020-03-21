@@ -11,8 +11,7 @@ import {
 } from "../components/components/Search/Search";
 import {
   clearExpandedLS,
-  setHighlightLS,
-  setSearchValueLS
+  setHighlightLS
 } from "../components/localStorageTools";
 
 const styles: Record<string, React.CSSProperties> = {
@@ -34,11 +33,13 @@ interface InputProps {
   setFoundAllResults?: setFountResultsType;
   onChangeValue?: onChangeType;
   onChangeValueLS?: onChangeType;
+  regExp?: RegExp;
 }
 
 const Input = (props: InputProps) => {
   const {
     label,
+    regExp,
     placeholder = "",
     initValue = "",
     onEnter = emptyFn,
@@ -61,16 +62,17 @@ const Input = (props: InputProps) => {
   const onChange = useCallback(
     e => {
       const inputText = e.target.value;
-      // const trimSearchText = inputText.trim();
+
+      if (!regExp) {
+        handleChangeInput(inputText);
+      }
 
       // Only valid path value could be entered
-      const regExp = /^([\w\d]+(\.[\w\d]+)*\.?)?$/i;
-
       if (regExp.test(inputText)) {
         handleChangeInput(inputText);
       }
     },
-    [setInputValue]
+    [handleChangeInput, regExp]
   );
 
   const handleSearchTextCleaning = useCallback(() => {
@@ -81,12 +83,12 @@ const Input = (props: InputProps) => {
     // Clear result counters
     setFoundAllResults([]);
     setFoundResults([]);
-  }, [clearExpandedLS, setHighlightLS, setFoundAllResults, setFoundResults]);
+  }, [setFoundAllResults, setFoundResults]);
 
   const handleClearInput = useCallback(() => {
     handleChangeInput();
     handleSearchTextCleaning();
-  }, [onChangeValue, handleSearchTextCleaning]);
+  }, [handleChangeInput, handleSearchTextCleaning]);
 
   return (
     <Wrapper>
@@ -114,6 +116,7 @@ const Wrapper = styled("div")`
   flex: 1;
   align-items: center;
   justify-items: center;
+  border-left: 2px solid gray;
 `;
 const InputStyled = styled("input")`
   && {

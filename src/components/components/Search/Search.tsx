@@ -1,12 +1,14 @@
 import React, { useCallback, useState, useEffect } from "react";
-import styled from "astroturf";
+import get from "lodash.get";
 
 import {
   setSearchPathLS,
   setHighlightLS,
   clearExpandedLS,
   setExpandedLS,
-  setSearchValueLS
+  setSearchValueLS,
+  expandedRoot,
+  getAllPathsLS
 } from "../../localStorageTools";
 import { isDarkTheme } from "@settings";
 import { setAllPaths, findPathsByText, showInJsonByPath } from "./searchUtils";
@@ -72,6 +74,10 @@ export type setFountAllResultsType = React.Dispatch<
   React.SetStateAction<foundAllResultsType>
 >;
 
+const inputValueRegExp = /^([\w-+*\\\/.]+)?$/i;
+const inputPathsRegExp = /^([\w\d]*([\.\\\/][\w\d]+)*[\.\\\/]?[ ]*)?([\w-+*\\\/.]+)?$/i;
+const pathSplitterRegExp = /[\\\/]/;
+
 const Search = React.memo(
   ({
     searchPath,
@@ -92,32 +98,28 @@ const Search = React.memo(
       setAllPaths(json);
     }, [json]);
 
-    const handleChangeSearchText = useCallback(
-      (text = "") => {
-        setSearchPathLS(text);
-        setSearchPath(text);
-      },
-      [setSearchPathLS, setSearchPath]
-    );
-
-    const onChange = useCallback(
-      e => {
-        const inputText = e.target.value;
-        const trimSearchText = inputText.trim();
-
-        // Only valid path value could be entered
-        const regExp = /^([\w\d]+(\.[\w\d]+)*\.?)?$/i;
-
-        if (regExp.test(trimSearchText)) {
-          handleChangeSearchText(trimSearchText);
-        }
-      },
-      [handleChangeSearchText]
-    );
-
     const searchAndHighlightResults = useCallback(() => {
+      // Get all paths in current json
+      const allPaths: Array<string> = getAllPathsLS();
+
       // Find all paths by search text
-      const paths: Array<string> = findPathsByText(searchPath);
+      let paths: Array<string> = allPaths;
+
+      if (searchPath) {
+        // Разделители chain могут быть ['/', '\', '.'] , всех заменяем на '.'
+        const clearSearchPath = searchPath.replace(pathSplitterRegExp, ".");
+        paths = findPathsByText(clearSearchPath, allPaths);
+      }
+
+      if (typeof searchValue === "string" && searchValue !== "") {
+        paths = paths.filter(path => {
+          const realPath = path.replace(`${expandedRoot}.`, "");
+          const jsonData = get(json, realPath);
+
+          // Filter by searchValue
+          return String(jsonData).search(searchValue) !== -1;
+        });
+      }
 
       // Get maximum search result value
       const maxResultItems = Number(settings.searchLimit);
@@ -151,7 +153,7 @@ const Search = React.memo(
 
       // Heighlight all found paths
       setHighlightLS(highlightPathsLS);
-    }, [searchPath, settings.searchLimit]);
+    }, [json, searchPath, searchValue, settings.searchLimit]);
 
     const handleSearchTextCleaning = useCallback(() => {
       // If empty - clear expanded blocks and heighlights in LS
@@ -161,18 +163,18 @@ const Search = React.memo(
       // Clear result counters
       setFoundAllResults([]);
       setFoundResults([]);
-    }, [clearExpandedLS, setHighlightLS, setFoundAllResults, setFoundResults]);
+    }, [setFoundAllResults, setFoundResults]);
 
     const onEnterAction = useCallback(() => {
-      if (searchPath === "") {
+      if (searchPath === "" && searchValue === "") {
         handleSearchTextCleaning();
       } else {
         searchAndHighlightResults();
       }
     }, [
       searchPath,
-      clearExpandedLS,
-      setHighlightLS,
+      searchValue,
+      handleSearchTextCleaning,
       searchAndHighlightResults
     ]);
     const handleEnter = useCallback(
@@ -181,30 +183,34 @@ const Search = React.memo(
           forceJsonUpdate(onEnterAction, setJson, json);
         }
       },
-      [json, searchAndHighlightResults, setJson, onEnterAction]
+      [json, setJson, onEnterAction]
     );
 
     return (
       <div style={styles.wrapper}>
         <Input
-          label="Path"
-          placeholder="Search path"
-          initValue={searchPath}
-          onChangeValue={setSearchPath}
-          onChangeValueLS={setSearchPathLS}
-          onEnter={handleEnter}
-          setFoundResults={setFoundResults}
-          setFoundAllResults={setFoundAllResults}
-        />
-        <Input
           label="Value"
           placeholder="Search value"
+          regExp={inputValueRegExp}
           initValue={searchValue}
+          onEnter={handleEnter}
           onChangeValue={setSearchValue}
           onChangeValueLS={setSearchValueLS}
           setFoundResults={setFoundResults}
           setFoundAllResults={setFoundAllResults}
         />
+        <Input
+          label="Path"
+          placeholder="Search path"
+          regExp={inputPathsRegExp}
+          initValue={searchPath}
+          onEnter={handleEnter}
+          onChangeValue={setSearchPath}
+          onChangeValueLS={setSearchPathLS}
+          setFoundResults={setFoundResults}
+          setFoundAllResults={setFoundAllResults}
+        />
+
         <Text
           style={styles.resultText}
         >{`${foundResults.length}/${foundAllResults.length}`}</Text>
@@ -221,20 +227,3 @@ const Search = React.memo(
 );
 
 export { Search };
-
-const InputStyled = styled("input")`
-  && {
-    position: relative;
-    background: none;
-    display: inline-flex;
-    margin: 0.5rem 0;
-    position: relative;
-    box-sizing: border-box;
-    font-size: 1rem;
-    flex: 1;
-    border: 0;
-    outline: none;
-
-    padding-left: 0.7rem;
-  }
-`;
