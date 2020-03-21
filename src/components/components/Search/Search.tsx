@@ -14,7 +14,7 @@ import { isDarkTheme } from "@settings";
 import { setAllPaths, findPathsByText, showInJsonByPath } from "./searchUtils";
 import { CloseIcon, SettingsIcon } from "@icons";
 import { colors } from "@colors";
-import { Text, Button, Input } from "@common";
+import { Text, Button, Input, TextTypes } from "@common";
 import {
   settingsType,
   setSearchPathType,
@@ -39,9 +39,9 @@ const styles: Record<string, React.CSSProperties> = {
   resultText: {
     display: "inline-flex",
     justifyContent: "flex-end",
-    paddingLeft: "0.5rem",
     whiteSpace: "nowrap",
-    fontSize: "1rem"
+    fontSize: "1rem",
+    fontWeight: "normal"
   },
   settings: {
     background: isDarkTheme
@@ -75,8 +75,8 @@ export type setFountAllResultsType = React.Dispatch<
 >;
 
 const inputValueRegExp = /^([\w-+*\\\/.]+)?$/i;
-const inputPathsRegExp = /^([\w\d]*([\.\\\/][\w\d]+)*[\.\\\/]?[ ]*)?([\w-+*\\\/.]+)?$/i;
-const pathSplitterRegExp = /[\\\/]/;
+const inputPathsRegExp = /^[\w\d]*([\.\\\/][\w\d]+)*[\.\\\/]?$/i;
+const pathSplitterRegExp = /[\\\/]/g;
 
 const Search = React.memo(
   ({
@@ -108,6 +108,7 @@ const Search = React.memo(
       if (searchPath) {
         // Разделители chain могут быть ['/', '\', '.'] , всех заменяем на '.'
         const clearSearchPath = searchPath.replace(pathSplitterRegExp, ".");
+        console.log(`clearSearchPath`, clearSearchPath);
         paths = findPathsByText(clearSearchPath, allPaths);
       }
 
@@ -185,6 +186,9 @@ const Search = React.memo(
       },
       [json, setJson, onEnterAction]
     );
+    const handleSearch = useCallback(() => {
+      forceJsonUpdate(onEnterAction, setJson, json);
+    }, [json, setJson, onEnterAction]);
 
     return (
       <div style={styles.wrapper}>
@@ -212,8 +216,11 @@ const Search = React.memo(
         />
 
         <Text
+          type={TextTypes.KEY}
           style={styles.resultText}
         >{`${foundResults.length}/${foundAllResults.length}`}</Text>
+
+        <Button title="Search" onClick={handleSearch} />
         <Button
           onClick={onToggleSettings}
           type="circle"

@@ -13,10 +13,12 @@ import {
   clearExpandedLS,
   setHighlightLS
 } from "../components/localStorageTools";
+import { TextTypes } from "./Text";
 
 const styles: Record<string, React.CSSProperties> = {
   inputStyle: {
-    color: isDarkTheme ? colors.searchText.dark : colors.searchText.light
+    padding: "0 0.5rem 0 0.5rem",
+    color: isDarkTheme ? colors.textColor.dark : colors.textColor.light
   }
 };
 
@@ -49,6 +51,7 @@ const Input = (props: InputProps) => {
     onChangeValueLS = emptyFn
   } = props;
   const [inputValue, setInputValue] = useState(initValue);
+  const [focus, setFocus] = useState(false);
 
   const handleChangeInput = useCallback(
     (value = "") => {
@@ -90,16 +93,38 @@ const Input = (props: InputProps) => {
     handleSearchTextCleaning();
   }, [handleChangeInput, handleSearchTextCleaning]);
 
+  const handleInputFocus = useCallback(() => {
+    setFocus(true);
+  }, [setFocus]);
+  const handleInputBlur = useCallback(() => {
+    setFocus(false);
+  }, [setFocus]);
+
+  const wrapperShowStyle = {
+    flex: 1
+  };
+
+  /*
+   * TODO: show Text and Input by focus value
+   * {!focus && <Text style={styles.inputStyle}>{inputValue}</Text>}
+   */
   return (
-    <Wrapper>
-      {label && <Text>{`${label}:`}</Text>}
-      <InputStyled
-        placeholder={placeholder}
-        style={styles.inputStyle}
-        value={inputValue}
-        onChange={onChange}
-        onKeyDown={onEnter}
-      />
+    <Wrapper onClick={handleInputFocus} style={focus ? wrapperShowStyle : {}}>
+      <InputWrapper>
+        {label && <Text type={TextTypes.NOWRAP}>{`${label}:`}</Text>}
+        <InputStyled
+          placeholder={placeholder}
+          style={{
+            ...styles.inputStyle,
+            ...(focus ? { borderBottom: "1px solid gray" } : {})
+          }}
+          value={inputValue}
+          onChange={onChange}
+          onKeyDown={onEnter}
+          onBlur={handleInputBlur}
+          autoFocus
+        />
+      </InputWrapper>
       {inputValue && (
         <Button onClick={handleClearInput} type="circle">
           <CloseIcon size="0.7rem" />
@@ -115,22 +140,25 @@ const Wrapper = styled("div")`
   display: inline-flex;
   flex: 1;
   align-items: center;
-  justify-items: center;
-  border-left: 2px solid gray;
+  justify-content: space-between;
+  transition: width 2s, height 4s;
+  margin-right: 0.5rem;
+`;
+const InputWrapper = styled("span")`
+  display: flex;
+  flex: 1;
+  align-items: center;
 `;
 const InputStyled = styled("input")`
   && {
     position: relative;
-    background: none;
     display: inline-flex;
-    margin: 0.5rem 0;
-    position: relative;
+    flex: 1;
+    background: none;
+    min-width: 4rem;
     box-sizing: border-box;
     font-size: 1rem;
-    flex: 1;
     border: 0;
     outline: none;
-
-    padding-left: 0.7rem;
   }
 `;

@@ -8,7 +8,8 @@ export enum TextTypes {
   HIDE = "hide",
   SHOW = "show",
   TEXT = "text",
-  JSON = "json"
+  JSON = "json",
+  NOWRAP = "nowrap"
 }
 
 interface TextProps {
@@ -19,6 +20,7 @@ interface TextProps {
 }
 
 const textCommonStyle: React.CSSProperties = {
+  color: isDarkTheme ? colors.keyColor.dark : colors.keyColor.light,
   wordBreak: "break-all",
   fontWeight: "normal"
 };
@@ -26,7 +28,6 @@ const textCommonStyle: React.CSSProperties = {
 const textMods: { [key in TextTypes]: React.CSSProperties } = {
   [TextTypes.KEY]: {
     ...textCommonStyle,
-    color: isDarkTheme ? colors.keyColor.dark : colors.keyColor.light,
     fontWeight: "bold",
     paddingRight: "0.5rem"
   },
@@ -45,6 +46,10 @@ const textMods: { [key in TextTypes]: React.CSSProperties } = {
   [TextTypes.JSON]: {
     ...textCommonStyle,
     color: isDarkTheme ? colors.jsonColor.dark : colors.jsonColor.light
+  },
+  [TextTypes.NOWRAP]: {
+    ...textCommonStyle,
+    whiteSpace: "nowrap"
   }
 };
 
