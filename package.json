@@ -1,6 +1,6 @@
 {
   "name": "lego-react-json-view",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "dist/bundle.js",
   "files": [
     "dist",

@@ -98,7 +98,10 @@ const Viewer = memo((props: ViewerProps) => {
         console.error("error", error.message);
       }
     }
-    return setCollapseSettingsLS(defaultCollapses);
+
+    setCollapseSettingsLS(defaultCollapses);
+
+    return defaultCollapses;
   });
   const [isOpenedSettings, setIsOpenedSettings] = useState(false);
   const [settings, setSettings] = useState<settingsType>(() => {
