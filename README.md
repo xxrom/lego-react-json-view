@@ -152,4 +152,5 @@ TODO:
 > - [x] onEnter search with empty input - clean results;
 > - [x] Clear search text (button);
 > - [x] Add settings close button;
-> - [-] Input animation (?).
+> - [-] Input animation (?);
+> - [-] On Search loading animations.
