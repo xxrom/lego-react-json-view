@@ -15,7 +15,8 @@
       "@icons": ["src/common/icons/"],
       "@colors": ["src/colors.tsx"],
       "@settings": ["src/settings.tsx"]
-    }
+    },
+    "types": ["jest"]
   },
   "include": ["src/**/*.tsx"],
   "exclude": ["src/**/*Json*", "src/**/*JSON*"]

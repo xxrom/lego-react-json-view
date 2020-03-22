@@ -5,7 +5,7 @@ import { json } from "./testData/bigTestJson";
 // import { json } from "./testData/smallTestJson";
 import { LegoViewer } from "./components";
 
-const App = () => {
+export const App = () => {
   const propsSettings = {
     // theme: "auto",
     // fontSize: "0.81",

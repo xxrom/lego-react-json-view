@@ -11,5 +11,23 @@
     "@babel/preset-react",
     "@babel/preset-typescript"
   ],
-  "plugins": ["react-hot-loader/babel"]
+  "plugins": ["react-hot-loader/babel"],
+  "env": {
+    "test": {
+      "presets": [
+        "@babel/typescript",
+        "@babel/preset-react",
+        ["@babel/preset-env", { "modules": "commonjs" }]
+      ],
+      "plugins": [
+        "@babel/plugin-transform-modules-commonjs",
+        [
+          "astroturf/plugin",
+          {
+            "writeFiles": true
+          }
+        ]
+      ]
+    }
+  }
 }

@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const { resolve } = require("./webpack.common");
+const { resolve } = require("./config/webpack.common");
 
 module.exports = {
   resolve,
